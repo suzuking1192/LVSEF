@@ -1,3 +1,8 @@
+# Model overview
+
+![Concept Diagram](assets/neurips_concept_diagram%20(6)%20(1)%20(5).png)
+![Model Overview](assets/neurips_model_overview%20-%20Copy%20(1)%20(1)%20(4).png)
+
 # Installation
 
 ## install dependencies
@@ -80,3 +85,7 @@ python evaluate.py --training_data ./datasets/polymers_117.txt \
                 --task_name ours_poly_top90_startingrule_20_sa_thres_3.5_enda_0.6 \
                 --save_grammar_sample_smi \
                 --save_sa_score
+
+![Concept Diagram](assets/neurips_concept_diagram%20(6)%20(1)%20(5).png)
+
+![Model Overview](assets/neurips_model_overview%20-%20Copy%20(1)%20(1)%20(4).png)
