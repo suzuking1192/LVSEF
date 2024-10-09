@@ -33,6 +33,7 @@ class Hypergraph(object):
         self.edges = set([])
         self.num_edges = 0
         self.nodes_in_edge_dict = {}
+        
 
     def __eq__(self, another):
         if self.num_nodes != another.num_nodes:
@@ -755,6 +756,131 @@ def mol_to_hg(mol, kekulize, add_Hs):
                     attr_dict=bipartite_g.nodes[each_atom]['atom_attr'])
     return hg
 
+def mol_to_bipartite_add_dummy(mol, kekulize):
+    """
+    get a bipartite representation of a molecule.
+
+    Parameters
+    ----------
+    mol : rdkit.Chem.rdchem.Mol
+        molecule object
+
+    Returns
+    -------
+    nx.Graph
+        a bipartite graph representing which bond is connected to which atoms.
+    """
+    try:
+        mol = standardize_stereo(mol)
+    except KeyError:
+        print(Chem.MolToSmiles(mol))
+        raise KeyError
+        
+    # if kekulize:
+        # Chem.Kekulize(mol)
+
+    bipartite_g = nx.Graph()
+    for each_atom in mol.GetAtoms():
+        bipartite_g.add_node(f"atom_{each_atom.GetIdx()}",
+                             atom_attr=atom_attr(each_atom, kekulize, terminal=(each_atom.GetSymbol()!="*")))
+
+    for each_bond in mol.GetBonds():
+        bond_idx = each_bond.GetIdx()
+        bipartite_g.add_node(
+            f"bond_{bond_idx}",
+            bond_attr=bond_attr(each_bond, kekulize))
+        bipartite_g.add_edge(
+            f"atom_{each_bond.GetBeginAtomIdx()}",
+            f"bond_{bond_idx}")
+        bipartite_g.add_edge(
+            f"atom_{each_bond.GetEndAtomIdx()}",
+            f"bond_{bond_idx}")
+    return bipartite_g
+
+def _add_ext_node(hg, ext_nodes):
+        """ mark nodes to be external (ordered ids are assigned)
+
+        Parameters
+        ----------
+        hg : UndirectedHypergraph
+        ext_nodes : list of str
+            list of external nodes
+
+        Returns
+        -------
+        hg : Hypergraph
+            nodes in `ext_nodes` are marked to be external
+        """
+        ext_id = 0
+        ext_id_exists = []
+        for each_node in ext_nodes:
+            ext_id_exists.append('ext_id' in hg.node_attr(each_node))
+        if ext_id_exists and any(ext_id_exists) != all(ext_id_exists):
+            raise ValueError
+        if not all(ext_id_exists):
+            for each_node in ext_nodes:
+                hg.node_attr(each_node)['ext_id'] = ext_id
+                ext_id += 1
+        return hg
+
+def mol_to_hg_add_dummy(mol, kekulize, add_Hs):
+    """
+    get a bipartite representation of a molecule.
+
+    Parameters
+    ----------
+    mol : rdkit.Chem.rdchem.Mol
+        molecule object
+    kekulize : bool
+        kekulize or not
+    add_Hs : bool
+        add implicit hydrogens to the molecule or not.
+
+    Returns
+    -------
+    Hypergraph
+    """
+    mol_org = mol
+    if add_Hs:
+        mol = Chem.AddHs(mol)
+
+    # if kekulize:
+        # Chem.Kekulize(mol)
+
+
+    bipartite_g = mol_to_bipartite_add_dummy(mol, kekulize)
+    hg = Hypergraph()
+    for each_atom in [each_node for each_node in bipartite_g.nodes()
+                      if each_node.startswith('atom_')]:
+        node_set = set([])
+        for each_bond in bipartite_g.adj[each_atom]:
+            hg.add_node(each_bond,
+                        attr_dict=bipartite_g.nodes[each_bond]['bond_attr'])
+            node_set.add(each_bond)
+            hg.add_node
+        hg.add_edge(node_set,
+                    attr_dict=bipartite_g.nodes[each_atom]['atom_attr'])
+    
+    # add ext_id
+    ext_nodes = []
+    for each_node in hg.nodes:
+        edges = [key for key in hg.adj_edges(each_node).keys()]
+        ext_node = False
+        for each_edge in edges:
+            if hg.edge_attr(each_edge)["terminal"] == False:
+                ext_node = True
+        if  ext_node == True:
+            ext_nodes.append(each_node)      
+            
+ 
+        
+    hg = _add_ext_node(hg,ext_nodes)
+    
+
+    
+    return hg
+
+
 
 def hg_to_mol(hg, verbose=False):
     """ convert a hypergraph into Mol object
@@ -767,21 +893,39 @@ def hg_to_mol(hg, verbose=False):
     -------
     mol : Chem.RWMol
     """
+    
+
     mol = Chem.RWMol()
     atom_dict = {}
     bond_set = set([])
     for each_edge in hg.edges:
-        atom = Chem.Atom(hg.edge_attr(each_edge)['symbol'].symbol)
-        atom.SetNumExplicitHs(hg.edge_attr(each_edge)['symbol'].num_explicit_Hs)
-        atom.SetFormalCharge(hg.edge_attr(each_edge)['symbol'].formal_charge)
-        atom.SetChiralTag(
-            Chem.rdchem.ChiralType.values[
-                hg.edge_attr(each_edge)['symbol'].chirality])
-        atom_idx = mol.AddAtom(atom)
-        atom_dict[each_edge] = atom_idx
+        try:
+            atom = Chem.Atom(hg.edge_attr(each_edge)['symbol'].symbol)
+            
+            atom.SetNumExplicitHs(hg.edge_attr(each_edge)['symbol'].num_explicit_Hs)
+            atom.SetFormalCharge(hg.edge_attr(each_edge)['symbol'].formal_charge)
+            atom.SetChiralTag(
+                Chem.rdchem.ChiralType.values[
+                    hg.edge_attr(each_edge)['symbol'].chirality])
+            atom_idx = mol.AddAtom(atom)
+            atom_dict[each_edge] = atom_idx
+        except:
+            # for R
+            atom = Chem.Atom("*")
+            atom_idx = mol.AddAtom(atom)
+            atom_dict[each_edge] = atom_idx
 
     for each_node in hg.nodes:
-        edge_1, edge_2 = hg.adj_edges(each_node)
+        if len(hg.adj_edges(each_node)) == 2:
+            edge_1, edge_2 = hg.adj_edges(each_node)
+        else:
+            edge_1 = [e for e in hg.adj_edges(each_node).items()][0][0]
+            # add a dummy atom
+            atom = Chem.Atom("*")
+            atom_idx = mol.AddAtom(atom)
+            edge_2 = "*" +  str(atom_idx)
+            atom_dict[edge_2] = atom_idx
+            
         if edge_1+edge_2 not in bond_set:
             if hg.node_attr(each_node)['symbol'].bond_type <= 3:
                 num_bond = hg.node_attr(each_node)['symbol'].bond_type

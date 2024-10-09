@@ -1,96 +1,82 @@
-# Data-Efficient Graph Grammar Learning for Molecular Generation
-This repository contains the implementation code for paper [Data-Efficient Graph Grammar Learning for Molecular Generation 
-](https://openreview.net/forum?id=l4IHywGq6a) (__ICLR 2022 oral__).
+# Installation
 
-In this work, we propose a data-efficient generative model (__DEG__) that can be learned from datasets with orders of
-magnitude smaller sizes than common benchmarks. At the heart of this method is a learnable graph grammar that generates molecules from a sequence of production rules. Our learned graph grammar yields state-of-the-art results on generating high-quality molecules for
-three monomer datasets that contain only ∼20 samples each.
-
-![overview](assets/pipeline.png)
-
-## Installation
-
-### Prerequisites
-- __Retro*:__ The training of our DEG relies on [Retro*](https://github.com/binghong-ml/retro_star) to calculate the metric. Follow the instruction [here](#conda) to install.
-
-- __Pretrained GNN:__ We use [this codebase](https://github.com/snap-stanford/pretrain-gnns) for the pretrained GNN used in our paper. The necessary code & pretrained models are built in the current repo.
-
-
-### Conda
-You can use ``conda`` to install the dependencies for DEG from the provided ``environment.yml`` file, which can give you the exact python environment we run the code for the paper:
-```bash
-git clone git@github.com:gmh14/data_efficient_grammar.git
-cd data_efficient_grammar
+## install dependencies
 conda env create -f environment.yml
-conda activate DEG
-pip install -e retro_star/packages/mlp_retrosyn
-pip install -e retro_star/packages/rdchiral
-```
->Note: it may take a decent amount of time to build necessary wheels using conda.
 
-### Install ``Retro*``:
-- Download and unzip the files from this [link](https://www.dropbox.com/s/ar9cupb18hv96gj/retro_data.zip?dl=0), 
-and put all the folders (```dataset/```, ```one_step_model/``` and ```saved_models/```) under the ```retro_star``` directory.
+## install Retro model
+Download and unzip the files from the link below, and put all the folders (dataset/, one_step_model/ and saved_models/) under the retro_star directory.
 
-- Install dependencies:
-```bash
-conda deactivate
-conda env create -f retro_star/environment.yml
-conda activate retro_star_env
-pip install -e retro_star/packages/mlp_retrosyn
-pip install -e retro_star/packages/rdchiral
-pip install setproctitle
-```
+https://www.dropbox.com/s/ar9cupb18hv96gj/retro_data.zip?dl=0
 
+# Train
+For Acrylates,
 
-## Train
+python main.py \
+        --max_epoches 20 \
+        --without_retro \
+        --training_data=./datasets/acrylates.txt \
+        --grammar_training \
+        --grammar_training_round 5 \
+        --grammar_training_round_sample 100 \
+        --grammar_lr 0.01 \
+        --grammar_explore_rate 0.005 \
+        --grammar_reconstruction_addition 0.4 \
+        --fragment_ranking_pred \
+        --fragment_ranking_pred_gammar 0.95 \
+        --random_warm_up 20 \
+        --task_name parameter_analysis_ours_acry_lr_0.01_expl_0.005_recon_0.4
 
-For Acrylates, Chain Extenders, and Isocyanates, 
-```bash
-conda activate DEG
-python main.py --training_data=./datasets/**dataset_path**
-```
-where ``**dataset_path**`` can be ``acrylates.txt``, ``chain_extenders.txt``, or ``isocyanates.txt``.
+For Polymer,
 
-For Polymer dataset,
-```bash
-conda activate DEG
-python main.py --training_data=./datasets/polymers_117.txt --motif
-```
+python main.py \
+        --max_epoches 20 \
+        --sa_score \
+        --training_data=./datasets/polymers_117.txt \
+        --grammar_training \
+        --grammar_training_round 5 \
+        --grammar_training_round_sample 100 \
+        --grammar_lr 0.05 \
+        --grammar_explore_rate 0.001 \
+        --grammar_reconstruction_addition 0.5 \
+        --sa_score \
+        --sa_thres_train_data 3.5 \
+        --fragment_ranking_pred \
+        --fragment_ranking_pred_gammar 0.95 \
+        --random_warm_up 20 \
+        --task_name ours_poly_lr_0.05_expl_0.001_recon_0.5_batch_size_50_sa_thres_3.5_q_table_1000 \
+        --batch_training \
+        --batch_size 50 \
+        --remove_q_table_thres 1000
 
-Since ``Retro*`` is a major bottleneck of the training speed, we separate it from the main process, run multiple ``Retro*`` processes, and use file communication to evaluate the generated grammar during training. This is a compromise on the inefficiency of the built-in python multiprocessing package. We need to run the following command in another terminal window,
-```bash
-conda activate retro_star_env
-bash retro_star_listener.sh **num_processes**
-```
->Note: opening multiple ``Retro*`` is EXTREMELY memory consuming (~5G each). We suggest to start from using only one process by ``bash retro_star_listener.sh 1`` and monitor the memory usage, then accordingly increase the number to maximize the efficiency. We use ``35`` in the paper.
+# Evaluation
+For Acrylates,
+python evaluate.py --training_data ./datasets/acrylates.txt \
+                --expr_name acrylates \
+                --model_folder  log/log-num_generated_samples100-20240305-095612_grammar_training_True_grammar_lr_0.01_grammar_explore_rate0.005_acrylatess_lr_0.01_explore_0.005_recon_0.3\
+                --num_generated_samples 1000 \
+                --grammar_training \
+                --early_stopping 100 \
+                --add_top_k 110 \
+                --topk_from_scratch \
+                --top_k_selection 20 \
+                --random_iter_start 5 \
+                --final_model \
+                --a_ending_factor 0.4 \
+                --task_name generation_ablation_acr_top_110_scratch_our_combination_final_model_a_0.4_save_smi_top_k_selection_20_random_iter_start_5 \
+                --save_grammar_sample_smi
 
-After finishing the training, to kill all the generated processes related to ``Retro*``, run
-```bash
-killall retro_star_listener
-```
-
-
-## Use DEG
-Download and unzip the log & checkpoint files from this [link](https://drive.google.com/file/d/12g28WNAgRGzaLtuG6ESg25W-uzlNrpLQ/view?usp=sharing). See ``visualization.ipynb`` for more details.
-
-
-## Acknowledgements
-The implementation of DEG is partly based on [Molecular Optimization Using Molecular Hypergraph Grammar](https://github.com/ibm-research-tokyo/graph_grammar) and [Hierarchical Generation of Molecular Graphs using Structural Motifs
-](https://github.com/wengong-jin/hgraph2graph).
-
-
-## Citation
-If you find the idea or code useful for your research, please cite [our paper](https://openreview.net/forum?id=l4IHywGq6a):
-```bib
-@inproceedings{guo2021data,
-  title={Data-Efficient Graph Grammar Learning for Molecular Generation},
-  author={Guo, Minghao and Thost, Veronika and Li, Beichen and Das, Payel and Chen, Jie and Matusik, Wojciech},
-  booktitle={International Conference on Learning Representations},
-  year={2021}
-}
-```
-
-
-## Contact
-Please contact guomh2014@gmail.com if you have any questions. Enjoy!
+For Polymer,
+python evaluate.py --training_data ./datasets/polymers_117.txt \
+                --expr_name polymer \
+                --model_folder  log/log-num_generated_samples100-20240326-181216_grammar_training_True_grammar_lr_0.05_grammar_explore_rate0.001_ours_poly_lr_0.05_expl_0.001_recon_0.5_batch_size_50_sa_thres_3.5_q_table_1000\
+                --num_generated_samples 1000 \
+                --grammar_training \
+                --early_stopping 100 \
+                --add_top_k 90 \
+                --topk_from_scratch \
+                --add_top_k_starting_ending 20 \
+                --final_model \
+                --a_ending_factor 0.6 \
+                --task_name ours_poly_top90_startingrule_20_sa_thres_3.5_enda_0.6 \
+                --save_grammar_sample_smi \
+                --save_sa_score

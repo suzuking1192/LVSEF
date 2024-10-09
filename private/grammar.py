@@ -1,6 +1,6 @@
 from private.symbol import TSymbol, NTSymbol, BondSymbol
 from private.utils import _node_match, _node_match_prod_rule, _edge_match, masked_softmax
-from private.hypergraph import Hypergraph, common_node_list
+from private.hypergraph import Hypergraph, common_node_list,hg_to_mol
 from collections import Counter
 from copy import deepcopy
 from functools import partial
@@ -13,6 +13,7 @@ import torch
 import os
 import random
 import warnings
+from rdkit import Chem
 
 DEBUG = False
 
@@ -247,11 +248,14 @@ class ProductionRule(object):
 
                 for each_idx, each_node in enumerate(hg.nodes_in_edge(edge)):
                     mapped_node_in_lhs = iso_mapping[each_node]
+                    
+
                     ext_id = edge_lhs.node_attr(mapped_node_in_lhs)['ext_id']
+                    
                     nt_order_dict[each_node] = ext_id
                     nt_order_dict_inv[ext_id] = each_node
                 to_rm_edges.append(edge)
-
+            
             for edge in to_rm_edges:
                 # delete non-terminal
                 hg.remove_edge(edge)
@@ -261,20 +265,23 @@ class ProductionRule(object):
             node_idx = hg.num_nodes
             for each_node in self.rhs.nodes:
                 if "ext_id" in self.rhs.node_attr(each_node):
+                    
+
+
                     node_map_rhs[each_node] \
-                            = nt_order_dict_inv[
-                                    self.rhs.node_attr(each_node)["ext_id"]]
+                            = nt_order_dict_inv[self.rhs.node_attr(each_node)["ext_id"]]
                 else:
                     node_map_rhs[each_node] = f"bond_{node_idx}"
                     node_idx += 1
-
+            
             # add nodes to hg
             for each_node in self.rhs.nodes:
                 hg.add_node(node_map_rhs[each_node],
                         attr_dict=self.rhs.node_attr(each_node))
-
+            
             # add hyperedges to hg
             for each_edge in self.rhs.edges:
+                
                 node_list_hg = []
                 for each_node in self.rhs.nodes_in_edge(each_edge):
                     node_list_hg.append(node_map_rhs[each_node])
@@ -284,9 +291,163 @@ class ProductionRule(object):
                 if "nt_idx" in hg.edge_attr(edge_id):
                     nt_edge_dict[hg.edge_attr(edge_id)["nt_idx"]] = edge_id
             nt_edge_list = [nt_edge_dict[key] for key in range(len(nt_edge_dict))]
-
-
+            
+            
             return hg, nt_edge_list, True
+        
+    def graph_rule_applied_to_frag_selection(self, input_hg, selected_edge=None, selected_iso_mapping=None, vis=False):
+        """ augment `hg` by replacing `edge` with `self.rhs`.
+
+        Parameters
+        ----------
+        hg : Hypergraph
+        edge : str
+            `edge` must belong to `hg`
+
+        Returns
+        -------
+        hg : Hypergraph
+            resultant hypergraph
+        nt_edge_list : list
+            list of non-terminal edges
+        """
+        hg = deepcopy(input_hg)
+        nt_edge_dict = {}
+        if self.is_start_rule:
+            node_idx = hg.num_nodes
+            # hg = Hypergraph()
+            node_map_rhs = {} # node id in rhs -> node id in hg, where rhs is augmented.
+            for num_idx, each_node in enumerate(self.rhs.nodes):
+                hg.add_node(f"bond_{num_idx+node_idx}",
+                            attr_dict=self.rhs.node_attr(each_node))
+                node_map_rhs[each_node] = f"bond_{num_idx+node_idx}"
+            for each_edge in self.rhs.edges:
+                node_list = []
+                for each_node in self.rhs.nodes_in_edge(each_edge):
+                    node_list.append(node_map_rhs[each_node])
+                if isinstance(self.rhs.nodes_in_edge(each_edge), set):
+                    node_list = set(node_list)
+                edge_id = hg.add_edge(
+                    node_list,
+                    attr_dict=self.rhs.edge_attr(each_edge))
+                if "nt_idx" in hg.edge_attr(edge_id):
+                    nt_edge_dict[hg.edge_attr(edge_id)["nt_idx"]] = edge_id
+            nt_edge_list = [nt_edge_dict[key] for key in range(len(nt_edge_dict))]
+            return hg, nt_edge_list, True
+        else:
+            hg_NT_edges = hg.get_all_NT_edges()
+            lhs_NT_edges = self.lhs.get_all_NT_edges()
+            match_flag = []
+            lhs_hg_matched_edge_dict = {}
+            assert len(lhs_NT_edges) == 1
+
+            # print("NTs:")
+            # print([edge.edges for edge in hg_NT_edges])
+            # print([edge.edge_attr(list(edge.edges)[0])['symbol'].symbol for edge in hg_NT_edges])
+            # eq = lhs_NT_edges[0] == hg_NT_edges[0]
+
+            for lhs_edge in lhs_NT_edges:
+                if lhs_edge in hg_NT_edges:
+                    match_flag.append(True)
+                    assert len(lhs_edge.edges) == 1
+                    for hg_NT_edge in hg_NT_edges:
+                        if hg_NT_edge == lhs_edge:
+                            if list(lhs_edge.edges)[0] not in lhs_hg_matched_edge_dict.keys():
+                                lhs_hg_matched_edge_dict[list(lhs_edge.edges)[0]] = [hg_NT_edge]
+                            else:
+                                lhs_hg_matched_edge_dict[list(lhs_edge.edges)[0]].append(hg_NT_edge)
+                else:
+                    match_flag.append(False)
+
+            if not all(match_flag):
+                return hg, [], False
+
+            # for edge in hg.edges:
+                # print("edge: {} -> nodes: {}".format(edge, hg.nodes_in_edge(edge)))
+
+            # order of nodes that belong to the non-terminal edge in hg
+            nt_order_dict = {}  # hg_node -> order ("bond_17" : 1)
+            nt_order_dict_inv = {} # order -> hg_node
+            to_rm_edges = []
+            assert len(lhs_NT_edges) == 1
+            for _i, edge_lhs in enumerate(lhs_NT_edges):
+                edges_hg = lhs_hg_matched_edge_dict[list(edge_lhs.edges)[0]]
+                edges_name_to_hg = {list(edge_hg.edges)[0]:edge_hg for edge_hg in edges_hg}
+                edges_cand = edges_name_to_hg.keys()
+                # filter out those removed edges in previous iterations
+                edges = [_edge for _edge in edges_cand if _edge not in to_rm_edges]
+                # if it is empty, meaning that there is only actually one NT in hg that matches multiple NTs in the lhs, the rule should be abandoned
+                if len(edges) == 0:
+                    return hg, [], False
+                # TODO add options
+                edge = selected_edge
+                if edge == None:
+                    edge = np.random.choice(edges, 1)[0]
+                # print('selected edge:', edge)
+                # edge_hg = edges_hg[edges_cand.index(edge)]
+                edge_hg = edges_name_to_hg[edge]
+                iso_mappings = edge_hg.find_isomorphism_mapping(edge_lhs, vis) # From edge_hg to edge_lhs
+                # print("mapping:", iso_mapping)
+                if selected_iso_mapping is None:
+                    iso_mapping = np.random.choice(iso_mappings, 1)[0]
+                else:
+                    iso_mapping = selected_iso_mapping
+
+                for each_idx, each_node in enumerate(hg.nodes_in_edge(edge)):
+                    mapped_node_in_lhs = iso_mapping[each_node]
+                    
+
+                    ext_id = edge_lhs.node_attr(mapped_node_in_lhs)['ext_id']
+                    
+                    nt_order_dict[each_node] = ext_id
+                    nt_order_dict_inv[ext_id] = each_node
+                to_rm_edges.append(edge)
+            
+            for edge in to_rm_edges:
+                # delete non-terminal
+                hg.remove_edge(edge)
+
+            # construct a node_map_rhs: rhs -> new hg
+            node_map_rhs = {} # node id in rhs -> node id in hg, where rhs is augmented.
+            node_idx = hg.num_nodes
+            for each_node in self.rhs.nodes:
+                if "ext_id" in self.rhs.node_attr(each_node):
+                    
+
+                    try:
+                        node_map_rhs[each_node] \
+                                = nt_order_dict_inv[self.rhs.node_attr(each_node)["ext_id"]]
+                    except:
+                        node_map_rhs[each_node] = f"bond_{node_idx}"
+                        node_idx += 1
+                else:
+                    node_map_rhs[each_node] = f"bond_{node_idx}"
+                    node_idx += 1
+            
+            # add nodes to hg
+            for each_node in self.rhs.nodes:
+                hg.add_node(node_map_rhs[each_node],
+                        attr_dict=self.rhs.node_attr(each_node))
+            
+            # add hyperedges to hg
+            for each_edge in self.rhs.edges:
+                first_bond = list(self.rhs.nodes_in_edge(each_edge))[0]
+                if self.rhs.edge_attr(each_edge)["terminal"] == False and self.rhs.node_attr(first_bond)["ext_id"]==0:
+                    pass
+                else:
+                    node_list_hg = []
+                    for each_node in self.rhs.nodes_in_edge(each_edge):
+                        node_list_hg.append(node_map_rhs[each_node])
+                    edge_id = hg.add_edge(
+                            node_list_hg,
+                            attr_dict=self.rhs.edge_attr(each_edge))#deepcopy(self.rhs.edge_attr(each_edge)))
+                    if "nt_idx" in hg.edge_attr(edge_id):
+                        nt_edge_dict[hg.edge_attr(edge_id)["nt_idx"]] = edge_id
+            nt_edge_list = [nt_edge_dict[key] for key in range(len(nt_edge_dict))]
+            
+            
+            return hg, nt_edge_list, True
+
 
     def get_all_compatible_edges(self, input_hg):
         hg = deepcopy(input_hg)

@@ -1,0 +1,16 @@
+[2023-12-24 08:58:10,131][        main.py][line: 102][    INFO] args:Namespace(GNN_model_path='./GCN/model_gin/supervised_contextpred.pth', MCMC_size=5, gammar=0.99, hidden_size=128, learning_rate=0.01, max_epoches=1, motif=False, num_generated_samples=100, receiver_file='output_syn.txt', resume=False, resume_path='', sender_file='generated_samples.txt', training_data='./datasets/isocyanates.txt')
+[2023-12-24 08:58:10,552][        main.py][line: 115][    INFO] starting
+
+[2023-12-24 08:58:10,552][        main.py][line: 120][    INFO] <<<<< Epoch 0/1 >>>>>>
+[2023-12-24 08:59:38,392][        main.py][line: 131][    INFO] eval_metrics: {'diversity': 0.8677180883692506, 'syn': 0.0}
+[2023-12-24 08:59:38,393][        main.py][line: 137][    INFO] ======Sample 0 returns 0.8677180883692506=======:
+[2023-12-24 09:01:00,202][        main.py][line: 131][    INFO] eval_metrics: {'diversity': 0.8936450451747977, 'syn': 0.0}
+[2023-12-24 09:01:00,203][        main.py][line: 137][    INFO] ======Sample 1 returns 0.8936450451747977=======:
+[2023-12-24 09:02:08,925][        main.py][line: 131][    INFO] eval_metrics: {'diversity': 0.8611291532341385, 'syn': 0.0}
+[2023-12-24 09:02:08,926][        main.py][line: 137][    INFO] ======Sample 2 returns 0.8611291532341385=======:
+[2023-12-24 09:03:27,649][        main.py][line: 131][    INFO] eval_metrics: {'diversity': 0.8962897860447347, 'syn': 0.0}
+[2023-12-24 09:03:27,649][        main.py][line: 137][    INFO] ======Sample 3 returns 0.8962897860447347=======:
+[2023-12-24 09:05:11,835][        main.py][line: 131][    INFO] eval_metrics: {'diversity': 0.8932355687148176, 'syn': 0.0}
+[2023-12-24 09:05:11,835][        main.py][line: 137][    INFO] ======Sample 4 returns 0.8932355687148176=======:
+[2023-12-24 09:05:11,924][        main.py][line: 166][    INFO] Loss: 0.6194695234298706
+[2023-12-24 09:05:11,924][        main.py][line: 174][    INFO] Mean evaluation metrics: diversity: 0.8824035283075478, syn: 0.0

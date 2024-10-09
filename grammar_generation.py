@@ -10,6 +10,7 @@ from private import *
 from agent import sample
 
 
+
 def data_processing(input_smiles, GNN_model_path, motif=False):
     input_mols = []
     input_graphs = []
@@ -54,7 +55,7 @@ def data_processing(input_smiles, GNN_model_path, motif=False):
     return subgraph_set, input_graphs_dict
 
 
-def grammar_generation(agent, input_graphs_dict, subgraph_set, grammar, mcmc_iter, sample_number, args):
+def grammar_generation(agent, input_graphs_dict, subgraph_set, grammar, mcmc_iter, sample_number, args, markov_model=None,gammar=0,total_steps=0):
     # Selected hyperedge (subgraph)
     plist = [*subgraph_set.map_to_input]
 
@@ -71,6 +72,7 @@ def grammar_generation(agent, input_graphs_dict, subgraph_set, grammar, mcmc_ite
     input_graphs_dict = deepcopy(org_input_graphs_dict)
     subgraph_set = deepcopy(org_subgraph_set)
     grammar = deepcopy(org_grammar)
+    
 
     for i, (key, input_g) in enumerate(input_graphs_dict.items()):
         print("---for graph {}---".format(i))
@@ -78,24 +80,32 @@ def grammar_generation(agent, input_graphs_dict, subgraph_set, grammar, mcmc_ite
         all_final_features = []
         # Skip the final iteration for training agent
         if len(input_g.subgraphs) > 1:
-            for subgraph, subgraph_idx in zip(input_g.subgraphs, input_g.subgraphs_idx):
-                subg_feature = input_g.get_subg_feature_for_agent(subgraph)
-                num_occurance = subgraph_set.map_to_input[MolKey(subgraph)][1]
-                num_in_input = len(subgraph_set.map_to_input[MolKey(subgraph)][0].keys())
-                final_feature = []
-                final_feature.extend(subg_feature.tolist())
-                final_feature.append(1 - np.exp(-num_occurance))
-                final_feature.append(num_in_input / len(list(input_graphs_dict.keys())))
-                all_final_features.append(torch.unsqueeze(torch.from_numpy(np.array(final_feature)).float(), 0))
-            while(True):
-                action_list, take_action = sample(agent, torch.vstack(all_final_features), mcmc_iter, sample_number)
-                if take_action:
-                    break
+            if args.fragment_ranking_pred == False:
+                for subgraph, subgraph_idx in zip(input_g.subgraphs, input_g.subgraphs_idx):
+                    subg_feature = input_g.get_subg_feature_for_agent(subgraph)
+                    num_occurance = subgraph_set.map_to_input[MolKey(subgraph)][1]
+                    num_in_input = len(subgraph_set.map_to_input[MolKey(subgraph)][0].keys())
+                    final_feature = []
+                    final_feature.extend(subg_feature.tolist())
+                    final_feature.append(1 - np.exp(-num_occurance))
+                    final_feature.append(num_in_input / len(list(input_graphs_dict.keys())))
+                    all_final_features.append(torch.unsqueeze(torch.from_numpy(np.array(final_feature)).float(), 0))
+                while(True):
+                    action_list, take_action = sample(agent, torch.vstack(all_final_features), mcmc_iter, sample_number)
+                    if take_action:
+                        break
+            else: 
+                if args.random_warm_up > total_steps:
+                    action_list = np.random.randint(2, size=len(input_g.subgraphs)).tolist()
+                else:
+                    action_list = sample_by_q_table(input_g,markov_model,gammar)
         elif len(input_g.subgraphs) == 1:
             action_list = [1]
         else:
             continue
         print("Hyperedge sampling:", action_list)
+        
+
         # Merge connected hyperedges
         p_star_list = input_g.merge_selected_subgraphs(action_list)
         # Generate rules
@@ -106,22 +116,29 @@ def grammar_generation(agent, input_graphs_dict, subgraph_set, grammar, mcmc_ite
                     if subg_idx not in input_g.subgraphs_idx:
                         # Skip the subg if it has been merged in previous iterations
                         continue
+                    
+
                     grammar = generate_rule(input_g, subg, grammar)
                     input_g.update_subgraph(subg_idx)
+        
+    
+
                     
     # Update subgraph_set
     subgraph_set.update([g for (k, g) in input_graphs_dict.items()])
     new_grammar = deepcopy(grammar)
     new_input_graphs_dict = deepcopy(input_graphs_dict)
     new_subgraph_set = deepcopy(subgraph_set)
+    
+
     return False, new_input_graphs_dict, new_subgraph_set, new_grammar
 
 
-def MCMC_sampling(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, sample_number, args):
+def MCMC_sampling(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, sample_number, args, markov_model=None,gammar=0,total_steps=0):
     iter_num = 0
     while(True):
         print("======MCMC iter{}======".format(iter_num))
-        done_flag, new_input_graphs_dict, new_subgraph_set, new_grammar = grammar_generation(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, iter_num, sample_number, args)
+        done_flag, new_input_graphs_dict, new_subgraph_set, new_grammar = grammar_generation(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, iter_num, sample_number, args, markov_model,gammar,total_steps)
         print("Graph contraction status: ", done_flag)
         if done_flag:
             break
@@ -129,6 +146,8 @@ def MCMC_sampling(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, s
         all_subgraph_set = deepcopy(new_subgraph_set)
         all_grammar = deepcopy(new_grammar)
         iter_num += 1
+        
+
 
     return iter_num, new_grammar, new_input_graphs_dict
 
@@ -187,3 +206,80 @@ def random_produce(grammar):
         return None, iter
 
     return mol, iter
+
+
+def average_except_zero(lst):
+    non_zero_values = [x for x in lst if x != 0]
+    if not non_zero_values:
+        return 0  # Return 0 if there are no non-zero values
+    return sum(non_zero_values) / len(non_zero_values)
+
+def sample_by_q_table(input_g,markov_model,gamma):
+    # FIX LATER this may not be optimal to find an optimal way to cut based on q table
+    
+    max_length = 5 # can change maximum length of subgraph connection
+    sub_graph_num = len(input_g.subgraphs)
+    
+    num_loop = sub_graph_num if sub_graph_num < max_length else max_length
+    
+    prob_list = []
+    for i in range(num_loop):
+        
+        tmp_action_list = [1] * i + [0] * (sub_graph_num - i)
+        if i == 0:
+            tmp_action_list = [0] * 1 + [1] * (sub_graph_num - 1)
+        copy_input_g = deepcopy(input_g)
+        grammar = ProductionRuleCorpus()
+        # Merge connected hyperedges
+        p_star_list = copy_input_g.merge_selected_subgraphs(tmp_action_list)
+        # Generate rules
+        for p_star in p_star_list:
+            is_inside, subgraphs, subgraphs_idx = copy_input_g.is_candidate_subgraph(p_star)
+            if is_inside:
+                for subg, subg_idx in zip(subgraphs, subgraphs_idx):
+                    if subg_idx not in copy_input_g.subgraphs_idx:
+                        # Skip the subg if it has been merged in previous iterations
+                        continue
+                    grammar = generate_rule(copy_input_g, subg, grammar)
+        
+        try:
+            generated_graph_rule = grammar.prod_rule_list[0]
+            
+            generated_graph_rule_rank = 0
+            generated_graph_rule_idx = markov_model.get_grammar_rule_idx(generated_graph_rule)
+            
+            grammar_list_q_table = deepcopy(markov_model.grammar_index)
+
+            if generated_graph_rule_idx == None:
+                pass
+            else:
+                for col_i in range(len(grammar_list_q_table)):
+                    if generated_graph_rule_idx == col_i:
+                        pass 
+                    else:
+                        generated_graph_rule_rank += markov_model.q_table[col_i][generated_graph_rule_idx]
+                        generated_graph_rule_rank += markov_model.q_table[generated_graph_rule_idx][col_i]
+            if generated_graph_rule_rank < 0:
+                generated_graph_rule_rank = 0
+        except:
+            print("FIXX LATER, error in selecting where to cut")
+            generated_graph_rule_rank = 0
+        prob_list.append(generated_graph_rule_rank)
+        
+    prob_avg = average_except_zero(prob_list)
+    prob_explore = prob_avg * gamma
+    
+    prob_list = [prob if prob != 0 else prob_explore for prob in prob_list ]
+    prob_list = np.array(prob_list)
+    prob_list = prob_list / np.sum(prob_list) if np.sum(prob_list) != 0 else [1 / len(prob_list)] * len(prob_list)
+    
+    try:
+        chosen_index = np.random.choice(len(prob_list), p=prob_list)
+    except:
+        # when all probabilities are 0
+        chosen_index = np.random.choice(len(prob_list))
+    action_list = [1] * chosen_index + [0] * (sub_graph_num - chosen_index)
+    if chosen_index == 0:
+        action_list = [0] * 1 + [1] * (sub_graph_num - 1)
+    
+    return action_list

@@ -2,7 +2,7 @@ from rdkit import DataStructs, Chem
 from rdkit.Chem import AllChem
 import numpy as np
 import torch.multiprocessing as mp
-from retro_star.api import RSPlanner
+# from retro_star.api import RSPlanner
 
 
 class InternalDiversity():

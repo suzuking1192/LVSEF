@@ -1,0 +1,1050 @@
+[2021-09-23 17:59:15,927][        main.py][line: 141][    INFO] args:Namespace(hidden_size=128, num_generated_samples=100, sample_width=1, MCMC_size=5, learning_rate=0.01, gammar=0.99, mp_size=10, use_multi_proc=True, multi_metrics=True, motif=False, sender_file='generated_samples.txt', receiver_file='output_syn.txt', resume=False, resume_path='', _lambda_0=0.5, _lambda_1=1.0)
+[2021-09-23 17:59:16,407][        main.py][line: 155][    INFO] starting
+
+[2021-09-23 18:13:28,273][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8932582766043379, 'num_rules': 56, 'num_samples': 0, 'syn': 0.13761467889908258}]
+[2021-09-23 18:13:28,274][        main.py][line: 185][    INFO] ======sample 0 returns [0.5842438172012515]=======:
+[2021-09-23 18:28:57,684][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8625823690977952, 'num_rules': 52, 'num_samples': 0, 'syn': 0.16666666666666666}]
+[2021-09-23 18:28:57,684][        main.py][line: 185][    INFO] ======sample 1 returns [0.5842438172012515, 0.5979578512155642]=======:
+[2021-09-23 18:45:58,012][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8693480802000251, 'num_rules': 61, 'num_samples': 0, 'syn': 0.1388888888888889}]
+[2021-09-23 18:45:58,012][        main.py][line: 185][    INFO] ======sample 2 returns [0.5842438172012515, 0.5979578512155642, 0.5735629289889015]=======:
+[2021-09-23 19:00:35,654][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8546825393175825, 'num_rules': 56, 'num_samples': 0, 'syn': 0.205607476635514}]
+[2021-09-23 19:00:35,654][        main.py][line: 185][    INFO] ======sample 3 returns [0.5842438172012515, 0.5979578512155642, 0.5735629289889015, 0.6329487462943053]=======:
+[2021-09-23 19:14:42,406][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8834705458259429, 'num_rules': 56, 'num_samples': 0, 'syn': 0.14678899082568808}]
+[2021-09-23 19:14:42,406][        main.py][line: 185][    INFO] ======sample 4 returns [0.5842438172012515, 0.5979578512155642, 0.5735629289889015, 0.6329487462943053, 0.5885242637386595]=======:
+[2021-09-23 19:14:42,830][        main.py][line: 208][    INFO] loss: tensor([0.1240], grad_fn=<AddBackward0>)
+[2021-09-23 19:14:42,832][        main.py][line: 209][    INFO] ===epoch1===
+[2021-09-23 19:14:42,833][        main.py][line: 210][    INFO] loss: 0.12395009398460388
+[2021-09-23 19:14:42,833][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8932582766043379, 'num_rules': 56, 'num_samples': 0, 'syn': 0.13761467889908258}], [{'diversity': 0.8625823690977952, 'num_rules': 52, 'num_samples': 0, 'syn': 0.16666666666666666}], [{'diversity': 0.8693480802000251, 'num_rules': 61, 'num_samples': 0, 'syn': 0.1388888888888889}], [{'diversity': 0.8546825393175825, 'num_rules': 56, 'num_samples': 0, 'syn': 0.205607476635514}], [{'diversity': 0.8834705458259429, 'num_rules': 56, 'num_samples': 0, 'syn': 0.14678899082568808}]]
+[2021-09-23 19:14:42,833][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8726683622091368
+[2021-09-23 19:14:42,834][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 56.2
+[2021-09-23 19:14:42,834][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-23 19:14:42,835][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.15911334038316804
+[2021-09-23 19:14:42,835][        main.py][line: 220][    INFO] =====
+[2021-09-23 19:36:17,975][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.884221051097396, 'num_rules': 56, 'num_samples': 0, 'syn': 0.1651376146788991}]
+[2021-09-23 19:36:17,976][        main.py][line: 185][    INFO] ======sample 0 returns [0.6072481402275971]=======:
+[2021-09-23 19:49:01,527][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8870461352327469, 'num_rules': 52, 'num_samples': 0, 'syn': 0.21495327102803738}]
+[2021-09-23 19:49:01,527][        main.py][line: 185][    INFO] ======sample 1 returns [0.6072481402275971, 0.6584763386444108]=======:
+[2021-09-23 20:02:14,631][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8740001871426223, 'num_rules': 55, 'num_samples': 0, 'syn': 0.14018691588785046}]
+[2021-09-23 20:02:14,632][        main.py][line: 185][    INFO] ======sample 2 returns [0.6072481402275971, 0.6584763386444108, 0.5771870094591616]=======:
+[2021-09-23 20:17:37,260][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8928877622261063, 'num_rules': 61, 'num_samples': 0, 'syn': 0.21904761904761905}]
+[2021-09-23 20:17:37,260][        main.py][line: 185][    INFO] ======sample 3 returns [0.6072481402275971, 0.6584763386444108, 0.5771870094591616, 0.6654915001606723]=======:
+[2021-09-23 20:30:18,102][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8681509600750574, 'num_rules': 59, 'num_samples': 0, 'syn': 0.21153846153846154}]
+[2021-09-23 20:30:18,103][        main.py][line: 185][    INFO] ======sample 4 returns [0.6072481402275971, 0.6584763386444108, 0.5771870094591616, 0.6654915001606723, 0.6456139415759903]=======:
+[2021-09-23 20:30:19,412][        main.py][line: 208][    INFO] loss: tensor([0.8303], grad_fn=<AddBackward0>)
+[2021-09-23 20:30:19,412][        main.py][line: 209][    INFO] ===epoch2===
+[2021-09-23 20:30:19,413][        main.py][line: 210][    INFO] loss: 0.8303253054618835
+[2021-09-23 20:30:19,413][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.884221051097396, 'num_rules': 56, 'num_samples': 0, 'syn': 0.1651376146788991}], [{'diversity': 0.8870461352327469, 'num_rules': 52, 'num_samples': 0, 'syn': 0.21495327102803738}], [{'diversity': 0.8740001871426223, 'num_rules': 55, 'num_samples': 0, 'syn': 0.14018691588785046}], [{'diversity': 0.8928877622261063, 'num_rules': 61, 'num_samples': 0, 'syn': 0.21904761904761905}], [{'diversity': 0.8681509600750574, 'num_rules': 59, 'num_samples': 0, 'syn': 0.21153846153846154}]]
+[2021-09-23 20:30:19,413][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8812612191547858
+[2021-09-23 20:30:19,413][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 56.6
+[2021-09-23 20:30:19,413][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-23 20:30:19,413][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.19017277643617353
+[2021-09-23 20:30:19,413][        main.py][line: 220][    INFO] =====
+[2021-09-23 20:46:18,891][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8574370904352382, 'num_rules': 61, 'num_samples': 0, 'syn': 0.11009174311926606}]
+[2021-09-23 20:46:18,891][        main.py][line: 185][    INFO] ======sample 0 returns [0.5388102883368852]=======:
+[2021-09-23 21:00:29,421][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8902403327492403, 'num_rules': 55, 'num_samples': 0, 'syn': 0.1308411214953271}]
+[2021-09-23 21:00:29,422][        main.py][line: 185][    INFO] ======sample 1 returns [0.5388102883368852, 0.5759612878699473]=======:
+[2021-09-23 21:20:05,459][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8213598536339759, 'num_rules': 57, 'num_samples': 0, 'syn': 0.1559633027522936}]
+[2021-09-23 21:20:05,459][        main.py][line: 185][    INFO] ======sample 2 returns [0.5388102883368852, 0.5759612878699473, 0.5666432295692816]=======:
+[2021-09-23 21:34:27,933][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8915301370298288, 'num_rules': 59, 'num_samples': 0, 'syn': 0.11214953271028037}]
+[2021-09-23 21:34:27,933][        main.py][line: 185][    INFO] ======sample 3 returns [0.5388102883368852, 0.5759612878699473, 0.5666432295692816, 0.5579146012251948]=======:
+[2021-09-23 21:51:27,293][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8981393442318624, 'num_rules': 60, 'num_samples': 0, 'syn': 0.1743119266055046}]
+[2021-09-23 21:51:27,293][        main.py][line: 185][    INFO] ======sample 4 returns [0.5388102883368852, 0.5759612878699473, 0.5666432295692816, 0.5579146012251948, 0.6233815987214357]=======:
+[2021-09-23 21:51:28,960][        main.py][line: 208][    INFO] loss: tensor([-0.2135], grad_fn=<AddBackward0>)
+[2021-09-23 21:51:28,960][        main.py][line: 209][    INFO] ===epoch3===
+[2021-09-23 21:51:28,963][        main.py][line: 210][    INFO] loss: -0.21353848278522491
+[2021-09-23 21:51:28,963][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8574370904352382, 'num_rules': 61, 'num_samples': 0, 'syn': 0.11009174311926606}], [{'diversity': 0.8902403327492403, 'num_rules': 55, 'num_samples': 0, 'syn': 0.1308411214953271}], [{'diversity': 0.8213598536339759, 'num_rules': 57, 'num_samples': 0, 'syn': 0.1559633027522936}], [{'diversity': 0.8915301370298288, 'num_rules': 59, 'num_samples': 0, 'syn': 0.11214953271028037}], [{'diversity': 0.8981393442318624, 'num_rules': 60, 'num_samples': 0, 'syn': 0.1743119266055046}]]
+[2021-09-23 21:51:28,963][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8717413516160291
+[2021-09-23 21:51:28,964][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 58.4
+[2021-09-23 21:51:28,964][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-23 21:51:28,964][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.13667152533653434
+[2021-09-23 21:51:28,964][        main.py][line: 220][    INFO] =====
+[2021-09-23 22:03:09,702][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8755241693737461, 'num_rules': 58, 'num_samples': 0, 'syn': 0.2616822429906542}]
+[2021-09-23 22:03:09,703][        main.py][line: 185][    INFO] ======sample 0 returns [0.6994443276775273]=======:
+[2021-09-23 22:19:24,789][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8545775241685712, 'num_rules': 52, 'num_samples': 0, 'syn': 0.25}]
+[2021-09-23 22:19:24,789][        main.py][line: 185][    INFO] ======sample 1 returns [0.6994443276775273, 0.6772887620842856]=======:
+[2021-09-23 22:31:38,734][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8828456526781373, 'num_rules': 58, 'num_samples': 0, 'syn': 0.24770642201834864}]
+[2021-09-23 22:31:38,735][        main.py][line: 185][    INFO] ======sample 2 returns [0.6994443276775273, 0.6772887620842856, 0.6891292483574173]=======:
+[2021-09-23 22:44:10,817][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8706298415359218, 'num_rules': 57, 'num_samples': 0, 'syn': 0.045871559633027525}]
+[2021-09-23 22:44:10,817][        main.py][line: 185][    INFO] ======sample 3 returns [0.6994443276775273, 0.6772887620842856, 0.6891292483574173, 0.48118648040098844]=======:
+[2021-09-23 22:56:08,947][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8780960972546042, 'num_rules': 54, 'num_samples': 0, 'syn': 0.07339449541284404}]
+[2021-09-23 22:56:08,947][        main.py][line: 185][    INFO] ======sample 4 returns [0.6994443276775273, 0.6772887620842856, 0.6891292483574173, 0.48118648040098844, 0.5124425440401461]=======:
+[2021-09-23 22:56:12,441][        main.py][line: 208][    INFO] loss: tensor([-4.2040], grad_fn=<AddBackward0>)
+[2021-09-23 22:56:12,441][        main.py][line: 209][    INFO] ===epoch4===
+[2021-09-23 22:56:12,441][        main.py][line: 210][    INFO] loss: -4.203957557678223
+[2021-09-23 22:56:12,441][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8755241693737461, 'num_rules': 58, 'num_samples': 0, 'syn': 0.2616822429906542}], [{'diversity': 0.8545775241685712, 'num_rules': 52, 'num_samples': 0, 'syn': 0.25}], [{'diversity': 0.8828456526781373, 'num_rules': 58, 'num_samples': 0, 'syn': 0.24770642201834864}], [{'diversity': 0.8706298415359218, 'num_rules': 57, 'num_samples': 0, 'syn': 0.045871559633027525}], [{'diversity': 0.8780960972546042, 'num_rules': 54, 'num_samples': 0, 'syn': 0.07339449541284404}]]
+[2021-09-23 22:56:12,442][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8723346570021961
+[2021-09-23 22:56:12,442][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 55.8
+[2021-09-23 22:56:12,442][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-23 22:56:12,442][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.1757309440109749
+[2021-09-23 22:56:12,442][        main.py][line: 220][    INFO] =====
+[2021-09-23 23:12:23,000][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8815180932925741, 'num_rules': 62, 'num_samples': 0, 'syn': 0.1388888888888889}]
+[2021-09-23 23:12:23,001][        main.py][line: 185][    INFO] ======sample 0 returns [0.579647935535176]=======:
+[2021-09-23 23:23:55,895][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8727183707796098, 'num_rules': 59, 'num_samples': 0, 'syn': 0.1743119266055046}]
+[2021-09-23 23:23:55,896][        main.py][line: 185][    INFO] ======sample 1 returns [0.579647935535176, 0.6106711119953094]=======:
+[2021-09-23 23:40:59,765][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8753065825705898, 'num_rules': 51, 'num_samples': 0, 'syn': 0.1559633027522936}]
+[2021-09-23 23:40:59,766][        main.py][line: 185][    INFO] ======sample 2 returns [0.579647935535176, 0.6106711119953094, 0.5936165940375885]=======:
+[2021-09-23 23:51:09,416][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8940823681440903, 'num_rules': 56, 'num_samples': 0, 'syn': 0.14678899082568808}]
+[2021-09-23 23:51:09,417][        main.py][line: 185][    INFO] ======sample 3 returns [0.579647935535176, 0.6106711119953094, 0.5936165940375885, 0.5938301748977333]=======:
+[2021-09-24 00:04:29,647][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8930106970203309, 'num_rules': 54, 'num_samples': 0, 'syn': 0.05555555555555555}]
+[2021-09-24 00:04:29,647][        main.py][line: 185][    INFO] ======sample 4 returns [0.579647935535176, 0.6106711119953094, 0.5936165940375885, 0.5938301748977333, 0.502060904065721]=======:
+[2021-09-24 00:04:32,355][        main.py][line: 208][    INFO] loss: tensor([2.0751], grad_fn=<AddBackward0>)
+[2021-09-24 00:04:32,359][        main.py][line: 209][    INFO] ===epoch5===
+[2021-09-24 00:04:32,359][        main.py][line: 210][    INFO] loss: 2.075126886367798
+[2021-09-24 00:04:32,360][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8815180932925741, 'num_rules': 62, 'num_samples': 0, 'syn': 0.1388888888888889}], [{'diversity': 0.8727183707796098, 'num_rules': 59, 'num_samples': 0, 'syn': 0.1743119266055046}], [{'diversity': 0.8753065825705898, 'num_rules': 51, 'num_samples': 0, 'syn': 0.1559633027522936}], [{'diversity': 0.8940823681440903, 'num_rules': 56, 'num_samples': 0, 'syn': 0.14678899082568808}], [{'diversity': 0.8930106970203309, 'num_rules': 54, 'num_samples': 0, 'syn': 0.05555555555555555}]]
+[2021-09-24 00:04:32,360][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.883327222361439
+[2021-09-24 00:04:32,361][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 56.4
+[2021-09-24 00:04:32,361][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 00:04:32,361][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.13430173292558614
+[2021-09-24 00:04:32,362][        main.py][line: 220][    INFO] =====
+[2021-09-24 00:17:54,607][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8296181197515298, 'num_rules': 55, 'num_samples': 0, 'syn': 0.1388888888888889}]
+[2021-09-24 00:17:54,607][        main.py][line: 185][    INFO] ======sample 0 returns [0.5536979487646538]=======:
+[2021-09-24 00:31:34,986][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8675816247996866, 'num_rules': 56, 'num_samples': 0, 'syn': 0.1509433962264151}]
+[2021-09-24 00:31:34,987][        main.py][line: 185][    INFO] ======sample 1 returns [0.5536979487646538, 0.5847342086262584]=======:
+[2021-09-24 00:45:48,308][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8848398488489682, 'num_rules': 49, 'num_samples': 0, 'syn': 0.102803738317757}]
+[2021-09-24 00:45:48,309][        main.py][line: 185][    INFO] ======sample 2 returns [0.5536979487646538, 0.5847342086262584, 0.5452236627422411]=======:
+[2021-09-24 00:59:23,446][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.889712151659099, 'num_rules': 56, 'num_samples': 0, 'syn': 0.1574074074074074}]
+[2021-09-24 00:59:23,446][        main.py][line: 185][    INFO] ======sample 3 returns [0.5536979487646538, 0.5847342086262584, 0.5452236627422411, 0.6022634832369569]=======:
+[2021-09-24 01:13:48,312][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8749006470291663, 'num_rules': 49, 'num_samples': 0, 'syn': 0.14150943396226415}]
+[2021-09-24 01:13:48,313][        main.py][line: 185][    INFO] ======sample 4 returns [0.5536979487646538, 0.5847342086262584, 0.5452236627422411, 0.6022634832369569, 0.5789597574768472]=======:
+[2021-09-24 01:13:50,183][        main.py][line: 208][    INFO] loss: tensor([0.2948], grad_fn=<AddBackward0>)
+[2021-09-24 01:13:50,183][        main.py][line: 209][    INFO] ===epoch6===
+[2021-09-24 01:13:50,184][        main.py][line: 210][    INFO] loss: 0.2947547733783722
+[2021-09-24 01:13:50,184][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8296181197515298, 'num_rules': 55, 'num_samples': 0, 'syn': 0.1388888888888889}], [{'diversity': 0.8675816247996866, 'num_rules': 56, 'num_samples': 0, 'syn': 0.1509433962264151}], [{'diversity': 0.8848398488489682, 'num_rules': 49, 'num_samples': 0, 'syn': 0.102803738317757}], [{'diversity': 0.889712151659099, 'num_rules': 56, 'num_samples': 0, 'syn': 0.1574074074074074}], [{'diversity': 0.8749006470291663, 'num_rules': 49, 'num_samples': 0, 'syn': 0.14150943396226415}]]
+[2021-09-24 01:13:50,184][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8693304784176898
+[2021-09-24 01:13:50,184][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 53.0
+[2021-09-24 01:13:50,184][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 01:13:50,184][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.13831057296054652
+[2021-09-24 01:13:50,184][        main.py][line: 220][    INFO] =====
+[2021-09-24 01:31:51,659][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8734248937859543, 'num_rules': 50, 'num_samples': 0, 'syn': 0.14678899082568808}]
+[2021-09-24 01:31:51,660][        main.py][line: 185][    INFO] ======sample 0 returns [0.5835014377186653]=======:
+[2021-09-24 01:46:22,081][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8666003958609743, 'num_rules': 52, 'num_samples': 0, 'syn': 0.27522935779816515}]
+[2021-09-24 01:46:22,081][        main.py][line: 185][    INFO] ======sample 1 returns [0.5835014377186653, 0.7085295557286523]=======:
+[2021-09-24 02:03:08,550][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8972447034923149, 'num_rules': 51, 'num_samples': 0, 'syn': 0.23148148148148148}]
+[2021-09-24 02:03:08,551][        main.py][line: 185][    INFO] ======sample 2 returns [0.5835014377186653, 0.7085295557286523, 0.6801038332276389]=======:
+[2021-09-24 02:21:12,420][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8895321599431508, 'num_rules': 50, 'num_samples': 0, 'syn': 0.09259259259259259}]
+[2021-09-24 02:21:12,420][        main.py][line: 185][    INFO] ======sample 3 returns [0.5835014377186653, 0.7085295557286523, 0.6801038332276389, 0.537358672564168]=======:
+[2021-09-24 02:38:01,867][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8927821309062635, 'num_rules': 55, 'num_samples': 0, 'syn': 0.1559633027522936}]
+[2021-09-24 02:38:01,867][        main.py][line: 185][    INFO] ======sample 4 returns [0.5835014377186653, 0.7085295557286523, 0.6801038332276389, 0.537358672564168, 0.6023543682054253]=======:
+[2021-09-24 02:38:05,345][        main.py][line: 208][    INFO] loss: tensor([1.6404], grad_fn=<AddBackward0>)
+[2021-09-24 02:38:05,345][        main.py][line: 209][    INFO] ===epoch7===
+[2021-09-24 02:38:05,345][        main.py][line: 210][    INFO] loss: 1.640383243560791
+[2021-09-24 02:38:05,346][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8734248937859543, 'num_rules': 50, 'num_samples': 0, 'syn': 0.14678899082568808}], [{'diversity': 0.8666003958609743, 'num_rules': 52, 'num_samples': 0, 'syn': 0.27522935779816515}], [{'diversity': 0.8972447034923149, 'num_rules': 51, 'num_samples': 0, 'syn': 0.23148148148148148}], [{'diversity': 0.8895321599431508, 'num_rules': 50, 'num_samples': 0, 'syn': 0.09259259259259259}], [{'diversity': 0.8927821309062635, 'num_rules': 55, 'num_samples': 0, 'syn': 0.1559633027522936}]]
+[2021-09-24 02:38:05,346][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8839168567977316
+[2021-09-24 02:38:05,346][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 51.6
+[2021-09-24 02:38:05,346][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 02:38:05,346][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.18041114509004416
+[2021-09-24 02:38:05,347][        main.py][line: 220][    INFO] =====
+[2021-09-24 02:53:59,205][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8834806604689085, 'num_rules': 51, 'num_samples': 0, 'syn': 0.1574074074074074}]
+[2021-09-24 02:53:59,206][        main.py][line: 185][    INFO] ======sample 0 returns [0.5991477376418617]=======:
+[2021-09-24 03:10:27,524][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8753786223679728, 'num_rules': 56, 'num_samples': 0, 'syn': 0.19444444444444445}]
+[2021-09-24 03:10:27,525][        main.py][line: 185][    INFO] ======sample 1 returns [0.5991477376418617, 0.6321337556284309]=======:
+[2021-09-24 03:24:37,803][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8741023596581436, 'num_rules': 50, 'num_samples': 0, 'syn': 0.205607476635514}]
+[2021-09-24 03:24:37,803][        main.py][line: 185][    INFO] ======sample 2 returns [0.5991477376418617, 0.6321337556284309, 0.6426586564645859]=======:
+[2021-09-24 03:38:17,140][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8616218400626412, 'num_rules': 48, 'num_samples': 0, 'syn': 0.11926605504587157}]
+[2021-09-24 03:38:17,140][        main.py][line: 185][    INFO] ======sample 3 returns [0.5991477376418617, 0.6321337556284309, 0.6426586564645859, 0.5500769750771921]=======:
+[2021-09-24 03:51:51,629][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.869316736027216, 'num_rules': 53, 'num_samples': 0, 'syn': 0.2897196261682243}]
+[2021-09-24 03:51:51,629][        main.py][line: 185][    INFO] ======sample 4 returns [0.5991477376418617, 0.6321337556284309, 0.6426586564645859, 0.5500769750771921, 0.7243779941818322]=======:
+[2021-09-24 03:51:53,067][        main.py][line: 208][    INFO] loss: tensor([0.9843], grad_fn=<AddBackward0>)
+[2021-09-24 03:51:53,068][        main.py][line: 209][    INFO] ===epoch8===
+[2021-09-24 03:51:53,068][        main.py][line: 210][    INFO] loss: 0.9843199253082275
+[2021-09-24 03:51:53,068][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8834806604689085, 'num_rules': 51, 'num_samples': 0, 'syn': 0.1574074074074074}], [{'diversity': 0.8753786223679728, 'num_rules': 56, 'num_samples': 0, 'syn': 0.19444444444444445}], [{'diversity': 0.8741023596581436, 'num_rules': 50, 'num_samples': 0, 'syn': 0.205607476635514}], [{'diversity': 0.8616218400626412, 'num_rules': 48, 'num_samples': 0, 'syn': 0.11926605504587157}], [{'diversity': 0.869316736027216, 'num_rules': 53, 'num_samples': 0, 'syn': 0.2897196261682243}]]
+[2021-09-24 03:51:53,069][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8727800437169766
+[2021-09-24 03:51:53,069][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 51.6
+[2021-09-24 03:51:53,069][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 03:51:53,069][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.19328900194029233
+[2021-09-24 03:51:53,069][        main.py][line: 220][    INFO] =====
+[2021-09-24 04:06:32,138][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8737090078675183, 'num_rules': 41, 'num_samples': 0, 'syn': 0.1388888888888889}]
+[2021-09-24 04:06:32,138][        main.py][line: 185][    INFO] ======sample 0 returns [0.5757433928226481]=======:
+[2021-09-24 04:22:43,646][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8908407553003139, 'num_rules': 50, 'num_samples': 0, 'syn': 0.2169811320754717}]
+[2021-09-24 04:22:43,647][        main.py][line: 185][    INFO] ======sample 1 returns [0.5757433928226481, 0.6624015097256286]=======:
+[2021-09-24 04:36:38,326][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8887606271552155, 'num_rules': 47, 'num_samples': 0, 'syn': 0.20754716981132076}]
+[2021-09-24 04:36:38,326][        main.py][line: 185][    INFO] ======sample 2 returns [0.5757433928226481, 0.6624015097256286, 0.6519274833889286]=======:
+[2021-09-24 04:47:51,576][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8650563099533543, 'num_rules': 44, 'num_samples': 0, 'syn': 0.16037735849056603}]
+[2021-09-24 04:47:51,576][        main.py][line: 185][    INFO] ======sample 3 returns [0.5757433928226481, 0.6624015097256286, 0.6519274833889286, 0.5929055134672432]=======:
+[2021-09-24 05:04:53,489][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8599703337492456, 'num_rules': 43, 'num_samples': 0, 'syn': 0.25471698113207547}]
+[2021-09-24 05:04:53,490][        main.py][line: 185][    INFO] ======sample 4 returns [0.5757433928226481, 0.6624015097256286, 0.6519274833889286, 0.5929055134672432, 0.6847021480066983]=======:
+[2021-09-24 05:04:56,588][        main.py][line: 208][    INFO] loss: tensor([-0.7792], grad_fn=<AddBackward0>)
+[2021-09-24 05:04:56,589][        main.py][line: 209][    INFO] ===epoch9===
+[2021-09-24 05:04:56,589][        main.py][line: 210][    INFO] loss: -0.7791507244110107
+[2021-09-24 05:04:56,589][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8737090078675183, 'num_rules': 41, 'num_samples': 0, 'syn': 0.1388888888888889}], [{'diversity': 0.8908407553003139, 'num_rules': 50, 'num_samples': 0, 'syn': 0.2169811320754717}], [{'diversity': 0.8887606271552155, 'num_rules': 47, 'num_samples': 0, 'syn': 0.20754716981132076}], [{'diversity': 0.8650563099533543, 'num_rules': 44, 'num_samples': 0, 'syn': 0.16037735849056603}], [{'diversity': 0.8599703337492456, 'num_rules': 43, 'num_samples': 0, 'syn': 0.25471698113207547}]]
+[2021-09-24 05:04:56,589][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8756674068051294
+[2021-09-24 05:04:56,590][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 45.0
+[2021-09-24 05:04:56,590][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 05:04:56,590][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.19570230607966455
+[2021-09-24 05:04:56,590][        main.py][line: 220][    INFO] =====
+[2021-09-24 05:20:07,471][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.839821167303326, 'num_rules': 48, 'num_samples': 0, 'syn': 0.24299065420560748}]
+[2021-09-24 05:20:07,471][        main.py][line: 185][    INFO] ======sample 0 returns [0.6629012378572705]=======:
+[2021-09-24 05:41:04,752][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8504047544614757, 'num_rules': 45, 'num_samples': 0, 'syn': 0.25}]
+[2021-09-24 05:41:04,752][        main.py][line: 185][    INFO] ======sample 1 returns [0.6629012378572705, 0.6752023772307378]=======:
+[2021-09-24 06:00:38,637][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8715467022281376, 'num_rules': 48, 'num_samples': 0, 'syn': 0.24074074074074073}]
+[2021-09-24 06:00:38,637][        main.py][line: 185][    INFO] ======sample 2 returns [0.6629012378572705, 0.6752023772307378, 0.6765140918548095]=======:
+[2021-09-24 06:17:16,169][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.858894544380261, 'num_rules': 48, 'num_samples': 0, 'syn': 0.2358490566037736}]
+[2021-09-24 06:17:16,170][        main.py][line: 185][    INFO] ======sample 3 returns [0.6629012378572705, 0.6752023772307378, 0.6765140918548095, 0.6652963287939041]=======:
+[2021-09-24 06:32:13,078][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8700495004130055, 'num_rules': 49, 'num_samples': 0, 'syn': 0.2616822429906542}]
+[2021-09-24 06:32:13,078][        main.py][line: 185][    INFO] ======sample 4 returns [0.6629012378572705, 0.6752023772307378, 0.6765140918548095, 0.6652963287939041, 0.696706993197157]=======:
+[2021-09-24 06:32:18,452][        main.py][line: 208][    INFO] loss: tensor([-0.0016], grad_fn=<AddBackward0>)
+[2021-09-24 06:32:18,453][        main.py][line: 209][    INFO] ===epoch10===
+[2021-09-24 06:32:18,453][        main.py][line: 210][    INFO] loss: -0.001620948314666748
+[2021-09-24 06:32:18,453][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.839821167303326, 'num_rules': 48, 'num_samples': 0, 'syn': 0.24299065420560748}], [{'diversity': 0.8504047544614757, 'num_rules': 45, 'num_samples': 0, 'syn': 0.25}], [{'diversity': 0.8715467022281376, 'num_rules': 48, 'num_samples': 0, 'syn': 0.24074074074074073}], [{'diversity': 0.858894544380261, 'num_rules': 48, 'num_samples': 0, 'syn': 0.2358490566037736}], [{'diversity': 0.8700495004130055, 'num_rules': 49, 'num_samples': 0, 'syn': 0.2616822429906542}]]
+[2021-09-24 06:32:18,453][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8581433337572413
+[2021-09-24 06:32:18,453][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 47.6
+[2021-09-24 06:32:18,453][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 06:32:18,453][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.2462525389081552
+[2021-09-24 06:32:18,454][        main.py][line: 220][    INFO] =====
+[2021-09-24 06:56:52,556][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8133529636650937, 'num_rules': 35, 'num_samples': 0, 'syn': 0.24299065420560748}]
+[2021-09-24 06:56:52,557][        main.py][line: 185][    INFO] ======sample 0 returns [0.6496671360381543]=======:
+[2021-09-24 07:14:01,096][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8479324718728022, 'num_rules': 42, 'num_samples': 0, 'syn': 0.1308411214953271}]
+[2021-09-24 07:14:01,097][        main.py][line: 185][    INFO] ======sample 1 returns [0.6496671360381543, 0.5548073574317282]=======:
+[2021-09-24 07:29:17,966][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8577973792347888, 'num_rules': 47, 'num_samples': 0, 'syn': 0.12844036697247707}]
+[2021-09-24 07:29:17,967][        main.py][line: 185][    INFO] ======sample 2 returns [0.6496671360381543, 0.5548073574317282, 0.5573390565898715]=======:
+[2021-09-24 07:44:53,183][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.865170241073992, 'num_rules': 41, 'num_samples': 0, 'syn': 0.1559633027522936}]
+[2021-09-24 07:44:53,184][        main.py][line: 185][    INFO] ======sample 3 returns [0.6496671360381543, 0.5548073574317282, 0.5573390565898715, 0.5885484232892896]=======:
+[2021-09-24 08:01:37,338][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8807224122676413, 'num_rules': 43, 'num_samples': 0, 'syn': 0.18691588785046728}]
+[2021-09-24 08:01:37,339][        main.py][line: 185][    INFO] ======sample 4 returns [0.6496671360381543, 0.5548073574317282, 0.5573390565898715, 0.5885484232892896, 0.6272770939842879]=======:
+[2021-09-24 08:01:38,250][        main.py][line: 208][    INFO] loss: tensor([-0.2274], grad_fn=<AddBackward0>)
+[2021-09-24 08:01:38,258][        main.py][line: 209][    INFO] ===epoch11===
+[2021-09-24 08:01:38,258][        main.py][line: 210][    INFO] loss: -0.2274143248796463
+[2021-09-24 08:01:38,259][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8133529636650937, 'num_rules': 35, 'num_samples': 0, 'syn': 0.24299065420560748}], [{'diversity': 0.8479324718728022, 'num_rules': 42, 'num_samples': 0, 'syn': 0.1308411214953271}], [{'diversity': 0.8577973792347888, 'num_rules': 47, 'num_samples': 0, 'syn': 0.12844036697247707}], [{'diversity': 0.865170241073992, 'num_rules': 41, 'num_samples': 0, 'syn': 0.1559633027522936}], [{'diversity': 0.8807224122676413, 'num_rules': 43, 'num_samples': 0, 'syn': 0.18691588785046728}]]
+[2021-09-24 08:01:38,259][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8529950936228635
+[2021-09-24 08:01:38,259][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 41.6
+[2021-09-24 08:01:38,259][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 08:01:38,260][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.1690302666552345
+[2021-09-24 08:01:38,260][        main.py][line: 220][    INFO] =====
+[2021-09-24 08:16:19,162][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8594010330647404, 'num_rules': 37, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-24 08:16:19,163][        main.py][line: 185][    INFO] ======sample 0 returns [0.7232784981837463]=======:
+[2021-09-24 08:26:53,862][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8664811158717338, 'num_rules': 44, 'num_samples': 0, 'syn': 0.16981132075471697}]
+[2021-09-24 08:26:53,862][        main.py][line: 185][    INFO] ======sample 1 returns [0.7232784981837463, 0.6030518786905839]=======:
+[2021-09-24 08:45:07,779][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8286908643392683, 'num_rules': 39, 'num_samples': 0, 'syn': 0.22935779816513763}]
+[2021-09-24 08:45:07,780][        main.py][line: 185][    INFO] ======sample 2 returns [0.7232784981837463, 0.6030518786905839, 0.6437032303347718]=======:
+[2021-09-24 09:00:28,857][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8549727759698252, 'num_rules': 40, 'num_samples': 0, 'syn': 0.2358490566037736}]
+[2021-09-24 09:00:28,858][        main.py][line: 185][    INFO] ======sample 3 returns [0.7232784981837463, 0.6030518786905839, 0.6437032303347718, 0.6633354445886862]=======:
+[2021-09-24 09:18:27,327][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8775117076349711, 'num_rules': 37, 'num_samples': 0, 'syn': 0.35185185185185186}]
+[2021-09-24 09:18:27,327][        main.py][line: 185][    INFO] ======sample 4 returns [0.7232784981837463, 0.6030518786905839, 0.6437032303347718, 0.6633354445886862, 0.7906077056693375]=======:
+[2021-09-24 09:18:29,005][        main.py][line: 208][    INFO] loss: tensor([-0.8524], grad_fn=<AddBackward0>)
+[2021-09-24 09:18:29,010][        main.py][line: 209][    INFO] ===epoch12===
+[2021-09-24 09:18:29,011][        main.py][line: 210][    INFO] loss: -0.8523582220077515
+[2021-09-24 09:18:29,011][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8594010330647404, 'num_rules': 37, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8664811158717338, 'num_rules': 44, 'num_samples': 0, 'syn': 0.16981132075471697}], [{'diversity': 0.8286908643392683, 'num_rules': 39, 'num_samples': 0, 'syn': 0.22935779816513763}], [{'diversity': 0.8549727759698252, 'num_rules': 40, 'num_samples': 0, 'syn': 0.2358490566037736}], [{'diversity': 0.8775117076349711, 'num_rules': 37, 'num_samples': 0, 'syn': 0.35185185185185186}]]
+[2021-09-24 09:18:29,012][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8574114993761078
+[2021-09-24 09:18:29,012][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 39.4
+[2021-09-24 09:18:29,013][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 09:18:29,013][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.2560896018053712
+[2021-09-24 09:18:29,014][        main.py][line: 220][    INFO] =====
+[2021-09-24 09:36:32,776][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8708786424793793, 'num_rules': 46, 'num_samples': 0, 'syn': 0.2962962962962963}]
+[2021-09-24 09:36:32,776][        main.py][line: 185][    INFO] ======sample 0 returns [0.7317356175359859]=======:
+[2021-09-24 09:54:09,321][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8407637622068326, 'num_rules': 44, 'num_samples': 0, 'syn': 0.18691588785046728}]
+[2021-09-24 09:54:09,321][        main.py][line: 185][    INFO] ======sample 1 returns [0.7317356175359859, 0.6072977689538835]=======:
+[2021-09-24 10:14:23,881][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8750929814566655, 'num_rules': 39, 'num_samples': 0, 'syn': 0.19811320754716982}]
+[2021-09-24 10:14:23,882][        main.py][line: 185][    INFO] ======sample 2 returns [0.7317356175359859, 0.6072977689538835, 0.6356596982755025]=======:
+[2021-09-24 10:33:21,640][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8436207973745393, 'num_rules': 36, 'num_samples': 0, 'syn': 0.14678899082568808}]
+[2021-09-24 10:33:21,640][        main.py][line: 185][    INFO] ======sample 3 returns [0.7317356175359859, 0.6072977689538835, 0.6356596982755025, 0.5685993895129577]=======:
+[2021-09-24 10:47:33,517][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8438955326058166, 'num_rules': 37, 'num_samples': 0, 'syn': 0.26851851851851855}]
+[2021-09-24 10:47:33,517][        main.py][line: 185][    INFO] ======sample 4 returns [0.7317356175359859, 0.6072977689538835, 0.6356596982755025, 0.5685993895129577, 0.6904662848214269]=======:
+[2021-09-24 10:47:34,913][        main.py][line: 208][    INFO] loss: tensor([-0.0644], grad_fn=<AddBackward0>)
+[2021-09-24 10:47:34,914][        main.py][line: 209][    INFO] ===epoch13===
+[2021-09-24 10:47:34,914][        main.py][line: 210][    INFO] loss: -0.06444057822227478
+[2021-09-24 10:47:34,914][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8708786424793793, 'num_rules': 46, 'num_samples': 0, 'syn': 0.2962962962962963}], [{'diversity': 0.8407637622068326, 'num_rules': 44, 'num_samples': 0, 'syn': 0.18691588785046728}], [{'diversity': 0.8750929814566655, 'num_rules': 39, 'num_samples': 0, 'syn': 0.19811320754716982}], [{'diversity': 0.8436207973745393, 'num_rules': 36, 'num_samples': 0, 'syn': 0.14678899082568808}], [{'diversity': 0.8438955326058166, 'num_rules': 37, 'num_samples': 0, 'syn': 0.26851851851851855}]]
+[2021-09-24 10:47:34,915][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8548503432246466
+[2021-09-24 10:47:34,915][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 40.4
+[2021-09-24 10:47:34,915][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 10:47:34,915][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.21932658020762802
+[2021-09-24 10:47:34,915][        main.py][line: 220][    INFO] =====
+[2021-09-24 11:02:31,276][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8507451172126754, 'num_rules': 41, 'num_samples': 0, 'syn': 0.39814814814814814}]
+[2021-09-24 11:02:31,276][        main.py][line: 185][    INFO] ======sample 0 returns [0.8235207067544859]=======:
+[2021-09-24 11:20:00,369][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8279185474530347, 'num_rules': 38, 'num_samples': 0, 'syn': 0.26605504587155965}]
+[2021-09-24 11:20:00,369][        main.py][line: 185][    INFO] ======sample 1 returns [0.8235207067544859, 0.680014319598077]=======:
+[2021-09-24 11:33:47,227][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.849594898674345, 'num_rules': 34, 'num_samples': 0, 'syn': 0.22641509433962265}]
+[2021-09-24 11:33:47,228][        main.py][line: 185][    INFO] ======sample 2 returns [0.8235207067544859, 0.680014319598077, 0.6512125436767952]=======:
+[2021-09-24 11:47:35,102][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8449212566366109, 'num_rules': 39, 'num_samples': 0, 'syn': 0.22935779816513763}]
+[2021-09-24 11:47:35,103][        main.py][line: 185][    INFO] ======sample 3 returns [0.8235207067544859, 0.680014319598077, 0.6512125436767952, 0.651818426483443]=======:
+[2021-09-24 12:03:40,171][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8579731988205447, 'num_rules': 40, 'num_samples': 0, 'syn': 0.3055555555555556}]
+[2021-09-24 12:03:40,171][        main.py][line: 185][    INFO] ======sample 4 returns [0.8235207067544859, 0.680014319598077, 0.6512125436767952, 0.651818426483443, 0.734542154965828]=======:
+[2021-09-24 12:03:42,572][        main.py][line: 208][    INFO] loss: tensor([-0.1883], grad_fn=<AddBackward0>)
+[2021-09-24 12:03:42,572][        main.py][line: 209][    INFO] ===epoch14===
+[2021-09-24 12:03:42,574][        main.py][line: 210][    INFO] loss: -0.188299298286438
+[2021-09-24 12:03:42,574][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8507451172126754, 'num_rules': 41, 'num_samples': 0, 'syn': 0.39814814814814814}], [{'diversity': 0.8279185474530347, 'num_rules': 38, 'num_samples': 0, 'syn': 0.26605504587155965}], [{'diversity': 0.849594898674345, 'num_rules': 34, 'num_samples': 0, 'syn': 0.22641509433962265}], [{'diversity': 0.8449212566366109, 'num_rules': 39, 'num_samples': 0, 'syn': 0.22935779816513763}], [{'diversity': 0.8579731988205447, 'num_rules': 40, 'num_samples': 0, 'syn': 0.3055555555555556}]]
+[2021-09-24 12:03:42,575][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8462306037594421
+[2021-09-24 12:03:42,575][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 38.4
+[2021-09-24 12:03:42,575][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 12:03:42,575][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.2851063284160047
+[2021-09-24 12:03:42,576][        main.py][line: 220][    INFO] =====
+[2021-09-24 12:22:49,351][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8193648610861667, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-24 12:22:49,352][        main.py][line: 185][    INFO] ======sample 0 returns [0.749131971827487]=======:
+[2021-09-24 12:36:58,607][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8349141200944759, 'num_rules': 34, 'num_samples': 0, 'syn': 0.1743119266055046}]
+[2021-09-24 12:36:58,607][        main.py][line: 185][    INFO] ======sample 1 returns [0.749131971827487, 0.5917689866527425]=======:
+[2021-09-24 12:52:03,089][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7968723755707054, 'num_rules': 33, 'num_samples': 0, 'syn': 0.3211009174311927}]
+[2021-09-24 12:52:03,090][        main.py][line: 185][    INFO] ======sample 2 returns [0.749131971827487, 0.5917689866527425, 0.7195371052165453]=======:
+[2021-09-24 13:07:00,298][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8273946466823594, 'num_rules': 35, 'num_samples': 0, 'syn': 0.39814814814814814}]
+[2021-09-24 13:07:00,299][        main.py][line: 185][    INFO] ======sample 3 returns [0.749131971827487, 0.5917689866527425, 0.7195371052165453, 0.8118454714893278]=======:
+[2021-09-24 13:26:16,850][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8287842693064194, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-24 13:26:16,850][        main.py][line: 185][    INFO] ======sample 4 returns [0.749131971827487, 0.5917689866527425, 0.7195371052165453, 0.8118454714893278, 0.7630159878642189]=======:
+[2021-09-24 13:26:18,652][        main.py][line: 208][    INFO] loss: tensor([2.7092], grad_fn=<AddBackward0>)
+[2021-09-24 13:26:18,652][        main.py][line: 209][    INFO] ===epoch15===
+[2021-09-24 13:26:18,652][        main.py][line: 210][    INFO] loss: 2.709240198135376
+[2021-09-24 13:26:18,652][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8193648610861667, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.8349141200944759, 'num_rules': 34, 'num_samples': 0, 'syn': 0.1743119266055046}], [{'diversity': 0.7968723755707054, 'num_rules': 33, 'num_samples': 0, 'syn': 0.3211009174311927}], [{'diversity': 0.8273946466823594, 'num_rules': 35, 'num_samples': 0, 'syn': 0.39814814814814814}], [{'diversity': 0.8287842693064194, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3486238532110092}]]
+[2021-09-24 13:26:18,652][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8214660545480253
+[2021-09-24 13:26:18,653][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 33.6
+[2021-09-24 13:26:18,653][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 13:26:18,653][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.31632687733605164
+[2021-09-24 13:26:18,653][        main.py][line: 220][    INFO] =====
+[2021-09-24 13:43:29,321][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8493459209681679, 'num_rules': 40, 'num_samples': 0, 'syn': 0.330188679245283}]
+[2021-09-24 13:43:29,321][        main.py][line: 185][    INFO] ======sample 0 returns [0.7548616397293669]=======:
+[2021-09-24 14:05:38,654][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8547633860393961, 'num_rules': 34, 'num_samples': 0, 'syn': 0.23853211009174313}]
+[2021-09-24 14:05:38,654][        main.py][line: 185][    INFO] ======sample 1 returns [0.7548616397293669, 0.6659138031114411]=======:
+[2021-09-24 14:26:30,201][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8318900568391094, 'num_rules': 39, 'num_samples': 0, 'syn': 0.37037037037037035}]
+[2021-09-24 14:26:30,202][        main.py][line: 185][    INFO] ======sample 2 returns [0.7548616397293669, 0.6659138031114411, 0.7863153987899251]=======:
+[2021-09-24 14:42:15,770][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8459962890738799, 'num_rules': 39, 'num_samples': 0, 'syn': 0.3302752293577982}]
+[2021-09-24 14:42:15,771][        main.py][line: 185][    INFO] ======sample 3 returns [0.7548616397293669, 0.6659138031114411, 0.7863153987899251, 0.7532733738947381]=======:
+[2021-09-24 14:57:35,896][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7913385660143376, 'num_rules': 35, 'num_samples': 0, 'syn': 0.4205607476635514}]
+[2021-09-24 14:57:35,897][        main.py][line: 185][    INFO] ======sample 4 returns [0.7548616397293669, 0.6659138031114411, 0.7863153987899251, 0.7532733738947381, 0.8162300306707202]=======:
+[2021-09-24 14:57:37,256][        main.py][line: 208][    INFO] loss: tensor([0.6168], grad_fn=<AddBackward0>)
+[2021-09-24 14:57:37,257][        main.py][line: 209][    INFO] ===epoch16===
+[2021-09-24 14:57:37,257][        main.py][line: 210][    INFO] loss: 0.6168235540390015
+[2021-09-24 14:57:37,257][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8493459209681679, 'num_rules': 40, 'num_samples': 0, 'syn': 0.330188679245283}], [{'diversity': 0.8547633860393961, 'num_rules': 34, 'num_samples': 0, 'syn': 0.23853211009174313}], [{'diversity': 0.8318900568391094, 'num_rules': 39, 'num_samples': 0, 'syn': 0.37037037037037035}], [{'diversity': 0.8459962890738799, 'num_rules': 39, 'num_samples': 0, 'syn': 0.3302752293577982}], [{'diversity': 0.7913385660143376, 'num_rules': 35, 'num_samples': 0, 'syn': 0.4205607476635514}]]
+[2021-09-24 14:57:37,257][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8346668437869781
+[2021-09-24 14:57:37,258][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 37.4
+[2021-09-24 14:57:37,258][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 14:57:37,258][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.33798542734574916
+[2021-09-24 14:57:37,258][        main.py][line: 220][    INFO] =====
+[2021-09-24 15:11:27,533][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8322398182588328, 'num_rules': 41, 'num_samples': 0, 'syn': 0.30275229357798167}]
+[2021-09-24 15:11:27,534][        main.py][line: 185][    INFO] ======sample 0 returns [0.718872202707398]=======:
+[2021-09-24 15:30:21,381][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8265674681489301, 'num_rules': 35, 'num_samples': 0, 'syn': 0.28440366972477066}]
+[2021-09-24 15:30:21,381][        main.py][line: 185][    INFO] ======sample 1 returns [0.718872202707398, 0.6976874037992358]=======:
+[2021-09-24 15:46:09,548][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.801670270893862, 'num_rules': 35, 'num_samples': 0, 'syn': 0.37037037037037035}]
+[2021-09-24 15:46:09,549][        main.py][line: 185][    INFO] ======sample 2 returns [0.718872202707398, 0.6976874037992358, 0.7712055058173013]=======:
+[2021-09-24 16:04:41,706][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7927692458498651, 'num_rules': 36, 'num_samples': 0, 'syn': 0.23853211009174313}]
+[2021-09-24 16:04:41,707][        main.py][line: 185][    INFO] ======sample 3 returns [0.718872202707398, 0.6976874037992358, 0.7712055058173013, 0.6349167330166756]=======:
+[2021-09-24 16:21:51,549][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8282332852403529, 'num_rules': 37, 'num_samples': 0, 'syn': 0.37037037037037035}]
+[2021-09-24 16:21:51,550][        main.py][line: 185][    INFO] ======sample 4 returns [0.718872202707398, 0.6976874037992358, 0.7712055058173013, 0.6349167330166756, 0.7844870129905468]=======:
+[2021-09-24 16:21:52,449][        main.py][line: 208][    INFO] loss: tensor([0.2553], grad_fn=<AddBackward0>)
+[2021-09-24 16:21:52,450][        main.py][line: 209][    INFO] ===epoch17===
+[2021-09-24 16:21:52,452][        main.py][line: 210][    INFO] loss: 0.2552987039089203
+[2021-09-24 16:21:52,453][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8322398182588328, 'num_rules': 41, 'num_samples': 0, 'syn': 0.30275229357798167}], [{'diversity': 0.8265674681489301, 'num_rules': 35, 'num_samples': 0, 'syn': 0.28440366972477066}], [{'diversity': 0.801670270893862, 'num_rules': 35, 'num_samples': 0, 'syn': 0.37037037037037035}], [{'diversity': 0.7927692458498651, 'num_rules': 36, 'num_samples': 0, 'syn': 0.23853211009174313}], [{'diversity': 0.8282332852403529, 'num_rules': 37, 'num_samples': 0, 'syn': 0.37037037037037035}]]
+[2021-09-24 16:21:52,453][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8162960176783687
+[2021-09-24 16:21:52,454][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 36.8
+[2021-09-24 16:21:52,454][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 16:21:52,455][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.31328576282704723
+[2021-09-24 16:21:52,455][        main.py][line: 220][    INFO] =====
+[2021-09-24 16:34:23,653][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8239401288098605, 'num_rules': 41, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-24 16:34:23,653][        main.py][line: 185][    INFO] ======sample 0 returns [0.7514196056893339]=======:
+[2021-09-24 16:53:38,825][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.872208874735375, 'num_rules': 36, 'num_samples': 0, 'syn': 0.39814814814814814}]
+[2021-09-24 16:53:38,825][        main.py][line: 185][    INFO] ======sample 1 returns [0.7514196056893339, 0.8342525855158356]=======:
+[2021-09-24 17:12:31,901][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8061949522889857, 'num_rules': 39, 'num_samples': 0, 'syn': 0.37962962962962965}]
+[2021-09-24 17:12:31,901][        main.py][line: 185][    INFO] ======sample 2 returns [0.7514196056893339, 0.8342525855158356, 0.7827271057741225]=======:
+[2021-09-24 17:33:27,790][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8266329255249127, 'num_rules': 35, 'num_samples': 0, 'syn': 0.25688073394495414}]
+[2021-09-24 17:33:27,791][        main.py][line: 185][    INFO] ======sample 3 returns [0.7514196056893339, 0.8342525855158356, 0.7827271057741225, 0.6701971967074105]=======:
+[2021-09-24 17:49:08,079][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8181187518105986, 'num_rules': 32, 'num_samples': 0, 'syn': 0.37962962962962965}]
+[2021-09-24 17:49:08,079][        main.py][line: 185][    INFO] ======sample 4 returns [0.7514196056893339, 0.8342525855158356, 0.7827271057741225, 0.6701971967074105, 0.7886890055349289]=======:
+[2021-09-24 17:49:10,088][        main.py][line: 208][    INFO] loss: tensor([-0.2093], grad_fn=<AddBackward0>)
+[2021-09-24 17:49:10,089][        main.py][line: 209][    INFO] ===epoch18===
+[2021-09-24 17:49:10,089][        main.py][line: 210][    INFO] loss: -0.2093420773744583
+[2021-09-24 17:49:10,089][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8239401288098605, 'num_rules': 41, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.872208874735375, 'num_rules': 36, 'num_samples': 0, 'syn': 0.39814814814814814}], [{'diversity': 0.8061949522889857, 'num_rules': 39, 'num_samples': 0, 'syn': 0.37962962962962965}], [{'diversity': 0.8266329255249127, 'num_rules': 35, 'num_samples': 0, 'syn': 0.25688073394495414}], [{'diversity': 0.8181187518105986, 'num_rules': 32, 'num_samples': 0, 'syn': 0.37962962962962965}]]
+[2021-09-24 17:49:10,089][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8294191266339466
+[2021-09-24 17:49:10,090][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 36.6
+[2021-09-24 17:49:10,090][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 17:49:10,090][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.350747536527353
+[2021-09-24 17:49:10,090][        main.py][line: 220][    INFO] =====
+[2021-09-24 18:12:43,104][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8111026835419719, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-24 18:12:43,104][        main.py][line: 185][    INFO] ======sample 0 returns [0.7450008830553896]=======:
+[2021-09-24 18:28:00,494][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8219015053177501, 'num_rules': 38, 'num_samples': 0, 'syn': 0.43119266055045874}]
+[2021-09-24 18:28:00,495][        main.py][line: 185][    INFO] ======sample 1 returns [0.7450008830553896, 0.8421434132093337]=======:
+[2021-09-24 18:41:47,391][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8254397154912008, 'num_rules': 39, 'num_samples': 0, 'syn': 0.3888888888888889}]
+[2021-09-24 18:41:47,391][        main.py][line: 185][    INFO] ======sample 2 returns [0.7450008830553896, 0.8421434132093337, 0.8016087466344892]=======:
+[2021-09-24 18:59:19,893][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8443422298058099, 'num_rules': 34, 'num_samples': 0, 'syn': 0.37037037037037035}]
+[2021-09-24 18:59:19,893][        main.py][line: 185][    INFO] ======sample 3 returns [0.7450008830553896, 0.8421434132093337, 0.8016087466344892, 0.7925414852732753]=======:
+[2021-09-24 19:16:22,541][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.848041490771057, 'num_rules': 42, 'num_samples': 0, 'syn': 0.21296296296296297}]
+[2021-09-24 19:16:22,542][        main.py][line: 185][    INFO] ======sample 4 returns [0.7450008830553896, 0.8421434132093337, 0.8016087466344892, 0.7925414852732753, 0.6369837083484915]=======:
+[2021-09-24 19:16:24,037][        main.py][line: 208][    INFO] loss: tensor([-0.7323], grad_fn=<AddBackward0>)
+[2021-09-24 19:16:24,038][        main.py][line: 209][    INFO] ===epoch19===
+[2021-09-24 19:16:24,038][        main.py][line: 210][    INFO] loss: -0.7323156595230103
+[2021-09-24 19:16:24,038][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8111026835419719, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.8219015053177501, 'num_rules': 38, 'num_samples': 0, 'syn': 0.43119266055045874}], [{'diversity': 0.8254397154912008, 'num_rules': 39, 'num_samples': 0, 'syn': 0.3888888888888889}], [{'diversity': 0.8443422298058099, 'num_rules': 34, 'num_samples': 0, 'syn': 0.37037037037037035}], [{'diversity': 0.848041490771057, 'num_rules': 42, 'num_samples': 0, 'syn': 0.21296296296296297}]]
+[2021-09-24 19:16:24,038][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.830165524985558
+[2021-09-24 19:16:24,039][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 37.6
+[2021-09-24 19:16:24,039][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 19:16:24,039][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.34857288481141696
+[2021-09-24 19:16:24,039][        main.py][line: 220][    INFO] =====
+[2021-09-24 19:33:21,582][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.765052939366886, 'num_rules': 33, 'num_samples': 0, 'syn': 0.44036697247706424}]
+[2021-09-24 19:33:21,583][        main.py][line: 185][    INFO] ======sample 0 returns [0.8228934421605072]=======:
+[2021-09-24 19:50:19,090][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8396409045330391, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3853211009174312}]
+[2021-09-24 19:50:19,091][        main.py][line: 185][    INFO] ======sample 1 returns [0.8228934421605072, 0.8051415531839508]=======:
+[2021-09-24 20:01:05,634][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8563882765044355, 'num_rules': 38, 'num_samples': 0, 'syn': 0.41284403669724773}]
+[2021-09-24 20:01:05,634][        main.py][line: 185][    INFO] ======sample 2 returns [0.8228934421605072, 0.8051415531839508, 0.8410381749494655]=======:
+[2021-09-24 20:16:04,677][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8525444867206076, 'num_rules': 33, 'num_samples': 0, 'syn': 0.37383177570093457}]
+[2021-09-24 20:16:04,678][        main.py][line: 185][    INFO] ======sample 3 returns [0.8228934421605072, 0.8051415531839508, 0.8410381749494655, 0.8001040190612383]=======:
+[2021-09-24 20:32:55,637][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.847162205323476, 'num_rules': 38, 'num_samples': 0, 'syn': 0.39814814814814814}]
+[2021-09-24 20:32:55,637][        main.py][line: 185][    INFO] ======sample 4 returns [0.8228934421605072, 0.8051415531839508, 0.8410381749494655, 0.8001040190612383, 0.8217292508098861]=======:
+[2021-09-24 20:32:57,254][        main.py][line: 208][    INFO] loss: tensor([0.1391], grad_fn=<AddBackward0>)
+[2021-09-24 20:32:57,255][        main.py][line: 209][    INFO] ===epoch20===
+[2021-09-24 20:32:57,255][        main.py][line: 210][    INFO] loss: 0.13908863067626953
+[2021-09-24 20:32:57,255][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.765052939366886, 'num_rules': 33, 'num_samples': 0, 'syn': 0.44036697247706424}], [{'diversity': 0.8396409045330391, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3853211009174312}], [{'diversity': 0.8563882765044355, 'num_rules': 38, 'num_samples': 0, 'syn': 0.41284403669724773}], [{'diversity': 0.8525444867206076, 'num_rules': 33, 'num_samples': 0, 'syn': 0.37383177570093457}], [{'diversity': 0.847162205323476, 'num_rules': 38, 'num_samples': 0, 'syn': 0.39814814814814814}]]
+[2021-09-24 20:32:57,255][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.832157762489689
+[2021-09-24 20:32:57,255][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 35.2
+[2021-09-24 20:32:57,255][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 20:32:57,255][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.4021024067881652
+[2021-09-24 20:32:57,255][        main.py][line: 220][    INFO] =====
+[2021-09-24 20:54:57,737][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8291863759081797, 'num_rules': 38, 'num_samples': 0, 'syn': 0.26851851851851855}]
+[2021-09-24 20:54:57,738][        main.py][line: 185][    INFO] ======sample 0 returns [0.6831117064726084]=======:
+[2021-09-24 21:14:09,692][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7841535710846423, 'num_rules': 30, 'num_samples': 0, 'syn': 0.19444444444444445}]
+[2021-09-24 21:14:09,692][        main.py][line: 185][    INFO] ======sample 1 returns [0.6831117064726084, 0.5865212299867656]=======:
+[2021-09-24 21:30:37,919][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8598769285908938, 'num_rules': 37, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-24 21:30:37,919][        main.py][line: 185][    INFO] ======sample 2 returns [0.6831117064726084, 0.5865212299867656, 0.7235164459468231]=======:
+[2021-09-24 21:51:45,099][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8103309157563761, 'num_rules': 38, 'num_samples': 0, 'syn': 0.37383177570093457}]
+[2021-09-24 21:51:45,099][        main.py][line: 185][    INFO] ======sample 3 returns [0.6831117064726084, 0.5865212299867656, 0.7235164459468231, 0.7789972335791226]=======:
+[2021-09-24 22:05:29,005][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8354440887466048, 'num_rules': 41, 'num_samples': 0, 'syn': 0.330188679245283}]
+[2021-09-24 22:05:29,005][        main.py][line: 185][    INFO] ======sample 4 returns [0.6831117064726084, 0.5865212299867656, 0.7235164459468231, 0.7789972335791226, 0.7479107236185853]=======:
+[2021-09-24 22:05:31,000][        main.py][line: 208][    INFO] loss: tensor([0.9165], grad_fn=<AddBackward0>)
+[2021-09-24 22:05:31,000][        main.py][line: 209][    INFO] ===epoch21===
+[2021-09-24 22:05:31,000][        main.py][line: 210][    INFO] loss: 0.9165090918540955
+[2021-09-24 22:05:31,000][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8291863759081797, 'num_rules': 38, 'num_samples': 0, 'syn': 0.26851851851851855}], [{'diversity': 0.7841535710846423, 'num_rules': 30, 'num_samples': 0, 'syn': 0.19444444444444445}], [{'diversity': 0.8598769285908938, 'num_rules': 37, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8103309157563761, 'num_rules': 38, 'num_samples': 0, 'syn': 0.37383177570093457}], [{'diversity': 0.8354440887466048, 'num_rules': 41, 'num_samples': 0, 'syn': 0.330188679245283}]]
+[2021-09-24 22:05:31,001][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8237983760173393
+[2021-09-24 22:05:31,001][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 36.8
+[2021-09-24 22:05:31,001][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 22:05:31,001][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.29211227991211136
+[2021-09-24 22:05:31,001][        main.py][line: 220][    INFO] =====
+[2021-09-24 22:24:22,484][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8106085467457335, 'num_rules': 35, 'num_samples': 0, 'syn': 0.32710280373831774}]
+[2021-09-24 22:24:22,485][        main.py][line: 185][    INFO] ======sample 0 returns [0.7324070771111845]=======:
+[2021-09-24 22:42:38,347][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8264480744120408, 'num_rules': 36, 'num_samples': 0, 'syn': 0.22935779816513763}]
+[2021-09-24 22:42:38,348][        main.py][line: 185][    INFO] ======sample 1 returns [0.7324070771111845, 0.6425818353711581]=======:
+[2021-09-24 22:59:12,117][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8050849327182261, 'num_rules': 35, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-24 22:59:12,117][        main.py][line: 185][    INFO] ======sample 2 returns [0.7324070771111845, 0.6425818353711581, 0.6961204480104892]=======:
+[2021-09-24 23:12:09,783][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8508892816952361, 'num_rules': 37, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-24 23:12:09,784][        main.py][line: 185][    INFO] ======sample 3 returns [0.7324070771111845, 0.6425818353711581, 0.6961204480104892, 0.7190226224989942]=======:
+[2021-09-24 23:25:01,815][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8486391658797767, 'num_rules': 36, 'num_samples': 0, 'syn': 0.3925233644859813}]
+[2021-09-24 23:25:01,816][        main.py][line: 185][    INFO] ======sample 4 returns [0.7324070771111845, 0.6425818353711581, 0.6961204480104892, 0.7190226224989942, 0.8168429474258696]=======:
+[2021-09-24 23:25:03,248][        main.py][line: 208][    INFO] loss: tensor([-1.2825], grad_fn=<AddBackward0>)
+[2021-09-24 23:25:03,253][        main.py][line: 209][    INFO] ===epoch22===
+[2021-09-24 23:25:03,253][        main.py][line: 210][    INFO] loss: -1.282492756843567
+[2021-09-24 23:25:03,254][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8106085467457335, 'num_rules': 35, 'num_samples': 0, 'syn': 0.32710280373831774}], [{'diversity': 0.8264480744120408, 'num_rules': 36, 'num_samples': 0, 'syn': 0.22935779816513763}], [{'diversity': 0.8050849327182261, 'num_rules': 35, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8508892816952361, 'num_rules': 37, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8486391658797767, 'num_rules': 36, 'num_samples': 0, 'syn': 0.3925233644859813}]]
+[2021-09-24 23:25:03,254][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8283340002902027
+[2021-09-24 23:25:03,255][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 35.8
+[2021-09-24 23:25:03,255][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-24 23:25:03,255][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3072279859384378
+[2021-09-24 23:25:03,256][        main.py][line: 220][    INFO] =====
+[2021-09-24 23:43:52,564][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.799034524732743, 'num_rules': 38, 'num_samples': 0, 'syn': 0.30275229357798167}]
+[2021-09-24 23:43:52,564][        main.py][line: 185][    INFO] ======sample 0 returns [0.7022695559443531]=======:
+[2021-09-24 23:58:35,869][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8185520921017986, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3211009174311927}]
+[2021-09-24 23:58:35,870][        main.py][line: 185][    INFO] ======sample 1 returns [0.7022695559443531, 0.730376963482092]=======:
+[2021-09-25 00:18:14,753][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8069421839196836, 'num_rules': 37, 'num_samples': 0, 'syn': 0.4392523364485981}]
+[2021-09-25 00:18:14,758][        main.py][line: 185][    INFO] ======sample 2 returns [0.7022695559443531, 0.730376963482092, 0.84272342840844]=======:
+[2021-09-25 00:36:57,995][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8214350861897092, 'num_rules': 36, 'num_samples': 0, 'syn': 0.37962962962962965}]
+[2021-09-25 00:36:57,995][        main.py][line: 185][    INFO] ======sample 3 returns [0.7022695559443531, 0.730376963482092, 0.84272342840844, 0.7903471727244842]=======:
+[2021-09-25 00:53:36,566][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8318515411084038, 'num_rules': 33, 'num_samples': 0, 'syn': 0.29906542056074764}]
+[2021-09-25 00:53:36,567][        main.py][line: 185][    INFO] ======sample 4 returns [0.7022695559443531, 0.730376963482092, 0.84272342840844, 0.7903471727244842, 0.7149911911149496]=======:
+[2021-09-25 00:53:38,577][        main.py][line: 208][    INFO] loss: tensor([-0.3298], grad_fn=<AddBackward0>)
+[2021-09-25 00:53:38,577][        main.py][line: 209][    INFO] ===epoch23===
+[2021-09-25 00:53:38,577][        main.py][line: 210][    INFO] loss: -0.32981401681900024
+[2021-09-25 00:53:38,578][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.799034524732743, 'num_rules': 38, 'num_samples': 0, 'syn': 0.30275229357798167}], [{'diversity': 0.8185520921017986, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3211009174311927}], [{'diversity': 0.8069421839196836, 'num_rules': 37, 'num_samples': 0, 'syn': 0.4392523364485981}], [{'diversity': 0.8214350861897092, 'num_rules': 36, 'num_samples': 0, 'syn': 0.37962962962962965}], [{'diversity': 0.8318515411084038, 'num_rules': 33, 'num_samples': 0, 'syn': 0.29906542056074764}]]
+[2021-09-25 00:53:38,578][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8155630856104675
+[2021-09-25 00:53:38,578][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 35.6
+[2021-09-25 00:53:38,578][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 00:53:38,578][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3483601195296299
+[2021-09-25 00:53:38,578][        main.py][line: 220][    INFO] =====
+[2021-09-25 01:11:23,260][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8101932080658338, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-25 01:11:23,261][        main.py][line: 185][    INFO] ======sample 0 returns [0.7537204572439261]=======:
+[2021-09-25 01:30:52,781][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8254478356186898, 'num_rules': 34, 'num_samples': 0, 'syn': 0.27522935779816515}]
+[2021-09-25 01:30:52,781][        main.py][line: 185][    INFO] ======sample 1 returns [0.7537204572439261, 0.6879532756075101]=======:
+[2021-09-25 01:51:00,608][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8189817983214748, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-25 01:51:00,609][        main.py][line: 185][    INFO] ======sample 2 returns [0.7537204572439261, 0.6879532756075101, 0.7489404404451411]=======:
+[2021-09-25 02:05:11,283][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8496995493608462, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3333333333333333}]
+[2021-09-25 02:05:11,283][        main.py][line: 185][    INFO] ======sample 3 returns [0.7537204572439261, 0.6879532756075101, 0.7489404404451411, 0.7581831080137564]=======:
+[2021-09-25 02:20:58,229][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8165407624011867, 'num_rules': 37, 'num_samples': 0, 'syn': 0.3669724770642202}]
+[2021-09-25 02:20:58,229][        main.py][line: 185][    INFO] ======sample 4 returns [0.7537204572439261, 0.6879532756075101, 0.7489404404451411, 0.7581831080137564, 0.7752428582648135]=======:
+[2021-09-25 02:21:01,100][        main.py][line: 208][    INFO] loss: tensor([-0.4072], grad_fn=<AddBackward0>)
+[2021-09-25 02:21:01,100][        main.py][line: 209][    INFO] ===epoch24===
+[2021-09-25 02:21:01,101][        main.py][line: 210][    INFO] loss: -0.40719833970069885
+[2021-09-25 02:21:01,101][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8101932080658338, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3486238532110092}], [{'diversity': 0.8254478356186898, 'num_rules': 34, 'num_samples': 0, 'syn': 0.27522935779816515}], [{'diversity': 0.8189817983214748, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.8496995493608462, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3333333333333333}], [{'diversity': 0.8165407624011867, 'num_rules': 37, 'num_samples': 0, 'syn': 0.3669724770642202}]]
+[2021-09-25 02:21:01,101][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8241726307536063
+[2021-09-25 02:21:01,102][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 35.0
+[2021-09-25 02:21:01,102][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 02:21:01,102][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3327217125382263
+[2021-09-25 02:21:01,102][        main.py][line: 220][    INFO] =====
+[2021-09-25 02:42:23,189][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8114463012956414, 'num_rules': 30, 'num_samples': 0, 'syn': 0.1509433962264151}]
+[2021-09-25 02:42:23,190][        main.py][line: 185][    INFO] ======sample 0 returns [0.5566665468742358]=======:
+[2021-09-25 02:56:30,104][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8001985519651558, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3611111111111111}]
+[2021-09-25 02:56:30,104][        main.py][line: 185][    INFO] ======sample 1 returns [0.5566665468742358, 0.761210387093689]=======:
+[2021-09-25 03:16:35,860][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.833113880821881, 'num_rules': 33, 'num_samples': 0, 'syn': 0.3018867924528302}]
+[2021-09-25 03:16:35,860][        main.py][line: 185][    INFO] ======sample 2 returns [0.5566665468742358, 0.761210387093689, 0.7184437328637707]=======:
+[2021-09-25 03:35:11,611][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8003069456808929, 'num_rules': 33, 'num_samples': 0, 'syn': 0.35185185185185186}]
+[2021-09-25 03:35:11,612][        main.py][line: 185][    INFO] ======sample 3 returns [0.5566665468742358, 0.761210387093689, 0.7184437328637707, 0.7520053246922983]=======:
+[2021-09-25 03:50:46,814][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8222018798855923, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3211009174311927}]
+[2021-09-25 03:50:46,820][        main.py][line: 185][    INFO] ======sample 4 returns [0.5566665468742358, 0.761210387093689, 0.7184437328637707, 0.7520053246922983, 0.7322018573739888]=======:
+[2021-09-25 03:50:50,292][        main.py][line: 208][    INFO] loss: tensor([-0.6473], grad_fn=<AddBackward0>)
+[2021-09-25 03:50:50,292][        main.py][line: 209][    INFO] ===epoch25===
+[2021-09-25 03:50:50,292][        main.py][line: 210][    INFO] loss: -0.6472548246383667
+[2021-09-25 03:50:50,292][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8114463012956414, 'num_rules': 30, 'num_samples': 0, 'syn': 0.1509433962264151}], [{'diversity': 0.8001985519651558, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3611111111111111}], [{'diversity': 0.833113880821881, 'num_rules': 33, 'num_samples': 0, 'syn': 0.3018867924528302}], [{'diversity': 0.8003069456808929, 'num_rules': 33, 'num_samples': 0, 'syn': 0.35185185185185186}], [{'diversity': 0.8222018798855923, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3211009174311927}]]
+[2021-09-25 03:50:50,292][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8134535119298327
+[2021-09-25 03:50:50,293][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 32.2
+[2021-09-25 03:50:50,293][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 03:50:50,293][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.2973788138146802
+[2021-09-25 03:50:50,293][        main.py][line: 220][    INFO] =====
+[2021-09-25 04:05:22,555][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8264007757333802, 'num_rules': 34, 'num_samples': 0, 'syn': 0.42592592592592593}]
+[2021-09-25 04:05:22,555][        main.py][line: 185][    INFO] ======sample 0 returns [0.839126313792616]=======:
+[2021-09-25 04:25:13,524][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.836369987508123, 'num_rules': 36, 'num_samples': 0, 'syn': 0.4036697247706422}]
+[2021-09-25 04:25:13,524][        main.py][line: 185][    INFO] ======sample 1 returns [0.839126313792616, 0.8218547185247037]=======:
+[2021-09-25 04:40:28,649][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8169476241951215, 'num_rules': 33, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-25 04:40:28,650][        main.py][line: 185][    INFO] ======sample 2 returns [0.839126313792616, 0.8218547185247037, 0.7020517937489369]=======:
+[2021-09-25 05:04:11,216][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8039559909961183, 'num_rules': 32, 'num_samples': 0, 'syn': 0.25688073394495414}]
+[2021-09-25 05:04:11,216][        main.py][line: 185][    INFO] ======sample 3 returns [0.839126313792616, 0.8218547185247037, 0.7020517937489369, 0.6588587294430133]=======:
+[2021-09-25 05:21:01,318][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8322584272954131, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3364485981308411}]
+[2021-09-25 05:21:01,319][        main.py][line: 185][    INFO] ======sample 4 returns [0.839126313792616, 0.8218547185247037, 0.7020517937489369, 0.6588587294430133, 0.7525778117785477]=======:
+[2021-09-25 05:21:02,578][        main.py][line: 208][    INFO] loss: tensor([0.9577], grad_fn=<AddBackward0>)
+[2021-09-25 05:21:02,582][        main.py][line: 209][    INFO] ===epoch26===
+[2021-09-25 05:21:02,582][        main.py][line: 210][    INFO] loss: 0.9576971530914307
+[2021-09-25 05:21:02,583][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8264007757333802, 'num_rules': 34, 'num_samples': 0, 'syn': 0.42592592592592593}], [{'diversity': 0.836369987508123, 'num_rules': 36, 'num_samples': 0, 'syn': 0.4036697247706422}], [{'diversity': 0.8169476241951215, 'num_rules': 33, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8039559909961183, 'num_rules': 32, 'num_samples': 0, 'syn': 0.25688073394495414}], [{'diversity': 0.8322584272954131, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3364485981308411}]]
+[2021-09-25 05:21:02,584][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8231865611456313
+[2021-09-25 05:21:02,584][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 34.0
+[2021-09-25 05:21:02,584][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 05:21:02,585][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3433005928847479
+[2021-09-25 05:21:02,585][        main.py][line: 220][    INFO] =====
+[2021-09-25 05:50:34,846][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8491220722012347, 'num_rules': 29, 'num_samples': 0, 'syn': 0.21100917431192662}]
+[2021-09-25 05:50:34,846][        main.py][line: 185][    INFO] ======sample 0 returns [0.635570210412544]=======:
+[2021-09-25 06:08:15,876][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7918931963288123, 'num_rules': 32, 'num_samples': 0, 'syn': 0.4722222222222222}]
+[2021-09-25 06:08:15,877][        main.py][line: 185][    INFO] ======sample 1 returns [0.635570210412544, 0.8681688203866283]=======:
+[2021-09-25 06:19:41,219][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8357918934681543, 'num_rules': 37, 'num_samples': 0, 'syn': 0.4444444444444444}]
+[2021-09-25 06:19:41,219][        main.py][line: 185][    INFO] ======sample 2 returns [0.635570210412544, 0.8681688203866283, 0.8623403911785216]=======:
+[2021-09-25 06:38:52,607][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8261072958013097, 'num_rules': 40, 'num_samples': 0, 'syn': 0.37037037037037035}]
+[2021-09-25 06:38:52,607][        main.py][line: 185][    INFO] ======sample 3 returns [0.635570210412544, 0.8681688203866283, 0.8623403911785216, 0.7834240182710253]=======:
+[2021-09-25 07:00:24,425][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8332279304968639, 'num_rules': 35, 'num_samples': 0, 'syn': 0.27522935779816515}]
+[2021-09-25 07:00:24,425][        main.py][line: 185][    INFO] ======sample 4 returns [0.635570210412544, 0.8681688203866283, 0.8623403911785216, 0.7834240182710253, 0.6918433230465971]=======:
+[2021-09-25 07:00:25,691][        main.py][line: 208][    INFO] loss: tensor([1.2820], grad_fn=<AddBackward0>)
+[2021-09-25 07:00:25,691][        main.py][line: 209][    INFO] ===epoch27===
+[2021-09-25 07:00:25,691][        main.py][line: 210][    INFO] loss: 1.2819572687149048
+[2021-09-25 07:00:25,691][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8491220722012347, 'num_rules': 29, 'num_samples': 0, 'syn': 0.21100917431192662}], [{'diversity': 0.7918931963288123, 'num_rules': 32, 'num_samples': 0, 'syn': 0.4722222222222222}], [{'diversity': 0.8357918934681543, 'num_rules': 37, 'num_samples': 0, 'syn': 0.4444444444444444}], [{'diversity': 0.8261072958013097, 'num_rules': 40, 'num_samples': 0, 'syn': 0.37037037037037035}], [{'diversity': 0.8332279304968639, 'num_rules': 35, 'num_samples': 0, 'syn': 0.27522935779816515}]]
+[2021-09-25 07:00:25,691][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.827228477659275
+[2021-09-25 07:00:25,692][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 34.6
+[2021-09-25 07:00:25,692][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 07:00:25,692][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.35465511382942577
+[2021-09-25 07:00:25,692][        main.py][line: 220][    INFO] =====
+[2021-09-25 07:17:03,017][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8267309582758898, 'num_rules': 34, 'num_samples': 0, 'syn': 0.2777777777777778}]
+[2021-09-25 07:17:03,017][        main.py][line: 185][    INFO] ======sample 0 returns [0.6911432569157228]=======:
+[2021-09-25 07:30:28,715][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.845777266294502, 'num_rules': 35, 'num_samples': 0, 'syn': 0.28440366972477066}]
+[2021-09-25 07:30:28,715][        main.py][line: 185][    INFO] ======sample 1 returns [0.6911432569157228, 0.7072923028720217]=======:
+[2021-09-25 07:48:20,873][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8218195002485159, 'num_rules': 34, 'num_samples': 0, 'syn': 0.27522935779816515}]
+[2021-09-25 07:48:20,873][        main.py][line: 185][    INFO] ======sample 2 returns [0.6911432569157228, 0.7072923028720217, 0.686139107922423]=======:
+[2021-09-25 08:07:55,099][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8195832575470569, 'num_rules': 33, 'num_samples': 0, 'syn': 0.14953271028037382}]
+[2021-09-25 08:07:55,099][        main.py][line: 185][    INFO] ======sample 3 returns [0.6911432569157228, 0.7072923028720217, 0.686139107922423, 0.5593243390539022]=======:
+[2021-09-25 08:23:11,275][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8169930345967099, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3669724770642202}]
+[2021-09-25 08:23:11,275][        main.py][line: 185][    INFO] ======sample 4 returns [0.6911432569157228, 0.7072923028720217, 0.686139107922423, 0.5593243390539022, 0.7754689943625752]=======:
+[2021-09-25 08:23:12,612][        main.py][line: 208][    INFO] loss: tensor([-0.9550], grad_fn=<AddBackward0>)
+[2021-09-25 08:23:12,612][        main.py][line: 209][    INFO] ===epoch28===
+[2021-09-25 08:23:12,612][        main.py][line: 210][    INFO] loss: -0.954971432685852
+[2021-09-25 08:23:12,613][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8267309582758898, 'num_rules': 34, 'num_samples': 0, 'syn': 0.2777777777777778}], [{'diversity': 0.845777266294502, 'num_rules': 35, 'num_samples': 0, 'syn': 0.28440366972477066}], [{'diversity': 0.8218195002485159, 'num_rules': 34, 'num_samples': 0, 'syn': 0.27522935779816515}], [{'diversity': 0.8195832575470569, 'num_rules': 33, 'num_samples': 0, 'syn': 0.14953271028037382}], [{'diversity': 0.8169930345967099, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3669724770642202}]]
+[2021-09-25 08:23:12,613][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8261808033925349
+[2021-09-25 08:23:12,613][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 34.2
+[2021-09-25 08:23:12,613][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 08:23:12,613][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.2707831985290615
+[2021-09-25 08:23:12,613][        main.py][line: 220][    INFO] =====
+[2021-09-25 08:44:23,506][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7936023188292631, 'num_rules': 28, 'num_samples': 0, 'syn': 0.21296296296296297}]
+[2021-09-25 08:44:23,507][        main.py][line: 185][    INFO] ======sample 0 returns [0.6097641223775945]=======:
+[2021-09-25 09:03:57,492][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8133916151248548, 'num_rules': 35, 'num_samples': 0, 'syn': 0.22018348623853212}]
+[2021-09-25 09:03:57,492][        main.py][line: 185][    INFO] ======sample 1 returns [0.6097641223775945, 0.6268792938009595]=======:
+[2021-09-25 09:18:55,041][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8344682574445755, 'num_rules': 32, 'num_samples': 0, 'syn': 0.39814814814814814}]
+[2021-09-25 09:18:55,042][        main.py][line: 185][    INFO] ======sample 2 returns [0.6097641223775945, 0.6268792938009595, 0.815382276870436]=======:
+[2021-09-25 09:38:39,239][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7795233256418164, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3302752293577982}]
+[2021-09-25 09:38:39,240][        main.py][line: 185][    INFO] ======sample 3 returns [0.6097641223775945, 0.6268792938009595, 0.815382276870436, 0.7200368921787064]=======:
+[2021-09-25 09:57:00,048][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7852067506298477, 'num_rules': 32, 'num_samples': 0, 'syn': 0.37383177570093457}]
+[2021-09-25 09:57:00,048][        main.py][line: 185][    INFO] ======sample 4 returns [0.6097641223775945, 0.6268792938009595, 0.815382276870436, 0.7200368921787064, 0.7664351510158585]=======:
+[2021-09-25 09:57:01,684][        main.py][line: 208][    INFO] loss: tensor([0.7385], grad_fn=<AddBackward0>)
+[2021-09-25 09:57:01,684][        main.py][line: 209][    INFO] ===epoch29===
+[2021-09-25 09:57:01,684][        main.py][line: 210][    INFO] loss: 0.7385392189025879
+[2021-09-25 09:57:01,684][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7936023188292631, 'num_rules': 28, 'num_samples': 0, 'syn': 0.21296296296296297}], [{'diversity': 0.8133916151248548, 'num_rules': 35, 'num_samples': 0, 'syn': 0.22018348623853212}], [{'diversity': 0.8344682574445755, 'num_rules': 32, 'num_samples': 0, 'syn': 0.39814814814814814}], [{'diversity': 0.7795233256418164, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3302752293577982}], [{'diversity': 0.7852067506298477, 'num_rules': 32, 'num_samples': 0, 'syn': 0.37383177570093457}]]
+[2021-09-25 09:57:01,685][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8012384535340715
+[2021-09-25 09:57:01,690][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 32.2
+[2021-09-25 09:57:01,691][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 09:57:01,691][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3070803204816752
+[2021-09-25 09:57:01,691][        main.py][line: 220][    INFO] =====
+[2021-09-25 10:16:44,697][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8181840571087684, 'num_rules': 33, 'num_samples': 0, 'syn': 0.24074074074074073}]
+[2021-09-25 10:16:44,698][        main.py][line: 185][    INFO] ======sample 0 returns [0.6498327692951249]=======:
+[2021-09-25 10:32:25,703][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8029929240998497, 'num_rules': 29, 'num_samples': 0, 'syn': 0.42452830188679247}]
+[2021-09-25 10:32:25,703][        main.py][line: 185][    INFO] ======sample 1 returns [0.6498327692951249, 0.8260247639367173]=======:
+[2021-09-25 10:45:29,300][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8345396545106977, 'num_rules': 36, 'num_samples': 0, 'syn': 0.3302752293577982}]
+[2021-09-25 10:45:29,301][        main.py][line: 185][    INFO] ======sample 2 returns [0.6498327692951249, 0.8260247639367173, 0.747545056613147]=======:
+[2021-09-25 11:05:41,207][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7899509507259531, 'num_rules': 37, 'num_samples': 0, 'syn': 0.41284403669724773}]
+[2021-09-25 11:05:41,207][        main.py][line: 185][    INFO] ======sample 3 returns [0.6498327692951249, 0.8260247639367173, 0.747545056613147, 0.8078195120602243]=======:
+[2021-09-25 11:22:31,282][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7963835270022773, 'num_rules': 33, 'num_samples': 0, 'syn': 0.2897196261682243}]
+[2021-09-25 11:22:31,282][        main.py][line: 185][    INFO] ======sample 4 returns [0.6498327692951249, 0.8260247639367173, 0.747545056613147, 0.8078195120602243, 0.6879113896693629]=======:
+[2021-09-25 11:22:32,555][        main.py][line: 208][    INFO] loss: tensor([-0.9501], grad_fn=<AddBackward0>)
+[2021-09-25 11:22:32,556][        main.py][line: 209][    INFO] ===epoch30===
+[2021-09-25 11:22:32,556][        main.py][line: 210][    INFO] loss: -0.9501190185546875
+[2021-09-25 11:22:32,556][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8181840571087684, 'num_rules': 33, 'num_samples': 0, 'syn': 0.24074074074074073}], [{'diversity': 0.8029929240998497, 'num_rules': 29, 'num_samples': 0, 'syn': 0.42452830188679247}], [{'diversity': 0.8345396545106977, 'num_rules': 36, 'num_samples': 0, 'syn': 0.3302752293577982}], [{'diversity': 0.7899509507259531, 'num_rules': 37, 'num_samples': 0, 'syn': 0.41284403669724773}], [{'diversity': 0.7963835270022773, 'num_rules': 33, 'num_samples': 0, 'syn': 0.2897196261682243}]]
+[2021-09-25 11:22:32,556][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8084102226895092
+[2021-09-25 11:22:32,556][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 33.6
+[2021-09-25 11:22:32,557][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 11:22:32,557][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.33962158697016065
+[2021-09-25 11:22:32,557][        main.py][line: 220][    INFO] =====
+[2021-09-25 11:43:50,416][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7807965198062992, 'num_rules': 26, 'num_samples': 0, 'syn': 0.1834862385321101}]
+[2021-09-25 11:43:50,416][        main.py][line: 185][    INFO] ======sample 0 returns [0.5738844984352597]=======:
+[2021-09-25 12:01:05,245][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7875250690871258, 'num_rules': 30, 'num_samples': 0, 'syn': 0.35185185185185186}]
+[2021-09-25 12:01:05,246][        main.py][line: 185][    INFO] ======sample 1 returns [0.5738844984352597, 0.7456143863954148]=======:
+[2021-09-25 12:12:28,929][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8288370833393884, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3611111111111111}]
+[2021-09-25 12:12:28,929][        main.py][line: 185][    INFO] ======sample 2 returns [0.5738844984352597, 0.7456143863954148, 0.7755296527808053]=======:
+[2021-09-25 12:28:02,699][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8301962119437144, 'num_rules': 34, 'num_samples': 0, 'syn': 0.26605504587155965}]
+[2021-09-25 12:28:02,700][        main.py][line: 185][    INFO] ======sample 3 returns [0.5738844984352597, 0.7456143863954148, 0.7755296527808053, 0.6811531518434168]=======:
+[2021-09-25 12:48:21,491][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.753636761357601, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3577981651376147}]
+[2021-09-25 12:48:21,491][        main.py][line: 185][    INFO] ======sample 4 returns [0.5738844984352597, 0.7456143863954148, 0.7755296527808053, 0.6811531518434168, 0.7346165458164152]=======:
+[2021-09-25 12:48:22,572][        main.py][line: 208][    INFO] loss: tensor([-0.4681], grad_fn=<AddBackward0>)
+[2021-09-25 12:48:22,572][        main.py][line: 209][    INFO] ===epoch31===
+[2021-09-25 12:48:22,572][        main.py][line: 210][    INFO] loss: -0.46810948848724365
+[2021-09-25 12:48:22,572][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7807965198062992, 'num_rules': 26, 'num_samples': 0, 'syn': 0.1834862385321101}], [{'diversity': 0.7875250690871258, 'num_rules': 30, 'num_samples': 0, 'syn': 0.35185185185185186}], [{'diversity': 0.8288370833393884, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3611111111111111}], [{'diversity': 0.8301962119437144, 'num_rules': 34, 'num_samples': 0, 'syn': 0.26605504587155965}], [{'diversity': 0.753636761357601, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3577981651376147}]]
+[2021-09-25 12:48:22,573][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.7961983291068259
+[2021-09-25 12:48:22,573][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 29.2
+[2021-09-25 12:48:22,573][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 12:48:22,573][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3040604825008495
+[2021-09-25 12:48:22,573][        main.py][line: 220][    INFO] =====
+[2021-09-25 13:05:20,123][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7869196025827663, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3577981651376147}]
+[2021-09-25 13:05:20,123][        main.py][line: 185][    INFO] ======sample 0 returns [0.7512579664289978]=======:
+[2021-09-25 13:21:48,952][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7980332353131775, 'num_rules': 32, 'num_samples': 0, 'syn': 0.3867924528301887}]
+[2021-09-25 13:21:48,953][        main.py][line: 185][    INFO] ======sample 1 returns [0.7512579664289978, 0.7858090704867775]=======:
+[2021-09-25 13:39:16,635][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7919346714107125, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3577981651376147}]
+[2021-09-25 13:39:16,635][        main.py][line: 185][    INFO] ======sample 2 returns [0.7512579664289978, 0.7858090704867775, 0.7537655008429709]=======:
+[2021-09-25 13:56:33,481][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8004084076345941, 'num_rules': 31, 'num_samples': 0, 'syn': 0.32407407407407407}]
+[2021-09-25 13:56:33,481][        main.py][line: 185][    INFO] ======sample 3 returns [0.7512579664289978, 0.7858090704867775, 0.7537655008429709, 0.7242782778913711]=======:
+[2021-09-25 14:17:39,201][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8363792271586084, 'num_rules': 29, 'num_samples': 0, 'syn': 0.2018348623853211}]
+[2021-09-25 14:17:39,201][        main.py][line: 185][    INFO] ======sample 4 returns [0.7512579664289978, 0.7858090704867775, 0.7537655008429709, 0.7242782778913711, 0.6200244759646253]=======:
+[2021-09-25 14:17:40,852][        main.py][line: 208][    INFO] loss: tensor([1.4992], grad_fn=<AddBackward0>)
+[2021-09-25 14:17:40,852][        main.py][line: 209][    INFO] ===epoch32===
+[2021-09-25 14:17:40,852][        main.py][line: 210][    INFO] loss: 1.4992122650146484
+[2021-09-25 14:17:40,852][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7869196025827663, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3577981651376147}], [{'diversity': 0.7980332353131775, 'num_rules': 32, 'num_samples': 0, 'syn': 0.3867924528301887}], [{'diversity': 0.7919346714107125, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3577981651376147}], [{'diversity': 0.8004084076345941, 'num_rules': 31, 'num_samples': 0, 'syn': 0.32407407407407407}], [{'diversity': 0.8363792271586084, 'num_rules': 29, 'num_samples': 0, 'syn': 0.2018348623853211}]]
+[2021-09-25 14:17:40,853][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8027350288199717
+[2021-09-25 14:17:40,858][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 30.0
+[2021-09-25 14:17:40,858][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 14:17:40,859][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3256595439129627
+[2021-09-25 14:17:40,859][        main.py][line: 220][    INFO] =====
+[2021-09-25 14:35:54,082][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8086024275273367, 'num_rules': 29, 'num_samples': 0, 'syn': 0.37962962962962965}]
+[2021-09-25 14:35:54,083][        main.py][line: 185][    INFO] ======sample 0 returns [0.783930843393298]=======:
+[2021-09-25 14:52:05,075][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7986402915896694, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3611111111111111}]
+[2021-09-25 14:52:05,075][        main.py][line: 185][    INFO] ======sample 1 returns [0.783930843393298, 0.7604312569059458]=======:
+[2021-09-25 15:10:28,998][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7960619754466935, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-25 15:10:28,999][        main.py][line: 185][    INFO] ======sample 2 returns [0.783930843393298, 0.7604312569059458, 0.746654840934356]=======:
+[2021-09-25 15:28:08,097][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.797623083200425, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3055555555555556}]
+[2021-09-25 15:28:08,097][        main.py][line: 185][    INFO] ======sample 3 returns [0.783930843393298, 0.7604312569059458, 0.746654840934356, 0.7043670971557681]=======:
+[2021-09-25 15:43:18,872][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8085174618389639, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3302752293577982}]
+[2021-09-25 15:43:18,873][        main.py][line: 185][    INFO] ======sample 4 returns [0.783930843393298, 0.7604312569059458, 0.746654840934356, 0.7043670971557681, 0.7345339602772801]=======:
+[2021-09-25 15:43:19,594][        main.py][line: 208][    INFO] loss: tensor([-0.0879], grad_fn=<AddBackward0>)
+[2021-09-25 15:43:19,600][        main.py][line: 209][    INFO] ===epoch33===
+[2021-09-25 15:43:19,600][        main.py][line: 210][    INFO] loss: -0.08790606260299683
+[2021-09-25 15:43:19,601][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8086024275273367, 'num_rules': 29, 'num_samples': 0, 'syn': 0.37962962962962965}], [{'diversity': 0.7986402915896694, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3611111111111111}], [{'diversity': 0.7960619754466935, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3486238532110092}], [{'diversity': 0.797623083200425, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3055555555555556}], [{'diversity': 0.8085174618389639, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3302752293577982}]]
+[2021-09-25 15:43:19,601][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8018890479206178
+[2021-09-25 15:43:19,601][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 30.0
+[2021-09-25 15:43:19,601][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 15:43:19,602][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.34503907577302073
+[2021-09-25 15:43:19,602][        main.py][line: 220][    INFO] =====
+[2021-09-25 15:58:15,970][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8098069605061357, 'num_rules': 31, 'num_samples': 0, 'syn': 0.37037037037037035}]
+[2021-09-25 15:58:15,971][        main.py][line: 185][    INFO] ======sample 0 returns [0.7752738506234382]=======:
+[2021-09-25 16:18:00,174][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8004542478884622, 'num_rules': 29, 'num_samples': 0, 'syn': 0.35185185185185186}]
+[2021-09-25 16:18:00,174][        main.py][line: 185][    INFO] ======sample 1 returns [0.7752738506234382, 0.752078975796083]=======:
+[2021-09-25 16:36:42,466][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8403079316554921, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3761467889908257}]
+[2021-09-25 16:36:42,466][        main.py][line: 185][    INFO] ======sample 2 returns [0.7752738506234382, 0.752078975796083, 0.7963007548185718]=======:
+[2021-09-25 16:58:52,220][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8230677253935371, 'num_rules': 28, 'num_samples': 0, 'syn': 0.2641509433962264}]
+[2021-09-25 16:58:52,221][        main.py][line: 185][    INFO] ======sample 3 returns [0.7752738506234382, 0.752078975796083, 0.7963007548185718, 0.675684806092995]=======:
+[2021-09-25 17:17:25,191][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.818855913788369, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3761467889908257}]
+[2021-09-25 17:17:25,191][        main.py][line: 185][    INFO] ======sample 4 returns [0.7752738506234382, 0.752078975796083, 0.7963007548185718, 0.675684806092995, 0.7855747458850102]=======:
+[2021-09-25 17:17:26,112][        main.py][line: 208][    INFO] loss: tensor([-0.3741], grad_fn=<AddBackward0>)
+[2021-09-25 17:17:26,112][        main.py][line: 209][    INFO] ===epoch34===
+[2021-09-25 17:17:26,113][        main.py][line: 210][    INFO] loss: -0.374121755361557
+[2021-09-25 17:17:26,113][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8098069605061357, 'num_rules': 31, 'num_samples': 0, 'syn': 0.37037037037037035}], [{'diversity': 0.8004542478884622, 'num_rules': 29, 'num_samples': 0, 'syn': 0.35185185185185186}], [{'diversity': 0.8403079316554921, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3761467889908257}], [{'diversity': 0.8230677253935371, 'num_rules': 28, 'num_samples': 0, 'syn': 0.2641509433962264}], [{'diversity': 0.818855913788369, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3761467889908257}]]
+[2021-09-25 17:17:26,113][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8184985558463993
+[2021-09-25 17:17:26,113][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 29.8
+[2021-09-25 17:17:26,113][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 17:17:26,113][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.34773334872002
+[2021-09-25 17:17:26,113][        main.py][line: 220][    INFO] =====
+[2021-09-25 17:29:42,950][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8210946989868103, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3644859813084112}]
+[2021-09-25 17:29:42,950][        main.py][line: 185][    INFO] ======sample 0 returns [0.7750333308018164]=======:
+[2021-09-25 17:47:03,669][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8217966968182165, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-25 17:47:03,669][        main.py][line: 185][    INFO] ======sample 1 returns [0.7750333308018164, 0.750347889693512]=======:
+[2021-09-25 18:09:44,123][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7722158046905638, 'num_rules': 25, 'num_samples': 0, 'syn': 0.2037037037037037}]
+[2021-09-25 18:09:44,124][        main.py][line: 185][    INFO] ======sample 2 returns [0.7750333308018164, 0.750347889693512, 0.5898116060489856]=======:
+[2021-09-25 18:29:44,374][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8055863110147679, 'num_rules': 29, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-25 18:29:44,375][        main.py][line: 185][    INFO] ======sample 3 returns [0.7750333308018164, 0.750347889693512, 0.5898116060489856, 0.6963711371587601]=======:
+[2021-09-25 18:48:44,117][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8155151784154892, 'num_rules': 30, 'num_samples': 0, 'syn': 0.2336448598130841}]
+[2021-09-25 18:48:44,118][        main.py][line: 185][    INFO] ======sample 4 returns [0.7750333308018164, 0.750347889693512, 0.5898116060489856, 0.6963711371587601, 0.6414024490208287]=======:
+[2021-09-25 18:48:45,156][        main.py][line: 208][    INFO] loss: tensor([0.7243], grad_fn=<AddBackward0>)
+[2021-09-25 18:48:45,156][        main.py][line: 209][    INFO] ===epoch35===
+[2021-09-25 18:48:45,156][        main.py][line: 210][    INFO] loss: 0.7243438959121704
+[2021-09-25 18:48:45,156][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8210946989868103, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3644859813084112}], [{'diversity': 0.8217966968182165, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.7722158046905638, 'num_rules': 25, 'num_samples': 0, 'syn': 0.2037037037037037}], [{'diversity': 0.8055863110147679, 'num_rules': 29, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8155151784154892, 'num_rules': 30, 'num_samples': 0, 'syn': 0.2336448598130841}]]
+[2021-09-25 18:48:45,157][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8072417379851695
+[2021-09-25 18:48:45,157][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 27.6
+[2021-09-25 18:48:45,157][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 18:48:45,157][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.2869724135521957
+[2021-09-25 18:48:45,157][        main.py][line: 220][    INFO] =====
+[2021-09-25 19:03:11,312][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7980666094899258, 'num_rules': 27, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-25 19:03:11,312][        main.py][line: 185][    INFO] ======sample 0 returns [0.6926112863963391]=======:
+[2021-09-25 19:17:53,598][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8245095612720952, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3577981651376147}]
+[2021-09-25 19:17:53,599][        main.py][line: 185][    INFO] ======sample 1 returns [0.6926112863963391, 0.7700529457736622]=======:
+[2021-09-25 19:35:23,025][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7942565854243934, 'num_rules': 24, 'num_samples': 0, 'syn': 0.2037037037037037}]
+[2021-09-25 19:35:23,025][        main.py][line: 185][    INFO] ======sample 2 returns [0.6926112863963391, 0.7700529457736622, 0.6008319964159003]=======:
+[2021-09-25 19:54:14,997][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8144771212353767, 'num_rules': 30, 'num_samples': 0, 'syn': 0.2616822429906542}]
+[2021-09-25 19:54:14,997][        main.py][line: 185][    INFO] ======sample 3 returns [0.6926112863963391, 0.7700529457736622, 0.6008319964159003, 0.6689208036083425]=======:
+[2021-09-25 20:12:29,486][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7965573018791481, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3364485981308411}]
+[2021-09-25 20:12:29,486][        main.py][line: 185][    INFO] ======sample 4 returns [0.6926112863963391, 0.7700529457736622, 0.6008319964159003, 0.6689208036083425, 0.7347272490704151]=======:
+[2021-09-25 20:12:32,533][        main.py][line: 208][    INFO] loss: tensor([0.1426], grad_fn=<AddBackward0>)
+[2021-09-25 20:12:32,534][        main.py][line: 209][    INFO] ===epoch36===
+[2021-09-25 20:12:32,534][        main.py][line: 210][    INFO] loss: 0.14263103902339935
+[2021-09-25 20:12:32,534][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7980666094899258, 'num_rules': 27, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8245095612720952, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3577981651376147}], [{'diversity': 0.7942565854243934, 'num_rules': 24, 'num_samples': 0, 'syn': 0.2037037037037037}], [{'diversity': 0.8144771212353767, 'num_rules': 30, 'num_samples': 0, 'syn': 0.2616822429906542}], [{'diversity': 0.7965573018791481, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3364485981308411}]]
+[2021-09-25 20:12:32,534][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8055734358601878
+[2021-09-25 20:12:32,535][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 28.2
+[2021-09-25 20:12:32,535][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 20:12:32,535][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.29064213832283803
+[2021-09-25 20:12:32,535][        main.py][line: 220][    INFO] =====
+[2021-09-25 20:27:23,130][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8029342997157857, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3302752293577982}]
+[2021-09-25 20:27:23,130][        main.py][line: 185][    INFO] ======sample 0 returns [0.731742379215691]=======:
+[2021-09-25 20:42:36,617][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8181746681977433, 'num_rules': 29, 'num_samples': 0, 'syn': 0.30275229357798167}]
+[2021-09-25 20:42:36,618][        main.py][line: 185][    INFO] ======sample 1 returns [0.731742379215691, 0.7118396276768533]=======:
+[2021-09-25 20:59:02,255][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8068308208546758, 'num_rules': 24, 'num_samples': 0, 'syn': 0.35514018691588783}]
+[2021-09-25 20:59:02,256][        main.py][line: 185][    INFO] ======sample 2 returns [0.731742379215691, 0.7118396276768533, 0.7585555973432258]=======:
+[2021-09-25 21:13:00,896][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7963839124046852, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3577981651376147}]
+[2021-09-25 21:13:00,897][        main.py][line: 185][    INFO] ======sample 3 returns [0.731742379215691, 0.7118396276768533, 0.7585555973432258, 0.7559901213399574]=======:
+[2021-09-25 21:33:37,114][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8435994869309553, 'num_rules': 33, 'num_samples': 0, 'syn': 0.3119266055045872}]
+[2021-09-25 21:33:37,115][        main.py][line: 185][    INFO] ======sample 4 returns [0.731742379215691, 0.7118396276768533, 0.7585555973432258, 0.7559901213399574, 0.7337263489700648]=======:
+[2021-09-25 21:33:38,048][        main.py][line: 208][    INFO] loss: tensor([-0.4524], grad_fn=<AddBackward0>)
+[2021-09-25 21:33:38,050][        main.py][line: 209][    INFO] ===epoch37===
+[2021-09-25 21:33:38,051][        main.py][line: 210][    INFO] loss: -0.4524405896663666
+[2021-09-25 21:33:38,051][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8029342997157857, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3302752293577982}], [{'diversity': 0.8181746681977433, 'num_rules': 29, 'num_samples': 0, 'syn': 0.30275229357798167}], [{'diversity': 0.8068308208546758, 'num_rules': 24, 'num_samples': 0, 'syn': 0.35514018691588783}], [{'diversity': 0.7963839124046852, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3577981651376147}], [{'diversity': 0.8435994869309553, 'num_rules': 33, 'num_samples': 0, 'syn': 0.3119266055045872}]]
+[2021-09-25 21:33:38,056][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8135846376207692
+[2021-09-25 21:33:38,057][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 29.2
+[2021-09-25 21:33:38,057][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 21:33:38,057][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3315784960987739
+[2021-09-25 21:33:38,057][        main.py][line: 220][    INFO] =====
+[2021-09-25 21:51:06,909][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7795287328217494, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3119266055045872}]
+[2021-09-25 21:51:06,909][        main.py][line: 185][    INFO] ======sample 0 returns [0.7016909719154618]=======:
+[2021-09-25 22:07:53,586][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.811315828429004, 'num_rules': 30, 'num_samples': 0, 'syn': 0.411214953271028}]
+[2021-09-25 22:07:53,586][        main.py][line: 185][    INFO] ======sample 1 returns [0.7016909719154618, 0.81687286748553]=======:
+[2021-09-25 22:23:28,943][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7747628362791645, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3113207547169811}]
+[2021-09-25 22:23:28,944][        main.py][line: 185][    INFO] ======sample 2 returns [0.7016909719154618, 0.81687286748553, 0.6987021728565634]=======:
+[2021-09-25 22:35:19,061][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8153288293031844, 'num_rules': 27, 'num_samples': 0, 'syn': 0.2962962962962963}]
+[2021-09-25 22:35:19,062][        main.py][line: 185][    INFO] ======sample 3 returns [0.7016909719154618, 0.81687286748553, 0.6987021728565634, 0.7039607109478885]=======:
+[2021-09-25 22:47:33,368][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7846384482537111, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3853211009174312}]
+[2021-09-25 22:47:33,368][        main.py][line: 185][    INFO] ======sample 4 returns [0.7016909719154618, 0.81687286748553, 0.6987021728565634, 0.7039607109478885, 0.7776403250442867]=======:
+[2021-09-25 22:47:34,990][        main.py][line: 208][    INFO] loss: tensor([-0.5936], grad_fn=<AddBackward0>)
+[2021-09-25 22:47:34,990][        main.py][line: 209][    INFO] ===epoch38===
+[2021-09-25 22:47:34,991][        main.py][line: 210][    INFO] loss: -0.5936295986175537
+[2021-09-25 22:47:34,991][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7795287328217494, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3119266055045872}], [{'diversity': 0.811315828429004, 'num_rules': 30, 'num_samples': 0, 'syn': 0.411214953271028}], [{'diversity': 0.7747628362791645, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3113207547169811}], [{'diversity': 0.8153288293031844, 'num_rules': 27, 'num_samples': 0, 'syn': 0.2962962962962963}], [{'diversity': 0.7846384482537111, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3853211009174312}]]
+[2021-09-25 22:47:34,991][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.7931149350173627
+[2021-09-25 22:47:34,991][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 28.8
+[2021-09-25 22:47:34,991][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-25 22:47:34,991][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3432159421412647
+[2021-09-25 22:47:34,992][        main.py][line: 220][    INFO] =====
+[2021-09-25 23:03:09,467][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7992781900939961, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3211009174311927}]
+[2021-09-25 23:03:09,467][        main.py][line: 185][    INFO] ======sample 0 returns [0.7207400124781908]=======:
+[2021-09-25 23:19:25,961][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7809871258139426, 'num_rules': 27, 'num_samples': 0, 'syn': 0.4036697247706422}]
+[2021-09-25 23:19:25,962][        main.py][line: 185][    INFO] ======sample 1 returns [0.7207400124781908, 0.7941632876776135]=======:
+[2021-09-25 23:34:34,600][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8237450332879321, 'num_rules': 28, 'num_samples': 0, 'syn': 0.24770642201834864}]
+[2021-09-25 23:34:34,600][        main.py][line: 185][    INFO] ======sample 2 returns [0.7207400124781908, 0.7941632876776135, 0.6595789386623148]=======:
+[2021-09-25 23:50:50,846][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8070845987908684, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3047619047619048}]
+[2021-09-25 23:50:50,847][        main.py][line: 185][    INFO] ======sample 3 returns [0.7207400124781908, 0.7941632876776135, 0.6595789386623148, 0.708304204157339]=======:
+[2021-09-26 00:03:31,347][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7988027158934461, 'num_rules': 23, 'num_samples': 0, 'syn': 0.3333333333333333}]
+[2021-09-26 00:03:31,347][        main.py][line: 185][    INFO] ======sample 4 returns [0.7207400124781908, 0.7941632876776135, 0.6595789386623148, 0.708304204157339, 0.7327346912800563]=======:
+[2021-09-26 00:03:33,608][        main.py][line: 208][    INFO] loss: tensor([-0.2339], grad_fn=<AddBackward0>)
+[2021-09-26 00:03:33,608][        main.py][line: 209][    INFO] ===epoch39===
+[2021-09-26 00:03:33,613][        main.py][line: 210][    INFO] loss: -0.2339365929365158
+[2021-09-26 00:03:33,614][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7992781900939961, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3211009174311927}], [{'diversity': 0.7809871258139426, 'num_rules': 27, 'num_samples': 0, 'syn': 0.4036697247706422}], [{'diversity': 0.8237450332879321, 'num_rules': 28, 'num_samples': 0, 'syn': 0.24770642201834864}], [{'diversity': 0.8070845987908684, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3047619047619048}], [{'diversity': 0.7988027158934461, 'num_rules': 23, 'num_samples': 0, 'syn': 0.3333333333333333}]]
+[2021-09-26 00:03:33,615][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8019795327760371
+[2021-09-26 00:03:33,616][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 26.6
+[2021-09-26 00:03:33,616][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 00:03:33,617][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.32211446046308434
+[2021-09-26 00:03:33,617][        main.py][line: 220][    INFO] =====
+[2021-09-26 00:19:10,001][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7945581480873077, 'num_rules': 30, 'num_samples': 0, 'syn': 0.44339622641509435}]
+[2021-09-26 00:19:10,002][        main.py][line: 185][    INFO] ======sample 0 returns [0.8406753004587482]=======:
+[2021-09-26 00:34:14,102][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8155453434861564, 'num_rules': 29, 'num_samples': 0, 'syn': 0.2803738317757009}]
+[2021-09-26 00:34:14,102][        main.py][line: 185][    INFO] ======sample 1 returns [0.8406753004587482, 0.688146503518779]=======:
+[2021-09-26 00:43:37,357][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7912128023683972, 'num_rules': 23, 'num_samples': 0, 'syn': 0.3490566037735849}]
+[2021-09-26 00:43:37,358][        main.py][line: 185][    INFO] ======sample 2 returns [0.8406753004587482, 0.688146503518779, 0.7446630049577835]=======:
+[2021-09-26 00:58:34,879][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8004630795277257, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3119266055045872}]
+[2021-09-26 00:58:34,879][        main.py][line: 185][    INFO] ======sample 3 returns [0.8406753004587482, 0.688146503518779, 0.7446630049577835, 0.71215814526845]=======:
+[2021-09-26 01:10:25,808][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7815810780600569, 'num_rules': 31, 'num_samples': 0, 'syn': 0.42592592592592593}]
+[2021-09-26 01:10:25,808][        main.py][line: 185][    INFO] ======sample 4 returns [0.8406753004587482, 0.688146503518779, 0.7446630049577835, 0.71215814526845, 0.8167164649559544]=======:
+[2021-09-26 01:10:26,158][        main.py][line: 208][    INFO] loss: tensor([1.1874], grad_fn=<AddBackward0>)
+[2021-09-26 01:10:26,158][        main.py][line: 209][    INFO] ===epoch40===
+[2021-09-26 01:10:26,158][        main.py][line: 210][    INFO] loss: 1.1873782873153687
+[2021-09-26 01:10:26,159][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7945581480873077, 'num_rules': 30, 'num_samples': 0, 'syn': 0.44339622641509435}], [{'diversity': 0.8155453434861564, 'num_rules': 29, 'num_samples': 0, 'syn': 0.2803738317757009}], [{'diversity': 0.7912128023683972, 'num_rules': 23, 'num_samples': 0, 'syn': 0.3490566037735849}], [{'diversity': 0.8004630795277257, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3119266055045872}], [{'diversity': 0.7815810780600569, 'num_rules': 31, 'num_samples': 0, 'syn': 0.42592592592592593}]]
+[2021-09-26 01:10:26,159][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.7966720903059288
+[2021-09-26 01:10:26,159][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 27.6
+[2021-09-26 01:10:26,159][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 01:10:26,159][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3621358386789787
+[2021-09-26 01:10:26,159][        main.py][line: 220][    INFO] =====
+[2021-09-26 01:26:36,022][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7991982085627298, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-26 01:26:36,022][        main.py][line: 185][    INFO] ======sample 0 returns [0.7390486455657685]=======:
+[2021-09-26 01:48:20,423][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8018576146039049, 'num_rules': 27, 'num_samples': 0, 'syn': 0.26605504587155965}]
+[2021-09-26 01:48:20,424][        main.py][line: 185][    INFO] ======sample 1 returns [0.7390486455657685, 0.6669838531735122]=======:
+[2021-09-26 02:05:47,719][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8067245035070716, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-26 02:05:47,719][        main.py][line: 185][    INFO] ======sample 2 returns [0.7390486455657685, 0.6669838531735122, 0.7428117930379394]=======:
+[2021-09-26 02:18:55,522][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7821545098514029, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3944954128440367}]
+[2021-09-26 02:18:55,522][        main.py][line: 185][    INFO] ======sample 3 returns [0.7390486455657685, 0.6669838531735122, 0.7428117930379394, 0.7855726677697381]=======:
+[2021-09-26 02:31:09,170][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7860217647019875, 'num_rules': 26, 'num_samples': 0, 'syn': 0.25688073394495414}]
+[2021-09-26 02:31:09,171][        main.py][line: 185][    INFO] ======sample 4 returns [0.7390486455657685, 0.6669838531735122, 0.7428117930379394, 0.7855726677697381, 0.6498916162959478]=======:
+[2021-09-26 02:31:10,067][        main.py][line: 208][    INFO] loss: tensor([0.0926], grad_fn=<AddBackward0>)
+[2021-09-26 02:31:10,068][        main.py][line: 209][    INFO] ===epoch41===
+[2021-09-26 02:31:10,068][        main.py][line: 210][    INFO] loss: 0.09258691966533661
+[2021-09-26 02:31:10,068][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7991982085627298, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.8018576146039049, 'num_rules': 27, 'num_samples': 0, 'syn': 0.26605504587155965}], [{'diversity': 0.8067245035070716, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.7821545098514029, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3944954128440367}], [{'diversity': 0.7860217647019875, 'num_rules': 26, 'num_samples': 0, 'syn': 0.25688073394495414}]]
+[2021-09-26 02:31:10,068][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.7951913202454194
+[2021-09-26 02:31:10,069][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 27.0
+[2021-09-26 02:31:10,069][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 02:31:10,069][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3192660550458716
+[2021-09-26 02:31:10,069][        main.py][line: 220][    INFO] =====
+[2021-09-26 02:43:37,746][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8076199183462958, 'num_rules': 29, 'num_samples': 0, 'syn': 0.37962962962962965}]
+[2021-09-26 02:43:37,747][        main.py][line: 185][    INFO] ======sample 0 returns [0.7834395888027775]=======:
+[2021-09-26 02:58:08,655][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8270741153400526, 'num_rules': 28, 'num_samples': 0, 'syn': 0.37962962962962965}]
+[2021-09-26 02:58:08,655][        main.py][line: 185][    INFO] ======sample 1 returns [0.7834395888027775, 0.7931666872996559]=======:
+[2021-09-26 03:12:31,259][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8003329431720683, 'num_rules': 29, 'num_samples': 0, 'syn': 0.2962962962962963}]
+[2021-09-26 03:12:31,259][        main.py][line: 185][    INFO] ======sample 2 returns [0.7834395888027775, 0.7931666872996559, 0.6964627678823304]=======:
+[2021-09-26 03:25:01,790][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7961569654499605, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3925233644859813}]
+[2021-09-26 03:25:01,791][        main.py][line: 185][    INFO] ======sample 3 returns [0.7834395888027775, 0.7931666872996559, 0.6964627678823304, 0.7906018472109615]=======:
+[2021-09-26 03:40:52,054][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7962719661941889, 'num_rules': 29, 'num_samples': 0, 'syn': 0.37383177570093457}]
+[2021-09-26 03:40:52,054][        main.py][line: 185][    INFO] ======sample 4 returns [0.7834395888027775, 0.7931666872996559, 0.6964627678823304, 0.7906018472109615, 0.771967758798029]=======:
+[2021-09-26 03:40:53,576][        main.py][line: 208][    INFO] loss: tensor([-0.4944], grad_fn=<AddBackward0>)
+[2021-09-26 03:40:53,576][        main.py][line: 209][    INFO] ===epoch42===
+[2021-09-26 03:40:53,580][        main.py][line: 210][    INFO] loss: -0.4944259822368622
+[2021-09-26 03:40:53,581][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8076199183462958, 'num_rules': 29, 'num_samples': 0, 'syn': 0.37962962962962965}], [{'diversity': 0.8270741153400526, 'num_rules': 28, 'num_samples': 0, 'syn': 0.37962962962962965}], [{'diversity': 0.8003329431720683, 'num_rules': 29, 'num_samples': 0, 'syn': 0.2962962962962963}], [{'diversity': 0.7961569654499605, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3925233644859813}], [{'diversity': 0.7962719661941889, 'num_rules': 29, 'num_samples': 0, 'syn': 0.37383177570093457}]]
+[2021-09-26 03:40:53,581][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8054911817005133
+[2021-09-26 03:40:53,582][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 29.0
+[2021-09-26 03:40:53,582][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 03:40:53,583][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3643821391484943
+[2021-09-26 03:40:53,583][        main.py][line: 220][    INFO] =====
+[2021-09-26 03:53:48,339][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8017655059016575, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3611111111111111}]
+[2021-09-26 03:53:48,339][        main.py][line: 185][    INFO] ======sample 0 returns [0.7619938640619399]=======:
+[2021-09-26 04:11:46,486][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7954537831886028, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3944954128440367}]
+[2021-09-26 04:11:46,486][        main.py][line: 185][    INFO] ======sample 1 returns [0.7619938640619399, 0.7922223044383381]=======:
+[2021-09-26 04:32:33,591][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8152875637541812, 'num_rules': 26, 'num_samples': 0, 'syn': 0.33962264150943394}]
+[2021-09-26 04:32:33,591][        main.py][line: 185][    INFO] ======sample 2 returns [0.7619938640619399, 0.7922223044383381, 0.7472664233865245]=======:
+[2021-09-26 04:42:40,699][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7947234040797406, 'num_rules': 27, 'num_samples': 0, 'syn': 0.35514018691588783}]
+[2021-09-26 04:42:40,699][        main.py][line: 185][    INFO] ======sample 3 returns [0.7619938640619399, 0.7922223044383381, 0.7472664233865245, 0.7525018889557582]=======:
+[2021-09-26 04:51:39,777][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8015494912189386, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3055555555555556}]
+[2021-09-26 04:51:39,777][        main.py][line: 185][    INFO] ======sample 4 returns [0.7619938640619399, 0.7922223044383381, 0.7472664233865245, 0.7525018889557582, 0.7063303011650248]=======:
+[2021-09-26 04:51:41,057][        main.py][line: 208][    INFO] loss: tensor([-0.0296], grad_fn=<AddBackward0>)
+[2021-09-26 04:51:41,058][        main.py][line: 209][    INFO] ===epoch43===
+[2021-09-26 04:51:41,058][        main.py][line: 210][    INFO] loss: -0.029588177800178528
+[2021-09-26 04:51:41,058][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8017655059016575, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3611111111111111}], [{'diversity': 0.7954537831886028, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3944954128440367}], [{'diversity': 0.8152875637541812, 'num_rules': 26, 'num_samples': 0, 'syn': 0.33962264150943394}], [{'diversity': 0.7947234040797406, 'num_rules': 27, 'num_samples': 0, 'syn': 0.35514018691588783}], [{'diversity': 0.8015494912189386, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3055555555555556}]]
+[2021-09-26 04:51:41,058][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8017559496286243
+[2021-09-26 04:51:41,059][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 27.2
+[2021-09-26 04:51:41,059][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 04:51:41,059][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.35118498158720507
+[2021-09-26 04:51:41,059][        main.py][line: 220][    INFO] =====
+[2021-09-26 05:01:55,975][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8206507875827866, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3211009174311927}]
+[2021-09-26 05:01:55,976][        main.py][line: 185][    INFO] ======sample 0 returns [0.7314263112225861]=======:
+[2021-09-26 05:18:02,297][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7898371687486208, 'num_rules': 26, 'num_samples': 0, 'syn': 0.2830188679245283}]
+[2021-09-26 05:18:02,298][        main.py][line: 185][    INFO] ======sample 1 returns [0.7314263112225861, 0.6779374522988386]=======:
+[2021-09-26 05:31:20,337][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8068509246138905, 'num_rules': 30, 'num_samples': 0, 'syn': 0.37962962962962965}]
+[2021-09-26 05:31:20,338][        main.py][line: 185][    INFO] ======sample 2 returns [0.7314263112225861, 0.6779374522988386, 0.7830550919365749]=======:
+[2021-09-26 05:45:50,865][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7930568064185369, 'num_rules': 31, 'num_samples': 0, 'syn': 0.29357798165137616}]
+[2021-09-26 05:45:50,866][        main.py][line: 185][    INFO] ======sample 3 returns [0.7314263112225861, 0.6779374522988386, 0.7830550919365749, 0.6901063848606446]=======:
+[2021-09-26 06:06:04,942][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8131828652075417, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-26 06:06:04,942][        main.py][line: 185][    INFO] ======sample 4 returns [0.7314263112225861, 0.6779374522988386, 0.7830550919365749, 0.6901063848606446, 0.7460409738881746]=======:
+[2021-09-26 06:06:06,288][        main.py][line: 208][    INFO] loss: tensor([1.1076], grad_fn=<AddBackward0>)
+[2021-09-26 06:06:06,290][        main.py][line: 209][    INFO] ===epoch44===
+[2021-09-26 06:06:06,291][        main.py][line: 210][    INFO] loss: 1.1075704097747803
+[2021-09-26 06:06:06,291][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8206507875827866, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3211009174311927}], [{'diversity': 0.7898371687486208, 'num_rules': 26, 'num_samples': 0, 'syn': 0.2830188679245283}], [{'diversity': 0.8068509246138905, 'num_rules': 30, 'num_samples': 0, 'syn': 0.37962962962962965}], [{'diversity': 0.7930568064185369, 'num_rules': 31, 'num_samples': 0, 'syn': 0.29357798165137616}], [{'diversity': 0.8131828652075417, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3394495412844037}]]
+[2021-09-26 06:06:06,291][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8047157105142754
+[2021-09-26 06:06:06,292][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 28.2
+[2021-09-26 06:06:06,292][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 06:06:06,292][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.32335538758422605
+[2021-09-26 06:06:06,293][        main.py][line: 220][    INFO] =====
+[2021-09-26 06:21:27,097][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8162218216675824, 'num_rules': 28, 'num_samples': 0, 'syn': 0.37383177570093457}]
+[2021-09-26 06:21:27,097][        main.py][line: 185][    INFO] ======sample 0 returns [0.7819426865347258]=======:
+[2021-09-26 06:32:57,068][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8188700744568573, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3119266055045872}]
+[2021-09-26 06:32:57,069][        main.py][line: 185][    INFO] ======sample 1 returns [0.7819426865347258, 0.7213616427330158]=======:
+[2021-09-26 06:46:17,529][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.799198051865122, 'num_rules': 29, 'num_samples': 0, 'syn': 0.29906542056074764}]
+[2021-09-26 06:46:17,530][        main.py][line: 185][    INFO] ======sample 2 returns [0.7819426865347258, 0.7213616427330158, 0.6986644464933087]=======:
+[2021-09-26 07:07:00,606][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8017668787530913, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3394495412844037}]
+[2021-09-26 07:07:00,607][        main.py][line: 185][    INFO] ======sample 3 returns [0.7819426865347258, 0.7213616427330158, 0.6986644464933087, 0.7403329806609493]=======:
+[2021-09-26 07:23:34,501][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8120599822584815, 'num_rules': 27, 'num_samples': 0, 'syn': 0.43119266055045874}]
+[2021-09-26 07:23:34,501][        main.py][line: 185][    INFO] ======sample 4 returns [0.7819426865347258, 0.7213616427330158, 0.6986644464933087, 0.7403329806609493, 0.8372226516796994]=======:
+[2021-09-26 07:23:34,565][        main.py][line: 208][    INFO] loss: tensor([-0.1438], grad_fn=<AddBackward0>)
+[2021-09-26 07:23:34,566][        main.py][line: 209][    INFO] ===epoch45===
+[2021-09-26 07:23:34,566][        main.py][line: 210][    INFO] loss: -0.14379391074180603
+[2021-09-26 07:23:34,566][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8162218216675824, 'num_rules': 28, 'num_samples': 0, 'syn': 0.37383177570093457}], [{'diversity': 0.8188700744568573, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3119266055045872}], [{'diversity': 0.799198051865122, 'num_rules': 29, 'num_samples': 0, 'syn': 0.29906542056074764}], [{'diversity': 0.8017668787530913, 'num_rules': 27, 'num_samples': 0, 'syn': 0.3394495412844037}], [{'diversity': 0.8120599822584815, 'num_rules': 27, 'num_samples': 0, 'syn': 0.43119266055045874}]]
+[2021-09-26 07:23:34,566][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.809623361800227
+[2021-09-26 07:23:34,566][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 27.8
+[2021-09-26 07:23:34,566][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 07:23:34,567][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3510932007202264
+[2021-09-26 07:23:34,567][        main.py][line: 220][    INFO] =====
+[2021-09-26 07:34:16,578][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8161048207137908, 'num_rules': 28, 'num_samples': 0, 'syn': 0.42201834862385323}]
+[2021-09-26 07:34:16,578][        main.py][line: 185][    INFO] ======sample 0 returns [0.8300707589807486]=======:
+[2021-09-26 07:46:32,223][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.815082839992596, 'num_rules': 29, 'num_samples': 0, 'syn': 0.36792452830188677}]
+[2021-09-26 07:46:32,224][        main.py][line: 185][    INFO] ======sample 1 returns [0.8300707589807486, 0.7754659482981847]=======:
+[2021-09-26 08:02:48,730][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8057177270533845, 'num_rules': 26, 'num_samples': 0, 'syn': 0.27522935779816515}]
+[2021-09-26 08:02:48,730][        main.py][line: 185][    INFO] ======sample 2 returns [0.8300707589807486, 0.7754659482981847, 0.6780882213248574]=======:
+[2021-09-26 08:14:41,734][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8267197382968277, 'num_rules': 30, 'num_samples': 0, 'syn': 0.36792452830188677}]
+[2021-09-26 08:14:41,735][        main.py][line: 185][    INFO] ======sample 3 returns [0.8300707589807486, 0.7754659482981847, 0.6780882213248574, 0.7812843974503005]=======:
+[2021-09-26 08:23:17,540][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8124813357272487, 'num_rules': 32, 'num_samples': 0, 'syn': 0.3925233644859813}]
+[2021-09-26 08:23:17,540][        main.py][line: 185][    INFO] ======sample 4 returns [0.8300707589807486, 0.7754659482981847, 0.6780882213248574, 0.7812843974503005, 0.7987640323496057]=======:
+[2021-09-26 08:23:18,569][        main.py][line: 208][    INFO] loss: tensor([0.4060], grad_fn=<AddBackward0>)
+[2021-09-26 08:23:18,570][        main.py][line: 209][    INFO] ===epoch46===
+[2021-09-26 08:23:18,570][        main.py][line: 210][    INFO] loss: 0.4059605002403259
+[2021-09-26 08:23:18,570][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8161048207137908, 'num_rules': 28, 'num_samples': 0, 'syn': 0.42201834862385323}], [{'diversity': 0.815082839992596, 'num_rules': 29, 'num_samples': 0, 'syn': 0.36792452830188677}], [{'diversity': 0.8057177270533845, 'num_rules': 26, 'num_samples': 0, 'syn': 0.27522935779816515}], [{'diversity': 0.8267197382968277, 'num_rules': 30, 'num_samples': 0, 'syn': 0.36792452830188677}], [{'diversity': 0.8124813357272487, 'num_rules': 32, 'num_samples': 0, 'syn': 0.3925233644859813}]]
+[2021-09-26 08:23:18,570][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8152212923567695
+[2021-09-26 08:23:18,571][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 29.0
+[2021-09-26 08:23:18,571][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 08:23:18,571][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3651240255023547
+[2021-09-26 08:23:18,571][        main.py][line: 220][    INFO] =====
+[2021-09-26 08:37:23,310][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8296224715144161, 'num_rules': 26, 'num_samples': 0, 'syn': 0.3761467889908257}]
+[2021-09-26 08:37:23,311][        main.py][line: 185][    INFO] ======sample 0 returns [0.7909580247480338]=======:
+[2021-09-26 08:52:48,005][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8571174996623858, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-26 08:52:48,005][        main.py][line: 185][    INFO] ======sample 1 returns [0.7909580247480338, 0.7771826030422021]=======:
+[2021-09-26 09:05:33,179][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7758481338358937, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3425925925925926}]
+[2021-09-26 09:05:33,179][        main.py][line: 185][    INFO] ======sample 2 returns [0.7909580247480338, 0.7771826030422021, 0.7305166595105395]=======:
+[2021-09-26 09:16:13,068][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7864515357229012, 'num_rules': 27, 'num_samples': 0, 'syn': 0.35514018691588783}]
+[2021-09-26 09:16:13,069][        main.py][line: 185][    INFO] ======sample 3 returns [0.7909580247480338, 0.7771826030422021, 0.7305166595105395, 0.7483659547773385]=======:
+[2021-09-26 09:32:14,799][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7952467142290799, 'num_rules': 27, 'num_samples': 0, 'syn': 0.30275229357798167}]
+[2021-09-26 09:32:14,799][        main.py][line: 185][    INFO] ======sample 4 returns [0.7909580247480338, 0.7771826030422021, 0.7305166595105395, 0.7483659547773385, 0.7003756506925216]=======:
+[2021-09-26 09:32:15,588][        main.py][line: 208][    INFO] loss: tensor([0.0257], grad_fn=<AddBackward0>)
+[2021-09-26 09:32:15,590][        main.py][line: 209][    INFO] ===epoch47===
+[2021-09-26 09:32:15,590][        main.py][line: 210][    INFO] loss: 0.025726109743118286
+[2021-09-26 09:32:15,591][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8296224715144161, 'num_rules': 26, 'num_samples': 0, 'syn': 0.3761467889908257}], [{'diversity': 0.8571174996623858, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3486238532110092}], [{'diversity': 0.7758481338358937, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3425925925925926}], [{'diversity': 0.7864515357229012, 'num_rules': 27, 'num_samples': 0, 'syn': 0.35514018691588783}], [{'diversity': 0.7952467142290799, 'num_rules': 27, 'num_samples': 0, 'syn': 0.30275229357798167}]]
+[2021-09-26 09:32:15,591][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8088572709929354
+[2021-09-26 09:32:15,592][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 28.0
+[2021-09-26 09:32:15,592][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 09:32:15,592][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3450511430576594
+[2021-09-26 09:32:15,592][        main.py][line: 220][    INFO] =====
+[2021-09-26 09:51:09,126][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7897201073951386, 'num_rules': 28, 'num_samples': 0, 'syn': 0.42592592592592593}]
+[2021-09-26 09:51:09,126][        main.py][line: 185][    INFO] ======sample 0 returns [0.8207859796234953]=======:
+[2021-09-26 10:05:23,155][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8193678690375166, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3148148148148148}]
+[2021-09-26 10:05:23,155][        main.py][line: 185][    INFO] ======sample 1 returns [0.8207859796234953, 0.724498749333573]=======:
+[2021-09-26 10:22:28,232][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8193620936008637, 'num_rules': 30, 'num_samples': 0, 'syn': 0.4351851851851852}]
+[2021-09-26 10:22:28,233][        main.py][line: 185][    INFO] ======sample 2 returns [0.8207859796234953, 0.724498749333573, 0.844866231985617]=======:
+[2021-09-26 10:37:06,646][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8090311380258005, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-26 10:37:06,646][        main.py][line: 185][    INFO] ======sample 3 returns [0.8207859796234953, 0.724498749333573, 0.844866231985617, 0.7531394222239094]=======:
+[2021-09-26 10:48:04,716][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7977878601245023, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3669724770642202}]
+[2021-09-26 10:48:04,717][        main.py][line: 185][    INFO] ======sample 4 returns [0.8207859796234953, 0.724498749333573, 0.844866231985617, 0.7531394222239094, 0.7658664071264714]=======:
+[2021-09-26 10:48:06,252][        main.py][line: 208][    INFO] loss: tensor([0.6438], grad_fn=<AddBackward0>)
+[2021-09-26 10:48:06,260][        main.py][line: 209][    INFO] ===epoch48===
+[2021-09-26 10:48:06,260][        main.py][line: 210][    INFO] loss: 0.6438109874725342
+[2021-09-26 10:48:06,260][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7897201073951386, 'num_rules': 28, 'num_samples': 0, 'syn': 0.42592592592592593}], [{'diversity': 0.8193678690375166, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3148148148148148}], [{'diversity': 0.8193620936008637, 'num_rules': 30, 'num_samples': 0, 'syn': 0.4351851851851852}], [{'diversity': 0.8090311380258005, 'num_rules': 25, 'num_samples': 0, 'syn': 0.3486238532110092}], [{'diversity': 0.7977878601245023, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3669724770642202}]]
+[2021-09-26 10:48:06,260][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8070538136367645
+[2021-09-26 10:48:06,261][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 27.8
+[2021-09-26 10:48:06,261][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 10:48:06,261][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.37830445124023104
+[2021-09-26 10:48:06,261][        main.py][line: 220][    INFO] =====
+[2021-09-26 11:01:38,159][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7698410279242953, 'num_rules': 27, 'num_samples': 0, 'syn': 0.27522935779816515}]
+[2021-09-26 11:01:38,160][        main.py][line: 185][    INFO] ======sample 0 returns [0.6601498717603128]=======:
+[2021-09-26 11:18:24,383][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8037355693741186, 'num_rules': 28, 'num_samples': 0, 'syn': 0.4166666666666667}]
+[2021-09-26 11:18:24,383][        main.py][line: 185][    INFO] ======sample 1 returns [0.6601498717603128, 0.818534451353726]=======:
+[2021-09-26 11:30:03,845][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7684649159345238, 'num_rules': 28, 'num_samples': 0, 'syn': 0.4056603773584906}]
+[2021-09-26 11:30:03,845][        main.py][line: 185][    INFO] ======sample 2 returns [0.6601498717603128, 0.818534451353726, 0.7898928353257525]=======:
+[2021-09-26 11:41:16,279][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.802376439173681, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3119266055045872}]
+[2021-09-26 11:41:16,280][        main.py][line: 185][    INFO] ======sample 3 returns [0.6601498717603128, 0.818534451353726, 0.7898928353257525, 0.7131148250914277]=======:
+[2021-09-26 11:56:19,258][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8021837594412166, 'num_rules': 27, 'num_samples': 0, 'syn': 0.30275229357798167}]
+[2021-09-26 11:56:19,258][        main.py][line: 185][    INFO] ======sample 4 returns [0.6601498717603128, 0.818534451353726, 0.7898928353257525, 0.7131148250914277, 0.70384417329859]=======:
+[2021-09-26 11:56:21,344][        main.py][line: 208][    INFO] loss: tensor([0.0593], grad_fn=<AddBackward0>)
+[2021-09-26 11:56:21,344][        main.py][line: 209][    INFO] ===epoch49===
+[2021-09-26 11:56:21,344][        main.py][line: 210][    INFO] loss: 0.059285350143909454
+[2021-09-26 11:56:21,345][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7698410279242953, 'num_rules': 27, 'num_samples': 0, 'syn': 0.27522935779816515}], [{'diversity': 0.8037355693741186, 'num_rules': 28, 'num_samples': 0, 'syn': 0.4166666666666667}], [{'diversity': 0.7684649159345238, 'num_rules': 28, 'num_samples': 0, 'syn': 0.4056603773584906}], [{'diversity': 0.802376439173681, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3119266055045872}], [{'diversity': 0.8021837594412166, 'num_rules': 27, 'num_samples': 0, 'syn': 0.30275229357798167}]]
+[2021-09-26 11:56:21,345][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.7893203423695672
+[2021-09-26 11:56:21,345][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 27.8
+[2021-09-26 11:56:21,345][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 11:56:21,345][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.34244706018117826
+[2021-09-26 11:56:21,345][        main.py][line: 220][    INFO] =====
+[2021-09-26 12:09:35,696][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8250916097451679, 'num_rules': 26, 'num_samples': 0, 'syn': 0.4056603773584906}]
+[2021-09-26 12:09:35,696][        main.py][line: 185][    INFO] ======sample 0 returns [0.8182061822310746]=======:
+[2021-09-26 12:24:32,096][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7919053763824224, 'num_rules': 29, 'num_samples': 0, 'syn': 0.4722222222222222}]
+[2021-09-26 12:24:32,096][        main.py][line: 185][    INFO] ======sample 1 returns [0.8182061822310746, 0.8681749104134334]=======:
+[2021-09-26 12:38:04,411][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8064724222988834, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3211009174311927}]
+[2021-09-26 12:38:04,412][        main.py][line: 185][    INFO] ======sample 2 returns [0.8182061822310746, 0.8681749104134334, 0.7243371285806344]=======:
+[2021-09-26 12:49:19,862][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8289429710002802, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-26 12:49:19,862][        main.py][line: 185][    INFO] ======sample 3 returns [0.8182061822310746, 0.8681749104134334, 0.7243371285806344, 0.7630953387111493]=======:
+[2021-09-26 13:05:17,504][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8369444953032041, 'num_rules': 32, 'num_samples': 0, 'syn': 0.26605504587155965}]
+[2021-09-26 13:05:17,505][        main.py][line: 185][    INFO] ======sample 4 returns [0.8182061822310746, 0.8681749104134334, 0.7243371285806344, 0.7630953387111493, 0.6845272935231617]=======:
+[2021-09-26 13:05:18,467][        main.py][line: 208][    INFO] loss: tensor([-0.2590], grad_fn=<AddBackward0>)
+[2021-09-26 13:05:18,467][        main.py][line: 209][    INFO] ===epoch50===
+[2021-09-26 13:05:18,467][        main.py][line: 210][    INFO] loss: -0.25899481773376465
+[2021-09-26 13:05:18,468][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8250916097451679, 'num_rules': 26, 'num_samples': 0, 'syn': 0.4056603773584906}], [{'diversity': 0.7919053763824224, 'num_rules': 29, 'num_samples': 0, 'syn': 0.4722222222222222}], [{'diversity': 0.8064724222988834, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3211009174311927}], [{'diversity': 0.8289429710002802, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3486238532110092}], [{'diversity': 0.8369444953032041, 'num_rules': 32, 'num_samples': 0, 'syn': 0.26605504587155965}]]
+[2021-09-26 13:05:18,468][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8178713749459916
+[2021-09-26 13:05:18,468][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 29.4
+[2021-09-26 13:05:18,468][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 13:05:18,468][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.36273248321889484
+[2021-09-26 13:05:18,469][        main.py][line: 220][    INFO] =====
+[2021-09-26 13:20:52,166][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8228540078231343, 'num_rules': 32, 'num_samples': 0, 'syn': 0.1651376146788991}]
+[2021-09-26 13:20:52,166][        main.py][line: 185][    INFO] ======sample 0 returns [0.5765646185904663]=======:
+[2021-09-26 13:38:46,397][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7939703307846332, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4537037037037037}]
+[2021-09-26 13:38:46,397][        main.py][line: 185][    INFO] ======sample 1 returns [0.5765646185904663, 0.8506888690960204]=======:
+[2021-09-26 13:56:19,769][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8124589233496132, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3302752293577982}]
+[2021-09-26 13:56:19,769][        main.py][line: 185][    INFO] ======sample 2 returns [0.5765646185904663, 0.8506888690960204, 0.7365046910326047]=======:
+[2021-09-26 14:09:28,396][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8276231331267914, 'num_rules': 36, 'num_samples': 0, 'syn': 0.25688073394495414}]
+[2021-09-26 14:09:28,396][        main.py][line: 185][    INFO] ======sample 3 returns [0.5765646185904663, 0.8506888690960204, 0.7365046910326047, 0.6706923005083498]=======:
+[2021-09-26 14:18:45,173][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8101678432826755, 'num_rules': 32, 'num_samples': 0, 'syn': 0.4351851851851852}]
+[2021-09-26 14:18:45,173][        main.py][line: 185][    INFO] ======sample 4 returns [0.5765646185904663, 0.8506888690960204, 0.7365046910326047, 0.6706923005083498, 0.8402691068265229]=======:
+[2021-09-26 14:18:47,072][        main.py][line: 208][    INFO] loss: tensor([-0.4245], grad_fn=<AddBackward0>)
+[2021-09-26 14:18:47,072][        main.py][line: 209][    INFO] ===epoch51===
+[2021-09-26 14:18:47,073][        main.py][line: 210][    INFO] loss: -0.4245034456253052
+[2021-09-26 14:18:47,073][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8228540078231343, 'num_rules': 32, 'num_samples': 0, 'syn': 0.1651376146788991}], [{'diversity': 0.7939703307846332, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4537037037037037}], [{'diversity': 0.8124589233496132, 'num_rules': 28, 'num_samples': 0, 'syn': 0.3302752293577982}], [{'diversity': 0.8276231331267914, 'num_rules': 36, 'num_samples': 0, 'syn': 0.25688073394495414}], [{'diversity': 0.8101678432826755, 'num_rules': 32, 'num_samples': 0, 'syn': 0.4351851851851852}]]
+[2021-09-26 14:18:47,073][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8134148476733696
+[2021-09-26 14:18:47,073][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 31.8
+[2021-09-26 14:18:47,073][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 14:18:47,073][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.32823649337410804
+[2021-09-26 14:18:47,073][        main.py][line: 220][    INFO] =====
+[2021-09-26 14:34:47,882][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.7801112669986799, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4444444444444444}]
+[2021-09-26 14:34:47,882][        main.py][line: 185][    INFO] ======sample 0 returns [0.8345000779437843]=======:
+[2021-09-26 14:50:21,456][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8289847573813338, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3761467889908257}]
+[2021-09-26 14:50:21,457][        main.py][line: 185][    INFO] ======sample 1 returns [0.8345000779437843, 0.7906391676814926]=======:
+[2021-09-26 15:05:29,225][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8338445327720225, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4074074074074074}]
+[2021-09-26 15:05:29,225][        main.py][line: 185][    INFO] ======sample 2 returns [0.8345000779437843, 0.7906391676814926, 0.8243296737934187]=======:
+[2021-09-26 15:17:47,240][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.823140010006515, 'num_rules': 26, 'num_samples': 0, 'syn': 0.23853211009174313}]
+[2021-09-26 15:17:47,241][        main.py][line: 185][    INFO] ======sample 3 returns [0.8345000779437843, 0.7906391676814926, 0.8243296737934187, 0.6501021150950006]=======:
+[2021-09-26 15:28:50,809][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8146361300888395, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-26 15:28:50,810][        main.py][line: 185][    INFO] ======sample 4 returns [0.8345000779437843, 0.7906391676814926, 0.8243296737934187, 0.6501021150950006, 0.755941918255429]=======:
+[2021-09-26 15:28:50,880][        main.py][line: 208][    INFO] loss: tensor([1.2292], grad_fn=<AddBackward0>)
+[2021-09-26 15:28:50,880][        main.py][line: 209][    INFO] ===epoch52===
+[2021-09-26 15:28:50,880][        main.py][line: 210][    INFO] loss: 1.2292420864105225
+[2021-09-26 15:28:50,880][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.7801112669986799, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4444444444444444}], [{'diversity': 0.8289847573813338, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3761467889908257}], [{'diversity': 0.8338445327720225, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4074074074074074}], [{'diversity': 0.823140010006515, 'num_rules': 26, 'num_samples': 0, 'syn': 0.23853211009174313}], [{'diversity': 0.8146361300888395, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3486238532110092}]]
+[2021-09-26 15:28:50,880][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8161433394494783
+[2021-09-26 15:28:50,881][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 29.8
+[2021-09-26 15:28:50,881][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 15:28:50,881][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.36303092082908595
+[2021-09-26 15:28:50,881][        main.py][line: 220][    INFO] =====
+[2021-09-26 15:37:03,331][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8374172518389666, 'num_rules': 34, 'num_samples': 0, 'syn': 0.4722222222222222}]
+[2021-09-26 15:37:03,332][        main.py][line: 185][    INFO] ======sample 0 returns [0.8909308481417055]=======:
+[2021-09-26 15:51:41,650][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8305191509464129, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3944954128440367}]
+[2021-09-26 15:51:41,650][        main.py][line: 185][    INFO] ======sample 1 returns [0.8909308481417055, 0.8097549883172432]=======:
+[2021-09-26 16:07:10,503][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8084319656835022, 'num_rules': 31, 'num_samples': 0, 'syn': 0.2962962962962963}]
+[2021-09-26 16:07:10,503][        main.py][line: 185][    INFO] ======sample 2 returns [0.8909308481417055, 0.8097549883172432, 0.7005122791380474]=======:
+[2021-09-26 16:21:10,450][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8154794247935675, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3302752293577982}]
+[2021-09-26 16:21:10,450][        main.py][line: 185][    INFO] ======sample 3 returns [0.8909308481417055, 0.8097549883172432, 0.7005122791380474, 0.7380149417545819]=======:
+[2021-09-26 16:38:08,812][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8030328436571303, 'num_rules': 29, 'num_samples': 0, 'syn': 0.42452830188679247}]
+[2021-09-26 16:38:08,812][        main.py][line: 185][    INFO] ======sample 4 returns [0.8909308481417055, 0.8097549883172432, 0.7005122791380474, 0.7380149417545819, 0.8260447237153576]=======:
+[2021-09-26 16:38:09,644][        main.py][line: 208][    INFO] loss: tensor([0.3900], grad_fn=<AddBackward0>)
+[2021-09-26 16:38:09,644][        main.py][line: 209][    INFO] ===epoch53===
+[2021-09-26 16:38:09,644][        main.py][line: 210][    INFO] loss: 0.3900148868560791
+[2021-09-26 16:38:09,644][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8374172518389666, 'num_rules': 34, 'num_samples': 0, 'syn': 0.4722222222222222}], [{'diversity': 0.8305191509464129, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3944954128440367}], [{'diversity': 0.8084319656835022, 'num_rules': 31, 'num_samples': 0, 'syn': 0.2962962962962963}], [{'diversity': 0.8154794247935675, 'num_rules': 29, 'num_samples': 0, 'syn': 0.3302752293577982}], [{'diversity': 0.8030328436571303, 'num_rules': 29, 'num_samples': 0, 'syn': 0.42452830188679247}]]
+[2021-09-26 16:38:09,645][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.818976127383916
+[2021-09-26 16:38:09,645][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 30.4
+[2021-09-26 16:38:09,645][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 16:38:09,645][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.3835634925214292
+[2021-09-26 16:38:09,645][        main.py][line: 220][    INFO] =====
+[2021-09-26 16:53:43,242][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8178025360608647, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3577981651376147}]
+[2021-09-26 16:53:43,242][        main.py][line: 185][    INFO] ======sample 0 returns [0.766699433168047]=======:
+[2021-09-26 17:11:28,491][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8236254753700057, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4351851851851852}]
+[2021-09-26 17:11:28,492][        main.py][line: 185][    INFO] ======sample 1 returns [0.766699433168047, 0.846997922870188]=======:
+[2021-09-26 17:24:06,350][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8357769940180944, 'num_rules': 36, 'num_samples': 0, 'syn': 0.44036697247706424}]
+[2021-09-26 17:24:06,350][        main.py][line: 185][    INFO] ======sample 2 returns [0.766699433168047, 0.846997922870188, 0.8582554694861114]=======:
+[2021-09-26 17:36:29,370][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8771237430656575, 'num_rules': 35, 'num_samples': 0, 'syn': 0.4074074074074074}]
+[2021-09-26 17:36:29,371][        main.py][line: 185][    INFO] ======sample 3 returns [0.766699433168047, 0.846997922870188, 0.8582554694861114, 0.8459692789402362]=======:
+[2021-09-26 17:53:55,402][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8467505699919065, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3333333333333333}]
+[2021-09-26 17:53:55,402][        main.py][line: 185][    INFO] ======sample 4 returns [0.766699433168047, 0.846997922870188, 0.8582554694861114, 0.8459692789402362, 0.7567086183292866]=======:
+[2021-09-26 17:53:56,467][        main.py][line: 208][    INFO] loss: tensor([-0.6883], grad_fn=<AddBackward0>)
+[2021-09-26 17:53:56,467][        main.py][line: 209][    INFO] ===epoch54===
+[2021-09-26 17:53:56,467][        main.py][line: 210][    INFO] loss: -0.6882876753807068
+[2021-09-26 17:53:56,467][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8178025360608647, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3577981651376147}], [{'diversity': 0.8236254753700057, 'num_rules': 31, 'num_samples': 0, 'syn': 0.4351851851851852}], [{'diversity': 0.8357769940180944, 'num_rules': 36, 'num_samples': 0, 'syn': 0.44036697247706424}], [{'diversity': 0.8771237430656575, 'num_rules': 35, 'num_samples': 0, 'syn': 0.4074074074074074}], [{'diversity': 0.8467505699919065, 'num_rules': 30, 'num_samples': 0, 'syn': 0.3333333333333333}]]
+[2021-09-26 17:53:56,467][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8402158637013057
+[2021-09-26 17:53:56,468][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 33.4
+[2021-09-26 17:53:56,468][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 17:53:56,468][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.39481821270812095
+[2021-09-26 17:53:56,468][        main.py][line: 220][    INFO] =====
+[2021-09-26 18:10:42,063][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8347444157312336, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3611111111111111}]
+[2021-09-26 18:10:42,064][        main.py][line: 185][    INFO] ======sample 0 returns [0.778483318976728]=======:
+[2021-09-26 18:21:25,383][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8140259823338096, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3853211009174312}]
+[2021-09-26 18:21:25,383][        main.py][line: 185][    INFO] ======sample 1 returns [0.778483318976728, 0.792334092084336]=======:
+[2021-09-26 18:36:44,791][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8325044015966473, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3486238532110092}]
+[2021-09-26 18:36:44,791][        main.py][line: 185][    INFO] ======sample 2 returns [0.778483318976728, 0.792334092084336, 0.7648760540093329]=======:
+[2021-09-26 18:46:23,504][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8325522146134952, 'num_rules': 30, 'num_samples': 0, 'syn': 0.2777777777777778}]
+[2021-09-26 18:46:23,504][        main.py][line: 185][    INFO] ======sample 3 returns [0.778483318976728, 0.792334092084336, 0.7648760540093329, 0.6940538850845254]=======:
+[2021-09-26 18:55:17,447][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.8001886083932475, 'num_rules': 29, 'num_samples': 0, 'syn': 0.35514018691588783}]
+[2021-09-26 18:55:17,447][        main.py][line: 185][    INFO] ======sample 4 returns [0.778483318976728, 0.792334092084336, 0.7648760540093329, 0.6940538850845254, 0.7552344911125115]=======:
+[2021-09-26 18:55:17,539][        main.py][line: 208][    INFO] loss: tensor([0.6014], grad_fn=<AddBackward0>)
+[2021-09-26 18:55:17,540][        main.py][line: 209][    INFO] ===epoch55===
+[2021-09-26 18:55:17,540][        main.py][line: 210][    INFO] loss: 0.6013805270195007
+[2021-09-26 18:55:17,540][        main.py][line: 211][    INFO] eval_metrics: [[{'diversity': 0.8347444157312336, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3611111111111111}], [{'diversity': 0.8140259823338096, 'num_rules': 35, 'num_samples': 0, 'syn': 0.3853211009174312}], [{'diversity': 0.8325044015966473, 'num_rules': 31, 'num_samples': 0, 'syn': 0.3486238532110092}], [{'diversity': 0.8325522146134952, 'num_rules': 30, 'num_samples': 0, 'syn': 0.2777777777777778}], [{'diversity': 0.8001886083932475, 'num_rules': 29, 'num_samples': 0, 'syn': 0.35514018691588783}]]
+[2021-09-26 18:55:17,540][        main.py][line: 219][    INFO] mean_eval_metrics diversity: 0.8228031245336866
+[2021-09-26 18:55:17,540][        main.py][line: 219][    INFO] mean_eval_metrics num_rules: 31.8
+[2021-09-26 18:55:17,541][        main.py][line: 219][    INFO] mean_eval_metrics num_samples: 0.0
+[2021-09-26 18:55:17,541][        main.py][line: 219][    INFO] mean_eval_metrics syn: 0.34559480598664344
+[2021-09-26 18:55:17,541][        main.py][line: 220][    INFO] =====
+[2021-09-26 19:04:23,780][        main.py][line: 171][    INFO] eval_metrics: [{'diversity': 0.832647534630031, 'num_rules': 34, 'num_samples': 0, 'syn': 0.3211009174311927}]
+[2021-09-26 19:04:23,780][        main.py][line: 185][    INFO] ======sample 0 returns [0.7374246847462083]=======:

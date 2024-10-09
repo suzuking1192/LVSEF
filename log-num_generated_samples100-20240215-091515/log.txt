@@ -1,0 +1,4 @@
+[2024-02-15 09:15:15,218][        main.py][line: 120][    INFO] args:Namespace(GNN_model_path='./GCN/model_gin/supervised_contextpred.pth', MCMC_size=5, gammar=0.99, grammar_lr=0.01, grammar_training=False, grammar_training_round=10, hidden_size=128, learning_rate=0.01, max_epoches=20, motif=False, num_generated_samples=100, receiver_file='output_syn.txt', resume=False, resume_path='', sender_file='generated_samples.txt', training_data='./datasets/isocyanates.txt', without_retro=True)
+[2024-02-15 09:15:15,319][        main.py][line: 133][    INFO] starting
+
+[2024-02-15 09:15:15,319][        main.py][line: 138][    INFO] <<<<< Epoch 0/20 >>>>>>
