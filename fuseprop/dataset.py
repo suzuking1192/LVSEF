@@ -1,11 +1,14 @@
-import torch
-import os, random, gc
+import gc
+import os
 import pickle
+import random
 
 from rdkit import Chem
 from torch.utils.data import Dataset
-from fuseprop.chemutils import random_subgraph, extract_subgraph, enum_root
+
+from fuseprop.chemutils import enum_root, extract_subgraph, random_subgraph
 from fuseprop.mol_graph import MolGraph
+
 
 class MoleculeDataset(Dataset):
 
@@ -20,7 +23,7 @@ class MoleculeDataset(Dataset):
         init_smiles, final_smiles = zip(*self.batches[idx])
         init_batch = [Chem.MolFromSmiles(x) for x in init_smiles]
         mol_batch = [Chem.MolFromSmiles(x) for x in final_smiles]
-        init_atoms = [mol.GetSubstructMatch(x) for mol,x in zip(mol_batch, init_batch)]
+        init_atoms = [mol.GetSubstructMatch(x) for mol, x in zip(mol_batch, init_batch)]
         mol_batch = [MolGraph(x, atoms) for x, atoms in zip(final_smiles, init_atoms)]
         mol_batch = [x for x in mol_batch if len(x.root_atoms) > 0]
         if len(mol_batch) < len(self.batches[idx]):
@@ -34,7 +37,7 @@ class ReconstructDataset(Dataset):
     def __init__(self, data, avocab, batch_size):
         self.batches = [data[i : i + batch_size] for i in range(0, len(data), batch_size)]
         self.avocab = avocab
-    
+
     def __len__(self):
         return len(self.batches)
 
@@ -57,7 +60,7 @@ class SubgraphDataset(Dataset):
         data = [x for smiles in data for x in enum_root(smiles, num_decode)]
         self.batches = [data[i : i + batch_size] for i in range(0, len(data), batch_size)]
         self.avocab = avocab
-    
+
     def __len__(self):
         return len(self.batches)
 
@@ -76,13 +79,13 @@ class DataFolder(object):
     def __iter__(self):
         for fn in self.data_files:
             fn = os.path.join(self.data_folder, fn)
-            with open(fn, 'rb') as f:
+            with open(fn, "rb") as f:
                 batches = pickle.load(f)
 
-            if self.shuffle: random.shuffle(batches) #shuffle data before batch
+            if self.shuffle:
+                random.shuffle(batches)  # shuffle data before batch
             for batch in batches:
                 yield batch
 
             del batches
             gc.collect()
-

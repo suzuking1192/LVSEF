@@ -1,12 +1,15 @@
-from rdkit import Chem
-from functools import partial
-from fuseprop import extract_subgraph
-from .hypergraph import mol_to_hg
-from GCN.feature_extract import feature_extractor
 from copy import deepcopy
-import numpy as np
 
-class MolGraph():
+import numpy as np
+from GCN.feature_extract import feature_extractor
+from rdkit import Chem
+
+from fuseprop import extract_subgraph
+
+from .hypergraph import mol_to_hg
+
+
+class MolGraph:
     def __init__(self, mol, is_subgraph=False, mapping_to_input_mol=None):
         if is_subgraph:
             assert mapping_to_input_mol is not None
@@ -16,32 +19,32 @@ class MolGraph():
         self.mapping_to_input_mol = mapping_to_input_mol
 
     def get_visit_status_edge(self, edge):
-        return self.hypergraph.edge_attr(edge)['visited']
+        return self.hypergraph.edge_attr(edge)["visited"]
 
     def get_visit_status_node(self, node):
-        return self.hypergraph.node_attr(node)['visited']
+        return self.hypergraph.node_attr(node)["visited"]
 
     def get_visit_status_with_idx(self, atom_idx):
-        return self.get_visit_status_edge('e{}'.format(atom_idx))
+        return self.get_visit_status_edge("e{}".format(atom_idx))
 
     def set_visited(self, node_list, edge_list):
         for edge in edge_list:
-            self.hypergraph.edge_attr(edge)['visited'] = True
+            self.hypergraph.edge_attr(edge)["visited"] = True
         for node in node_list:
-            self.hypergraph.node_attr(node)['visited'] = True
+            self.hypergraph.node_attr(node)["visited"] = True
 
     def set_visit_status_with_idx(self, idx, visited):
-        self.hypergraph.edge_attr('e{}'.format(idx))['visited'] = visited
-    
+        self.hypergraph.edge_attr("e{}".format(idx))["visited"] = visited
+
     def set_NT_status_with_idx(self, idx, NT):
-        self.hypergraph.edge_attr('e{}'.format(idx))['NT'] = NT
+        self.hypergraph.edge_attr("e{}".format(idx))["NT"] = NT
 
     def get_all_visit_status(self):
         return [self.get_visit_status_with_idx(i) for i in range(self.mol.GetNumAtoms())]
 
     def get_org_idx_in_input(self, idx):
         assert self.is_subgraph
-        return self.mapping_to_input_mol.GetAtomWithIdx(idx).GetIntProp('org_idx')
+        return self.mapping_to_input_mol.GetAtomWithIdx(idx).GetIntProp("org_idx")
 
     def get_org_node_in_input(self, node, subgraph):
         assert not self.is_subgraph
@@ -51,23 +54,25 @@ class MolGraph():
         for adj_edge_i in adj_edges:
             idx = int(adj_edge_i[1:])
             org_idx = subgraph.get_org_idx_in_input(idx)
-            org_edges.append('e{}'.format(org_idx))
+            org_edges.append("e{}".format(org_idx))
         org_node = list(self.hypergraph.nodes_in_edge(org_edges[0]).intersection(self.hypergraph.nodes_in_edge(org_edges[1])))
         try:
             assert len(org_node) == 1
         except:
-            import pdb; pdb.set_trace()
+            import pdb
+
+            pdb.set_trace()
         return org_node[0]
-    
+
     def as_key(self):
         return MolKey(self.mol)
 
     def __eq__(self, another):
         # return hasattr(another, 'mol') and Chem.CanonSmiles(Chem.MolToSmiles(self.mol)) == Chem.CanonSmiles(Chem.MolToSmiles(another.mol))
-        return hasattr(another, 'mol') and (Chem.MolToSmiles(self.mol)) == (Chem.MolToSmiles(another.mol))
+        return hasattr(another, "mol") and (Chem.MolToSmiles(self.mol)) == (Chem.MolToSmiles(another.mol))
 
 
-class MolKey():
+class MolKey:
     def __init__(self, mol):
         if isinstance(mol, MolGraph):
             self.mol_graph = mol
@@ -80,7 +85,7 @@ class MolKey():
         self.sml = Chem.MolToSmiles(mol)
 
     def __eq__(self, another):
-        return hasattr(another, 'sml') and self.sml == another.sml
+        return hasattr(another, "sml") and self.sml == another.sml
 
     def __hash__(self):
         return hash(self.sml)
@@ -90,19 +95,19 @@ class SubGraph(MolGraph):
     def __init__(self, mol, mapping_to_input_mol, subfrags):
         super(SubGraph, self).__init__(mol, is_subgraph=True, mapping_to_input_mol=mapping_to_input_mol)
         assert type(subfrags) == list
-        '''
+        """
         subfrags: list, atom indices of two sub fragments
         bond: bond index of the connected bond
-        '''
+        """
         self.subfrags = subfrags
-        
+
 
 class InputGraph(MolGraph):
     def __init__(self, mol, smiles, init_subgraphs, subgraphs_idx, GNN_model_path):
-        '''
+        """
         init_subgraphs: a list of MolGraph
         subgraph_idx: a list of atom idx list for each subgraph
-        '''
+        """
         super(InputGraph, self).__init__(mol)
         self.subgraphs = init_subgraphs
         self.subgraphs_idx = subgraphs_idx
@@ -133,7 +138,7 @@ class InputGraph(MolGraph):
         self.feature_extractor = feature_extractor(self.GNN_model_path)
         nodes_feature = self.feature_extractor.extract(self.mol)
         return nodes_feature[id]
-        
+
     def get_subg_feature_for_agent(self, subgraph):
         # Get feature vector for agent
         assert isinstance(subgraph, SubGraph)
@@ -141,7 +146,7 @@ class InputGraph(MolGraph):
         subfrags_feature = []
         nodes_feat = [self.get_nodes_feature(node_id).detach().cpu().numpy() for node_id in subgraph.subfrags]
         subfrags_feature = np.mean(nodes_feat, axis=0)
-        return subfrags_feature # TODO could modify # should be an order-invariant function 
+        return subfrags_feature  # TODO could modify # should be an order-invariant function
 
     def find_overlap(self, p_star_idx, subgraph_idx):
         union = []
@@ -153,24 +158,24 @@ class InputGraph(MolGraph):
     def set_water_level(self, node_list, edge_list, water_level):
         ext_node_list = []
         for edge in edge_list:
-            self.hypergraph.edge_attr(edge)['water_level'] = water_level
+            self.hypergraph.edge_attr(edge)["water_level"] = water_level
             for _node in self.hypergraph.nodes_in_edge(edge):
                 if _node not in node_list:
                     ext_node_list.append(_node)
         for node in node_list:
-            self.hypergraph.node_attr(node)['water_level'] = water_level
+            self.hypergraph.node_attr(node)["water_level"] = water_level
         assert water_level not in self.watershed_ext_nodes.keys()
         self.watershed_ext_nodes[water_level] = ext_node_list
 
     def update_visit_status(self, visited_list):
-        edge_list = ['e{}'.format(i) for i in visited_list]
+        edge_list = ["e{}".format(i) for i in visited_list]
         node_list = self.hypergraph.get_minimal_graph(edge_list)
         self.set_visited(node_list, edge_list)
 
     def update_NT_atoms(self, p_star_idx):
         _, p_subg_mapped, _ = extract_subgraph(self.smiles, p_star_idx)
         for idx, atom in enumerate(p_subg_mapped.GetAtoms()):
-            org_idx = p_subg_mapped.GetAtomWithIdx(idx).GetIntProp('org_idx')
+            org_idx = p_subg_mapped.GetAtomWithIdx(idx).GetIntProp("org_idx")
             if atom.GetAtomMapNum() == 1:
                 self.NT_atoms.add(org_idx)
             else:
@@ -178,7 +183,7 @@ class InputGraph(MolGraph):
                     self.NT_atoms.remove(org_idx)
 
     def update_watershed(self, p_star_idx):
-        edge_list = ['e{}'.format(i) for i in p_star_idx]
+        edge_list = ["e{}".format(i) for i in p_star_idx]
         node_list = self.hypergraph.get_minimal_graph(edge_list)
         self.set_water_level(node_list, edge_list, self.water_level)
         self.water_level += 1
@@ -191,8 +196,8 @@ class InputGraph(MolGraph):
         return False, [], []
 
     def merge_selected_subgraphs(self, action_list):
-        label_mapping = {} # label -> serial number
-        label_mapping_inv = {} # serial number -> label
+        label_mapping = {}  # label -> serial number
+        label_mapping_inv = {}  # serial number -> label
         label = 0
         selected_subg = []
         non_selected_subg = []
@@ -207,7 +212,7 @@ class InputGraph(MolGraph):
             return [selected_subg[0][1]]
         else:
             for i in range(len(selected_subg)):
-                for j in range(i+1, len(selected_subg)):
+                for j in range(i + 1, len(selected_subg)):
                     selected_subg_idx_i = selected_subg[i][2]
                     selected_subg_idx_j = selected_subg[j][2]
                     selected_snum_i = selected_subg[i][0]
@@ -247,7 +252,7 @@ class InputGraph(MolGraph):
                         new_subgraph.set_NT_status_with_idx(idx, True)
                 for node in new_subgraph.hypergraph.nodes:
                     org_node = self.get_org_node_in_input(node, new_subgraph)
-                    new_subgraph.hypergraph.node_attr(node)['visited'] = self.hypergraph.node_attr(org_node)['visited']    
+                    new_subgraph.hypergraph.node_attr(node)["visited"] = self.hypergraph.node_attr(org_node)["visited"]
                 new_subgraphs.append(new_subgraph)
                 new_subgraphs_idx.append(new_subgraph_idx)
                 p_star_list.append(new_subgraph)
@@ -284,7 +289,7 @@ class InputGraph(MolGraph):
                             new_subgraph.set_NT_status_with_idx(idx, True)
                     for node in new_subgraph.hypergraph.nodes:
                         org_node = self.get_org_node_in_input(node, new_subgraph)
-                        new_subgraph.hypergraph.node_attr(node)['visited'] = self.hypergraph.node_attr(org_node)['visited']    
+                        new_subgraph.hypergraph.node_attr(node)["visited"] = self.hypergraph.node_attr(org_node)["visited"]
                     new_subgraphs.append(new_subgraph)
                     new_subgraphs_idx.append(new_subgraph_idx)
                 else:
@@ -294,4 +299,3 @@ class InputGraph(MolGraph):
         self.subgraphs = new_subgraphs
         self.subgraphs_idx = new_subgraphs_idx
         self.map_to_set = self.get_map_to_set()
-

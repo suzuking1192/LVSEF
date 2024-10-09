@@ -1,7 +1,7 @@
+import logging
+
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import logging
 
 
 class ValueMLP(nn.Module):
@@ -13,7 +13,7 @@ class ValueMLP(nn.Module):
         self.dropout_rate = dropout_rate
         self.device = device
 
-        logging.info('Initializing value model: latent_dim=%d' % self.latent_dim)
+        logging.info("Initializing value model: latent_dim=%d" % self.latent_dim)
 
         layers = []
         layers.append(nn.Linear(fp_dim, latent_dim))

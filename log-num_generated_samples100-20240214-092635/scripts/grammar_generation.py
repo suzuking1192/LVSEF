@@ -1,13 +1,12 @@
-from rdkit import Chem
-from functools import partial
-from multiprocessing import Pool
-from fuseprop import find_clusters, extract_subgraph, get_mol, get_smiles, find_fragments
 from copy import deepcopy
+
 import numpy as np
 import torch
-import argparse
-from private import *
+from rdkit import Chem
+
 from agent import sample
+from fuseprop import extract_subgraph, find_clusters, find_fragments, get_mol, get_smiles
+from private import *
 
 
 def data_processing(input_smiles, GNN_model_path, motif=False):
@@ -26,23 +25,23 @@ def data_processing(input_smiles, GNN_model_path, motif=False):
         input_mols.append(mol)
         if not motif:
             clusters, atom_cls = find_clusters(mol)
-            for i,cls in enumerate(clusters):
+            for i, cls in enumerate(clusters):
                 clusters[i] = set(list(cls))
             for a in range(len(atom_cls)):
                 atom_cls[a] = set(atom_cls[a])
         else:
             fragments = find_fragments(mol)
             clusters = [frag[1] for frag in fragments]
-        
+
         # Construct graphs
         subgraphs = []
-        subgraphs_idx_i = [] 
-        for i,cluster in enumerate(clusters):
+        subgraphs_idx_i = []
+        for i, cluster in enumerate(clusters):
             _, subgraph_i_mapped, _ = extract_subgraph(smiles, cluster)
             subgraphs.append(SubGraph(subgraph_i_mapped, mapping_to_input_mol=subgraph_i_mapped, subfrags=list(cluster)))
             subgraphs_idx_i.append(list(cluster))
             init_edge_flag += 1
-        
+
         init_subgraphs.append(subgraphs)
         subgraphs_idx.append(subgraphs_idx_i)
         graph = InputGraph(mol, smiles, subgraphs, subgraphs_idx_i, GNN_model_path)
@@ -87,7 +86,7 @@ def grammar_generation(agent, input_graphs_dict, subgraph_set, grammar, mcmc_ite
                 final_feature.append(1 - np.exp(-num_occurance))
                 final_feature.append(num_in_input / len(list(input_graphs_dict.keys())))
                 all_final_features.append(torch.unsqueeze(torch.from_numpy(np.array(final_feature)).float(), 0))
-            while(True):
+            while True:
                 action_list, take_action = sample(agent, torch.vstack(all_final_features), mcmc_iter, sample_number)
                 if take_action:
                     break
@@ -108,22 +107,23 @@ def grammar_generation(agent, input_graphs_dict, subgraph_set, grammar, mcmc_ite
                         continue
                     grammar = generate_rule(input_g, subg, grammar)
                     input_g.update_subgraph(subg_idx)
-                    
+
     # Update subgraph_set
     subgraph_set.update([g for (k, g) in input_graphs_dict.items()])
     new_grammar = deepcopy(grammar)
     new_input_graphs_dict = deepcopy(input_graphs_dict)
     new_subgraph_set = deepcopy(subgraph_set)
-    
 
     return False, new_input_graphs_dict, new_subgraph_set, new_grammar
 
 
 def MCMC_sampling(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, sample_number, args):
     iter_num = 0
-    while(True):
+    while True:
         print("======MCMC iter{}======".format(iter_num))
-        done_flag, new_input_graphs_dict, new_subgraph_set, new_grammar = grammar_generation(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, iter_num, sample_number, args)
+        done_flag, new_input_graphs_dict, new_subgraph_set, new_grammar = grammar_generation(
+            agent, all_input_graphs_dict, all_subgraph_set, all_grammar, iter_num, sample_number, args
+        )
         print("Graph contraction status: ", done_flag)
         if done_flag:
             break
@@ -131,8 +131,6 @@ def MCMC_sampling(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, s
         all_subgraph_set = deepcopy(new_subgraph_set)
         all_grammar = deepcopy(new_grammar)
         iter_num += 1
-        
-
 
     return iter_num, new_grammar, new_input_graphs_dict
 
@@ -140,8 +138,8 @@ def MCMC_sampling(agent, all_input_graphs_dict, all_subgraph_set, all_grammar, s
 def random_produce(grammar):
     def sample(l, prob=None):
         if prob is None:
-            prob = [1/len(l)] * len(l)
-        idx =  np.random.choice(range(len(l)), 1, p=prob)[0]
+            prob = [1 / len(l)] * len(l)
+        idx = np.random.choice(range(len(l)), 1, p=prob)[0]
         return l[idx], idx
 
     def prob_schedule(_iter, selected_idx):
@@ -161,7 +159,7 @@ def random_produce(grammar):
     hypergraph = Hypergraph()
     starting_rules = [(rule_i, rule) for rule_i, rule in enumerate(grammar.prod_rule_list) if rule.is_start_rule]
     iter = 0
-    while(True):
+    while True:
         if iter == 0:
             _, idx = sample(starting_rules)
             selected_rule_idx, selected_rule = starting_rules[idx]
@@ -174,7 +172,7 @@ def random_produce(grammar):
             for rule_i, rule in enumerate(grammar.prod_rule_list):
                 hg_prev = deepcopy(hypergraph)
                 hg_cand, _, avail = rule.graph_rule_applied_to(hypergraph)
-                if(avail):
+                if avail:
                     candidate_rule.append(rule)
                     candidate_rule_idx.append(rule_i)
                     candidate_hg.append(hg_cand)

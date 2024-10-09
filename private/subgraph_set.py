@@ -1,6 +1,7 @@
 from .molecule_graph import MolKey
 
-class SubGraphSet():
+
+class SubGraphSet:
     def __init__(self, init_subgraphs, subgraphs_idx, inputs):
         self.subgraphs = init_subgraphs
         self.subgraphs_idx = subgraphs_idx
@@ -8,7 +9,7 @@ class SubGraphSet():
         self.map_to_input = self.get_map_to_input()
 
     def get_map_to_input(self):
-        '''
+        """
         Input:
         init_subgraphs: a list with length equal to # input graphs, elements are Chem.Mol
         subgraphs_idx: a three-level list
@@ -18,7 +19,7 @@ class SubGraphSet():
         Output:
         map_to_input: a dict, [key_of_subgraphs][0][key_of_inputs][the_matched_subgraph][atom_idx_of_input]
                               [key_of_subgraphs][1]
-        '''
+        """
         map_to_input = dict()
         for i, input_i in enumerate(self.inputs):
             key_input = MolKey(input_i)
@@ -34,7 +35,7 @@ class SubGraphSet():
                     map_to_input[key_subgraph][0][key_input] = list()
                 map_to_input[key_subgraph][0][key_input].append((subgraph_idx, subg))
         return map_to_input
-    
+
     def update(self, input_graphs):
         new_subgraphs = []
         new_subgraphs_idx = []
@@ -48,4 +49,3 @@ class SubGraphSet():
         self.subgraphs_idx = new_subgraphs_idx
         self.inputs = new_inputs
         self.map_to_input = self.get_map_to_input()
-

@@ -1,7 +1,7 @@
+import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.distributions import Categorical
-import numpy as np
 
 
 class Agent(nn.Module):
@@ -24,7 +24,7 @@ def sample(agent, subgraph_feature, iter_num, sample_number):
     prob = agent(subgraph_feature)
     m = Categorical(prob)
     a = m.sample()
-    take_action = (np.sum(a.numpy()) != 0)
+    take_action = np.sum(a.numpy()) != 0
     if take_action:
         if sample_number not in agent.saved_log_probs.keys():
             agent.saved_log_probs[sample_number] = {}
@@ -33,4 +33,3 @@ def sample(agent, subgraph_feature, iter_num, sample_number):
         else:
             agent.saved_log_probs[sample_number][iter_num].append(m.log_prob(a))
     return a.numpy(), take_action
-    

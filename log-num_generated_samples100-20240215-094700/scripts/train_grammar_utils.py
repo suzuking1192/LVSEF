@@ -1,12 +1,15 @@
-import numpy as np
-from private import *
-from grammar_generation import *
-import pickle
 import fcntl
-from retro_star_listener import lock
+import pickle
 import time
 
-def evaluate_by_trained_grammar(grammar, args, grammar_model,metrics=['diversity', 'syn']):
+import numpy as np
+
+from grammar_generation import *
+from private import *
+from retro_star_listener import lock
+
+
+def evaluate_by_trained_grammar(grammar, args, grammar_model, metrics=["diversity", "syn"]):
     # Metric evalution for the given gramamr
     div = InternalDiversity()
     eval_metrics = {}
@@ -16,7 +19,7 @@ def evaluate_by_trained_grammar(grammar, args, grammar_model,metrics=['diversity
     idx = 0
     no_newly_generated_iter = 0
     print("Start grammar evaluation...")
-    while(True):
+    while True:
         print("Generating sample {}/{}".format(idx, args.num_generated_samples))
         mol, iter_num = grammar_model.produce(grammar)
         if mol is None:
@@ -35,37 +38,38 @@ def evaluate_by_trained_grammar(grammar, args, grammar_model,metrics=['diversity
             break
 
     for _metric in metrics:
-        assert _metric in ['diversity', 'num_rules', 'num_samples', 'syn']
-        if _metric == 'diversity':
+        assert _metric in ["diversity", "num_rules", "num_samples", "syn"]
+        if _metric == "diversity":
             diversity = div.get_diversity(generated_samples)
             eval_metrics[_metric] = diversity
-        elif _metric == 'num_rules':
+        elif _metric == "num_rules":
             eval_metrics[_metric] = grammar.num_prod_rule
-        elif _metric == 'num_samples':
+        elif _metric == "num_samples":
             eval_metrics[_metric] = idx
-        elif _metric == 'syn':
+        elif _metric == "syn":
             eval_metrics[_metric] = retro_sender(generated_samples, args)
         else:
             raise NotImplementedError
     return eval_metrics
 
+
 def retro_sender(generated_samples, args):
     # File communication to obtain retro-synthesis rate
-    with open(args.receiver_file, 'w') as fw:
-        fw.write('')
-    while(True):
-        with open(args.sender_file, 'r') as fr:
+    with open(args.receiver_file, "w") as fw:
+        fw.write("")
+    while True:
+        with open(args.sender_file, "r") as fr:
             editable = lock(fr)
             if editable:
-                with open(args.sender_file, 'w') as fw:
+                with open(args.sender_file, "w") as fw:
                     for sample in generated_samples:
-                        fw.write('{}\n'.format(Chem.MolToSmiles(sample)))
+                        fw.write("{}\n".format(Chem.MolToSmiles(sample)))
                 break
             fcntl.flock(fr, fcntl.LOCK_UN)
     num_samples = len(generated_samples)
     print("Waiting for retro_star evaluation...")
-    while(True):
-        with open(args.receiver_file, 'r') as fr:
+    while True:
+        with open(args.receiver_file, "r") as fr:
             editable = lock(fr)
             if editable:
                 syn_status = []
@@ -80,56 +84,56 @@ def retro_sender(generated_samples, args):
     assert len(generated_samples) == len(syn_status)
     return np.mean([int(eval(s[1])) for s in syn_status])
 
-def check_grammar_rule_is_same(grammar_rule_1,grammar_rule_2):
+
+def check_grammar_rule_is_same(grammar_rule_1, grammar_rule_2):
     pass
 
+
 class markov_grammar_model:
-    
-    def __init__(self,grammar,lr) -> None:
-        
+
+    def __init__(self, grammar, lr) -> None:
+
         self.lr = lr
         self.q_table = np.zeros((len(grammar), len(grammar)))
         self.grammar_index = grammar
-    
-    
-    
-    def check_grammar_is_in_q_table(self,grammar_rule):
+
+    def check_grammar_is_in_q_table(self, grammar_rule):
         for grammar_rule_in_q_table in self.all_grammar:
             if grammar_rule_in_q_table.is_same(grammar_rule):
                 return True
-        
+
         return False
-    
-    def add_grammar_rule(self,grammar_rule):
+
+    def add_grammar_rule(self, grammar_rule):
         self.grammar_index.append(grammar_rule)
         # Add one row of zeros at the bottom
         self.q_table = np.vstack([self.q_table, np.zeros((1, self.q_table.shape[1]))])
 
         # Add one column of zeros on the right
         self.q_table = np.hstack([self.q_table, np.zeros((self.q_table.shape[0], 1))])
-        
-    def adjust_q_table_columns(self,grammar):
+
+    def adjust_q_table_columns(self, grammar):
         for grammar_rule in grammar:
             if self.check_grammar_is_in_q_table(grammar_rule):
-                pass 
+                pass
             else:
-                self.add_grammar_rule(grammar_rule) 
-    
-    def train_markov_grammar_by_reconstruction(self,grammar):
+                self.add_grammar_rule(grammar_rule)
+
+    def train_markov_grammar_by_reconstruction(self, grammar):
         pass
-    
-    def train_markov_grammar(self,grammar):
+
+    def train_markov_grammar(self, grammar):
         pass
-    
-    def save(self,file_name):
+
+    def save(self, file_name):
         with open(file_name, "wb") as file:
             pickle.dump(self, file)
-    
-    def produce(self,grammar):
+
+    def produce(self, grammar):
         def sample(l, prob=None):
             if prob is None:
-                prob = [1/len(l)] * len(l)
-            idx =  np.random.choice(range(len(l)), 1, p=prob)[0]
+                prob = [1 / len(l)] * len(l)
+            idx = np.random.choice(range(len(l)), 1, p=prob)[0]
             return l[idx], idx
 
         def prob_schedule(_iter, selected_idx):
@@ -141,7 +145,7 @@ class markov_grammar_model:
         hypergraph = Hypergraph()
         starting_rules = [(rule_i, rule) for rule_i, rule in enumerate(grammar.prod_rule_list) if rule.is_start_rule]
         iter = 0
-        while(True):
+        while True:
             if iter == 0:
                 _, idx = sample(starting_rules)
                 selected_rule_idx, selected_rule = starting_rules[idx]
@@ -154,7 +158,7 @@ class markov_grammar_model:
                 for rule_i, rule in enumerate(grammar.prod_rule_list):
                     hg_prev = deepcopy(hypergraph)
                     hg_cand, _, avail = rule.graph_rule_applied_to(hypergraph)
-                    if(avail):
+                    if avail:
                         candidate_rule.append(rule)
                         candidate_rule_idx.append(rule_i)
                         candidate_hg.append(hg_cand)

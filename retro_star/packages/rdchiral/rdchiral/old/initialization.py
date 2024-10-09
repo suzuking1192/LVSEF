@@ -1,16 +1,17 @@
 import rdkit.Chem as Chem
 import rdkit.Chem.AllChem as AllChem
-from rdkit.Chem.rdchem import ChiralType, BondType, BondDir
-
 from rdchiral.old.chiral import template_atom_could_have_been_tetra
 from rdchiral.old.utils import vprint
+from rdkit.Chem.rdchem import ChiralType
 
-class rdchiralReaction():
-    '''
+
+class rdchiralReaction:
+    """
     Class to store everything that should be pre-computed for a reaction. This
     makes library application much faster, since we can pre-do a lot of work
     instead of doing it for every mol-template pair
-    '''
+    """
+
     def __init__(self, reaction_smarts):
         # Keep smarts, useful for reporting
         self.reaction_smarts = reaction_smarts
@@ -22,20 +23,24 @@ class rdchiralReaction():
         self.template_r, self.template_p = get_template_frags_from_rxn(self.rxn)
 
         # Define molAtomMapNumber->atom dictionary for template rct and prd
-        self.atoms_rt_map = {a.GetIntProp('molAtomMapNumber'): a \
-            for a in self.template_r.GetAtoms() if a.HasProp('molAtomMapNumber')}
-        self.atoms_pt_map = {a.GetIntProp('molAtomMapNumber'): a \
-            for a in self.template_p.GetAtoms() if a.HasProp('molAtomMapNumber')}
+        self.atoms_rt_map = {
+            a.GetIntProp("molAtomMapNumber"): a for a in self.template_r.GetAtoms() if a.HasProp("molAtomMapNumber")
+        }
+        self.atoms_pt_map = {
+            a.GetIntProp("molAtomMapNumber"): a for a in self.template_p.GetAtoms() if a.HasProp("molAtomMapNumber")
+        }
 
         # Call template_atom_could_have_been_tetra to pre-assign value to atom
         [template_atom_could_have_been_tetra(a) for a in self.template_r.GetAtoms()]
         [template_atom_could_have_been_tetra(a) for a in self.template_p.GetAtoms()]
 
-class rdchiralReactants():
-    '''
+
+class rdchiralReactants:
+    """
     Class to store everything that should be pre-computed for a reactant mol
     so that library application is faster
-    '''
+    """
+
     def __init__(self, reactant_smiles):
         # Keep original smiles, useful for reporting
         self.reactant_smiles = reactant_smiles
@@ -55,17 +60,17 @@ class rdchiralReactants():
 
         # Pre-list reactant bonds (for stitching broken products)
         self.bonds_by_isotope = [
-            (b.GetBeginAtom().GetIsotope(), b.GetEndAtom().GetIsotope(), b) \
-            for b in self.reactants.GetBonds()
+            (b.GetBeginAtom().GetIsotope(), b.GetEndAtom().GetIsotope(), b) for b in self.reactants.GetBonds()
         ]
+
 
 def initialize_rxn_from_smarts(reaction_smarts):
     # Initialize reaction
     rxn = AllChem.ReactionFromSmarts(reaction_smarts)
     rxn.Initialize()
     if rxn.Validate()[1] != 0:
-        raise ValueError('validation failed')
-    vprint(2, 'Validated rxn without errors')
+        raise ValueError("validation failed")
+    vprint(2, "Validated rxn without errors")
 
     unmapped = 700
     for rct in rxn.GetReactants():
@@ -73,14 +78,15 @@ def initialize_rxn_from_smarts(reaction_smarts):
         Chem.AssignStereochemistry(rct)
         # Fill in atom map numbers
         for a in rct.GetAtoms():
-            if not a.HasProp('molAtomMapNumber'):
-                a.SetIntProp('molAtomMapNumber', unmapped)
+            if not a.HasProp("molAtomMapNumber"):
+                a.SetIntProp("molAtomMapNumber", unmapped)
                 unmapped += 1
-    vprint(2, 'Added {} map nums to unmapped reactants', unmapped-700)
+    vprint(2, "Added {} map nums to unmapped reactants", unmapped - 700)
     if unmapped > 800:
-        raise ValueError('Why do you have so many unmapped atoms in the template reactants?')
+        raise ValueError("Why do you have so many unmapped atoms in the template reactants?")
 
     return rxn
+
 
 def initialize_reactants_from_smiles(reactant_smiles):
     # Initialize reactants
@@ -90,9 +96,10 @@ def initialize_reactants_from_smiles(reactant_smiles):
     # To have the product atoms match reactant atoms, we
     # need to populate the Isotope field, since this field
     # gets copied over during the reaction.
-    [a.SetIsotope(i+1) for (i, a) in enumerate(reactants.GetAtoms())]
-    vprint(2, 'Initialized reactants, assigned isotopes, stereochem, flagpossiblestereocenters')
+    [a.SetIsotope(i + 1) for (i, a) in enumerate(reactants.GetAtoms())]
+    vprint(2, "Initialized reactants, assigned isotopes, stereochem, flagpossiblestereocenters")
     return reactants
+
 
 def get_template_frags_from_rxn(rxn):
     # Copy reaction template so we can play around with isotopes

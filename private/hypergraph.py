@@ -1,19 +1,20 @@
-from rdkit import Chem
-from rdkit import RDLogger
-from .symbol import TSymbol, BondSymbol
-from copy import deepcopy
-from typing import List, Dict, Tuple
 from collections import Counter
-import networkx as nx
-from networkx.algorithms.isomorphism import GraphMatcher
-from private.utils import _node_match, _node_match_prod_rule, _edge_match, masked_softmax
+from copy import deepcopy
 from functools import partial
+from typing import List
+
+import networkx as nx
 import numpy as np
-import os
+from networkx.algorithms.isomorphism import GraphMatcher
+from rdkit import Chem
+
+from private.utils import _edge_match, _node_match_prod_rule
+
+from .symbol import BondSymbol, TSymbol
 
 
 class Hypergraph(object):
-    '''
+    """
     A class of a hypergraph.
     Each hyperedge can be ordered. For the ordered case,
     edges adjacent to the hyperedge node are labeled by their orders.
@@ -24,7 +25,8 @@ class Hypergraph(object):
         a bipartite graph representation of a hypergraph
     edge_idx : int
         total number of hyperedges that exist so far
-    '''
+    """
+
     def __init__(self):
         self.hg = nx.Graph()
         self.edge_idx = 0
@@ -33,7 +35,6 @@ class Hypergraph(object):
         self.edges = set([])
         self.num_edges = 0
         self.nodes_in_edge_dict = {}
-        
 
     def __eq__(self, another):
         if self.num_nodes != another.num_nodes:
@@ -41,30 +42,19 @@ class Hypergraph(object):
         if self.num_edges != another.num_edges:
             return False
 
-        subhg_bond_symbol_counter \
-                = Counter([self.node_attr(each_node)['symbol'] \
-                for each_node in self.nodes])
-        each_bond_symbol_counter \
-                = Counter([another.node_attr(each_node)['symbol'] \
-                for each_node in another.nodes])
+        subhg_bond_symbol_counter = Counter([self.node_attr(each_node)["symbol"] for each_node in self.nodes])
+        each_bond_symbol_counter = Counter([another.node_attr(each_node)["symbol"] for each_node in another.nodes])
         if subhg_bond_symbol_counter != each_bond_symbol_counter:
             return False
 
-        subhg_atom_symbol_counter \
-                = Counter([self.edge_attr(each_edge)['symbol'] \
-                for each_edge in self.edges])
-        each_atom_symbol_counter \
-                = Counter([another.edge_attr(each_edge)['symbol'] \
-                for each_edge in another.edges])
+        subhg_atom_symbol_counter = Counter([self.edge_attr(each_edge)["symbol"] for each_edge in self.edges])
+        each_atom_symbol_counter = Counter([another.edge_attr(each_edge)["symbol"] for each_edge in another.edges])
         if subhg_atom_symbol_counter != each_atom_symbol_counter:
             return False
 
-        gm = GraphMatcher(self.hg,
-                another.hg,
-                partial(_node_match_prod_rule,
-                    ignore_order=True),
-                partial(_edge_match,
-                    ignore_order=True))
+        gm = GraphMatcher(
+            self.hg, another.hg, partial(_node_match_prod_rule, ignore_order=True), partial(_edge_match, ignore_order=True)
+        )
         try:
             # next(gm.isomorphisms_iter())
             return gm.is_isomorphic()
@@ -73,18 +63,15 @@ class Hypergraph(object):
 
     def find_isomorphism_mapping(self, another, vis=False):
         assert self == another
-        gm = GraphMatcher(self.hg,
-                another.hg,
-                partial(_node_match_prod_rule,
-                    ignore_order=True),
-                partial(_edge_match,
-                    ignore_order=True))
+        gm = GraphMatcher(
+            self.hg, another.hg, partial(_node_match_prod_rule, ignore_order=True), partial(_edge_match, ignore_order=True)
+        )
         assert gm.is_isomorphic()
         # return gm.mapping
         return [mapping for mapping in gm.isomorphisms_iter()]
 
     def add_node(self, node: str, attr_dict=None):
-        ''' add a node to hypergraph
+        """add a node to hypergraph
 
         Parameters
         ----------
@@ -92,28 +79,28 @@ class Hypergraph(object):
             node name
         attr_dict : dict
             dictionary of node attributes
-        '''
-        self.hg.add_node(node, bipartite='node', attr_dict=attr_dict)
+        """
+        self.hg.add_node(node, bipartite="node", attr_dict=attr_dict)
         if node not in self.nodes:
             self.num_nodes += 1
         self.nodes.add(node)
 
     def add_edge(self, node_list: List[str], attr_dict=None, edge_name=None):
-        ''' add an edge consisting of nodes `node_list`
+        """add an edge consisting of nodes `node_list`
 
         Parameters
         ----------
-        node_list : list 
+        node_list : list
             ordered list of nodes that consist the edge
         attr_dict : dict
             dictionary of edge attributes
-        '''
+        """
         if edge_name is None:
-            edge = 'e{}'.format(self.edge_idx)
+            edge = "e{}".format(self.edge_idx)
         else:
             assert edge_name not in self.edges
             edge = edge_name
-        self.hg.add_node(edge, bipartite='edge', attr_dict=attr_dict)
+        self.hg.add_node(edge, bipartite="edge", attr_dict=attr_dict)
         if edge not in self.edges:
             self.num_edges += 1
         self.edges.add(edge)
@@ -137,7 +124,7 @@ class Hypergraph(object):
         return edge
 
     def remove_node(self, node: str, remove_connected_edges=True):
-        ''' remove a node
+        """remove a node
 
         Parameters
         ----------
@@ -145,7 +132,7 @@ class Hypergraph(object):
             node name
         remove_connected_edges : bool
             if True, remove edges that are adjacent to the node
-        '''
+        """
         if remove_connected_edges:
             connected_edges = deepcopy(self.adj_edges(node))
             for each_edge in connected_edges:
@@ -155,39 +142,39 @@ class Hypergraph(object):
         self.nodes.remove(node)
 
     def remove_nodes(self, node_iter, remove_connected_edges=True):
-        ''' remove a set of nodes
+        """remove a set of nodes
 
         Parameters
         ----------
         node_iter : iterator of strings
             nodes to be removed
         remove_connected_edges : bool
-            if True, remove edges that are adjacent to the node        
-        '''
+            if True, remove edges that are adjacent to the node
+        """
         for each_node in node_iter:
             self.remove_node(each_node, remove_connected_edges)
 
     def remove_edge(self, edge: str):
-        ''' remove an edge
+        """remove an edge
 
         Parameters
         ----------
         edge : str
             edge to be removed
-        '''
+        """
         self.hg.remove_node(edge)
         self.edges.remove(edge)
         self.num_edges -= 1
         self.nodes_in_edge_dict.pop(edge)
 
     def remove_edges(self, edge_iter):
-        ''' remove a set of edges
+        """remove a set of edges
 
         Parameters
         ----------
         edge_iter : iterator of strings
             edges to be removed
-        '''
+        """
         for each_edge in edge_iter:
             self.remove_edge(each_edge)
 
@@ -208,14 +195,14 @@ class Hypergraph(object):
         self.remove_edges(remove_edge_list)
 
     def remove_subhg(self, subhg):
-        ''' remove subhypergraph.
+        """remove subhypergraph.
         all of the hyperedges are removed.
         each node of subhg is removed if its degree becomes 0 after removing hyperedges.
 
         Parameters
         ----------
         subhg : Hypergraph
-        '''
+        """
         for each_edge in subhg.edges:
             self.remove_edge(each_edge)
         for each_node in subhg.nodes:
@@ -223,7 +210,7 @@ class Hypergraph(object):
                 self.remove_node(each_node)
 
     def nodes_in_edge(self, edge):
-        ''' return an ordered list of nodes in a given edge.
+        """return an ordered list of nodes in a given edge.
 
         Parameters
         ----------
@@ -234,24 +221,23 @@ class Hypergraph(object):
         -------
         list or set
             ordered list or set of nodes that belong to the edge
-        '''
-        if edge.startswith('e'):
+        """
+        if edge.startswith("e"):
             return self.nodes_in_edge_dict[edge]
         else:
             adj_node_list = self.hg.adj[edge]
             adj_node_order_list = []
             adj_node_name_list = []
             for each_node in adj_node_list:
-                adj_node_order_list.append(adj_node_list[each_node]['order'])
+                adj_node_order_list.append(adj_node_list[each_node]["order"])
                 adj_node_name_list.append(each_node)
             if adj_node_order_list == [-1] * len(adj_node_order_list):
                 return set(adj_node_name_list)
             else:
-                return [adj_node_name_list[each_idx] for each_idx
-                        in np.argsort(adj_node_order_list)]
+                return [adj_node_name_list[each_idx] for each_idx in np.argsort(adj_node_order_list)]
 
     def adj_edges(self, node):
-        ''' return a dict of adjacent hyperedges
+        """return a dict of adjacent hyperedges
 
         Parameters
         ----------
@@ -261,11 +247,11 @@ class Hypergraph(object):
         -------
         set
             set of edges that are adjacent to `node`
-        '''
+        """
         return self.hg.adj[node]
 
     def adj_nodes(self, node):
-        ''' return a set of adjacent nodes
+        """return a set of adjacent nodes
 
         Parameters
         ----------
@@ -275,7 +261,7 @@ class Hypergraph(object):
         -------
         set
             set of nodes that are adjacent to `node`
-        '''
+        """
         node_set = set([])
         for each_adj_edge in self.adj_edges(node):
             node_set.update(set(self.nodes_in_edge(each_adj_edge)))
@@ -322,7 +308,7 @@ class Hypergraph(object):
         return selected_nodes
 
     def adj_subhg(self, node, ident_node_dict=None):
-        """ return a subhypergraph consisting of a set of nodes and hyperedges adjacent to `node`.
+        """return a subhypergraph consisting of a set of nodes and hyperedges adjacent to `node`.
         if an adjacent node has a self-loop hyperedge, it will be also added to the subhypergraph.
 
         Parameters
@@ -349,21 +335,18 @@ class Hypergraph(object):
             # if the adjacent node has self-loop edge, it will be appended to adj_edge_list.
             for each_node in other_nodes:
                 for other_edge in set(self.adj_edges(each_node)) - set([each_edge]):
-                    if len(set(self.nodes_in_edge(other_edge)) \
-                           - set(self.nodes_in_edge(each_edge))) == 0:
+                    if len(set(self.nodes_in_edge(other_edge)) - set(self.nodes_in_edge(each_edge))) == 0:
                         adj_edge_set.update(set([other_edge]))
         subhg = Hypergraph()
         for each_node in adj_node_set:
             subhg.add_node(each_node, attr_dict=self.node_attr(each_node))
         for each_edge in adj_edge_set:
-            subhg.add_edge(self.nodes_in_edge(each_edge),
-                           attr_dict=self.edge_attr(each_edge),
-                           edge_name=each_edge)
+            subhg.add_edge(self.nodes_in_edge(each_edge), attr_dict=self.edge_attr(each_edge), edge_name=each_edge)
         subhg.edge_idx = self.edge_idx
         return subhg
 
     def get_subhg(self, node_list, edge_list, ident_node_dict=None):
-        """ return a subhypergraph consisting of a set of nodes and hyperedges adjacent to `node`.
+        """return a subhypergraph consisting of a set of nodes and hyperedges adjacent to `node`.
         if an adjacent node has a self-loop hyperedge, it will be also added to the subhypergraph.
 
         Parameters
@@ -385,92 +368,89 @@ class Hypergraph(object):
 
         subhg = Hypergraph()
         for each_node in adj_node_set:
-            subhg.add_node(each_node,
-                           attr_dict=deepcopy(self.node_attr(each_node)))
+            subhg.add_node(each_node, attr_dict=deepcopy(self.node_attr(each_node)))
         for each_edge in adj_edge_set:
-            subhg.add_edge(self.nodes_in_edge(each_edge),
-                           attr_dict=deepcopy(self.edge_attr(each_edge)),
-                           edge_name=each_edge)
+            subhg.add_edge(self.nodes_in_edge(each_edge), attr_dict=deepcopy(self.edge_attr(each_edge)), edge_name=each_edge)
         subhg.edge_idx = self.edge_idx
         return subhg
 
     def copy(self):
-        ''' return a copy of the object
-        
+        """return a copy of the object
+
         Returns
         -------
         Hypergraph
-        '''
+        """
         return deepcopy(self)
 
     def node_attr(self, node):
-        return self.hg.nodes[node]['attr_dict']
+        return self.hg.nodes[node]["attr_dict"]
 
     def edge_attr(self, edge):
-        return self.hg.nodes[edge]['attr_dict']
+        return self.hg.nodes[edge]["attr_dict"]
 
     def set_node_attr(self, node, attr_dict):
         for each_key, each_val in attr_dict.items():
-            self.hg.nodes[node]['attr_dict'][each_key] = each_val
+            self.hg.nodes[node]["attr_dict"][each_key] = each_val
 
     def set_edge_attr(self, edge, attr_dict):
         for each_key, each_val in attr_dict.items():
-            self.hg.nodes[edge]['attr_dict'][each_key] = each_val
+            self.hg.nodes[edge]["attr_dict"][each_key] = each_val
 
     def get_identical_node_dict(self):
-        ''' get identical nodes
+        """get identical nodes
         nodes are identical if they share the same set of adjacent edges.
-        
+
         Returns
         -------
         ident_node_dict : dict
             ident_node_dict[node] returns a list of nodes that are identical to `node`.
-        '''
+        """
         ident_node_dict = {}
         for each_node in self.nodes:
             ident_node_list = []
             for each_other_node in self.nodes:
                 if each_other_node == each_node:
                     ident_node_list.append(each_other_node)
-                elif self.adj_edges(each_node) == self.adj_edges(each_other_node) \
-                   and len(self.adj_edges(each_node)) != 0:
+                elif self.adj_edges(each_node) == self.adj_edges(each_other_node) and len(self.adj_edges(each_node)) != 0:
                     ident_node_list.append(each_other_node)
             ident_node_dict[each_node] = ident_node_list
         return ident_node_dict
-    '''
+
+    """
         ident_node_dict = {}
         for each_node in self.nodes:
             ident_node_dict[each_node] = [each_node]
         return ident_node_dict
-    '''
+    """
 
     def get_leaf_edge(self):
-        ''' get an edge that is incident only to one edge
+        """get an edge that is incident only to one edge
 
         Returns
         -------
         if exists, return a leaf edge. otherwise, return None.
-        '''
+        """
         for each_edge in self.edges:
             if len(self.adj_nodes(each_edge)) == 1:
-                if 'tmp' not in self.edge_attr(each_edge):
+                if "tmp" not in self.edge_attr(each_edge):
                     return each_edge
         return None
 
     def get_nontmp_edge(self):
         for each_edge in self.edges:
-            if 'tmp' not in self.edge_attr(each_edge):
+            if "tmp" not in self.edge_attr(each_edge):
                 return each_edge
         return None
 
     def is_subhg(self, hg):
-        ''' return whether this hypergraph is a subhypergraph of `hg`
+        """return whether this hypergraph is a subhypergraph of `hg`
 
         Returns
         -------
         True if self \in hg,
         False otherwise.
-        '''
+        """
         for each_node in self.nodes:
             if each_node not in hg.nodes:
                 return False
@@ -479,8 +459,8 @@ class Hypergraph(object):
                 return False
         return True
 
-    def in_cycle(self, node, visited=None, parent='', root_node='') -> bool:
-        ''' if `node` is in a cycle, then return True. otherwise, False.
+    def in_cycle(self, node, visited=None, parent="", root_node="") -> bool:
+        """if `node` is in a cycle, then return True. otherwise, False.
 
         Parameters
         ----------
@@ -494,12 +474,12 @@ class Hypergraph(object):
         Returns
         -------
         bool
-        '''
+        """
         if visited is None:
             visited = []
-        if parent == '':
+        if parent == "":
             visited = []
-        if root_node == '':
+        if root_node == "":
             root_node = node
         visited.append(node)
         for each_adj_node in self.adj_nodes(node):
@@ -514,7 +494,7 @@ class Hypergraph(object):
         NT_edges = []
         for edge in self.edges:
             edge_hg = Hypergraph()
-            if not self.edge_attr(edge)['terminal']:
+            if not self.edge_attr(edge)["terminal"]:
                 node_list = list(self.nodes_in_edge(edge))
                 for node in node_list:
                     edge_hg.add_node(node, deepcopy(self.node_attr(node)))
@@ -523,140 +503,167 @@ class Hypergraph(object):
         return NT_edges
 
     def draw_rule(self, lhs=False, file_path=None, with_edge_name=False):
-        ''' draw hypergraph
-        '''
+        """draw hypergraph"""
         # plot nodes if lhs
         with_node = lhs
 
         import graphviz
-        G = graphviz.Graph(format='png')
+
+        G = graphviz.Graph(format="png")
         for each_node in self.nodes:
-            if 'ext_id' in self.node_attr(each_node):
-                G.node(each_node, label='{}'.format(self.node_attr(each_node)['ext_id']), #'',
-                       shape='circle', width='0.1', height='0.1', style='filled',
-                       fillcolor='black', fontcolor='white')
+            if "ext_id" in self.node_attr(each_node):
+                G.node(
+                    each_node,
+                    label="{}".format(self.node_attr(each_node)["ext_id"]),  #'',
+                    shape="circle",
+                    width="0.1",
+                    height="0.1",
+                    style="filled",
+                    fillcolor="black",
+                    fontcolor="white",
+                )
             else:
                 if with_node:
-                    G.node(each_node, label='',
-                           shape='circle', width='0.1', height='0.1', style='filled',
-                           fillcolor='gray')
+                    G.node(each_node, label="", shape="circle", width="0.1", height="0.1", style="filled", fillcolor="gray")
         edge_list = []
         for each_edge in self.edges:
-            if self.edge_attr(each_edge).get('terminal', False):
-                G.node(each_edge,
-                       label=self.edge_attr(each_edge)['symbol'].symbol if not with_edge_name \
-                       else self.edge_attr(each_edge)['symbol'].symbol + ', ' + each_edge,
-                       fontcolor='black', shape='square')
-            elif self.edge_attr(each_edge).get('tmp', False):
-                G.node(each_edge, label='tmp' if not with_edge_name else 'tmp, ' + each_edge,
-                       fontcolor='black', shape='square')
+            if self.edge_attr(each_edge).get("terminal", False):
+                G.node(
+                    each_edge,
+                    label=(
+                        self.edge_attr(each_edge)["symbol"].symbol
+                        if not with_edge_name
+                        else self.edge_attr(each_edge)["symbol"].symbol + ", " + each_edge
+                    ),
+                    fontcolor="black",
+                    shape="square",
+                )
+            elif self.edge_attr(each_edge).get("tmp", False):
+                G.node(
+                    each_edge, label="tmp" if not with_edge_name else "tmp, " + each_edge, fontcolor="black", shape="square"
+                )
             else:
-                G.node(each_edge,
-                       label='{}*'.format(self.edge_attr(each_edge)['symbol'].symbol if not with_edge_name \
-                       else self.edge_attr(each_edge)['symbol'].symbol + ', ' + each_edge),
-                       fontcolor='black', shape='square', style='filled')
+                G.node(
+                    each_edge,
+                    label="{}*".format(
+                        self.edge_attr(each_edge)["symbol"].symbol
+                        if not with_edge_name
+                        else self.edge_attr(each_edge)["symbol"].symbol + ", " + each_edge
+                    ),
+                    fontcolor="black",
+                    shape="square",
+                    style="filled",
+                )
             # if with_node:
-                # for each_node in self.nodes_in_edge(each_edge):
-                    # G.edge(each_edge, each_node)
+            # for each_node in self.nodes_in_edge(each_edge):
+            # G.edge(each_edge, each_node)
             # else:
             for each_node in self.nodes_in_edge(each_edge):
-                if 'ext_id' in self.node_attr(each_node)\
-                   and set([each_node, each_edge]) not in edge_list:
+                if "ext_id" in self.node_attr(each_node) and set([each_node, each_edge]) not in edge_list:
                     num_bond = 0
-                    if self.node_attr(each_node)['symbol'].bond_type in [1, 2, 3]:
-                        num_bond += self.node_attr(each_node)['symbol'].bond_type
-                    elif self.node_attr(each_node)['symbol'].bond_type in [12]:
+                    if self.node_attr(each_node)["symbol"].bond_type in [1, 2, 3]:
+                        num_bond += self.node_attr(each_node)["symbol"].bond_type
+                    elif self.node_attr(each_node)["symbol"].bond_type in [12]:
                         num_bond += 1
                     else:
-                        raise NotImplementedError('unsupported bond type')
+                        raise NotImplementedError("unsupported bond type")
                     for _ in range(num_bond):
                         G.edge(each_edge, each_node)
                     edge_list.append(set([each_node, each_edge]))
             for each_other_edge in self.adj_nodes(each_edge):
                 if set([each_edge, each_other_edge]) not in edge_list:
                     num_bond = 0
-                    common_node_set = set(self.nodes_in_edge(each_edge))\
-                                      .intersection(set(self.nodes_in_edge(each_other_edge)))
+                    common_node_set = set(self.nodes_in_edge(each_edge)).intersection(set(self.nodes_in_edge(each_other_edge)))
                     # Skip those edges that share nodes with external label
-                    check_ext = ['ext_id' in self.node_attr(c_node) for c_node in common_node_set]
+                    check_ext = ["ext_id" in self.node_attr(c_node) for c_node in common_node_set]
                     if not all(check_ext):
                         for each_node in common_node_set:
-                            if self.node_attr(each_node)['symbol'].bond_type in [1, 2, 3]:
-                                num_bond += self.node_attr(each_node)['symbol'].bond_type
-                            elif self.node_attr(each_node)['symbol'].bond_type in [12]:
+                            if self.node_attr(each_node)["symbol"].bond_type in [1, 2, 3]:
+                                num_bond += self.node_attr(each_node)["symbol"].bond_type
+                            elif self.node_attr(each_node)["symbol"].bond_type in [12]:
                                 num_bond += 1
                             else:
-                                raise NotImplementedError('unsupported bond type')
+                                raise NotImplementedError("unsupported bond type")
                         for _ in range(num_bond):
                             G.edge(each_edge, each_other_edge)
                         edge_list.append(set([each_edge, each_other_edge]))
         if file_path is not None:
             G.render(file_path, cleanup=True)
         return G
-    
+
     def draw(self, file_path=None, with_node=False, with_edge_name=False, with_ext=True):
-        ''' draw hypergraph
-        '''
+        """draw hypergraph"""
         import graphviz
-        G = graphviz.Graph(format='png')
+
+        G = graphviz.Graph(format="png")
         for each_node in self.nodes:
-            if 'ext_id' in self.node_attr(each_node) and with_ext:
-                G.node(each_node, label='',
-                       shape='circle', width='0.1', height='0.1', style='filled',
-                       fillcolor='black')
+            if "ext_id" in self.node_attr(each_node) and with_ext:
+                G.node(each_node, label="", shape="circle", width="0.1", height="0.1", style="filled", fillcolor="black")
             else:
                 if with_node:
-                    G.node(each_node, label='',
-                           shape='circle', width='0.1', height='0.1', style='filled',
-                           fillcolor='gray')
+                    G.node(each_node, label="", shape="circle", width="0.1", height="0.1", style="filled", fillcolor="gray")
         edge_list = []
         for each_edge in self.edges:
-            if self.edge_attr(each_edge).get('terminal', False):
-                G.node(each_edge,
-                       label=self.edge_attr(each_edge)['symbol'].symbol if not with_edge_name \
-                       else self.edge_attr(each_edge)['symbol'].symbol + ', ' + each_edge,
-                       fontcolor='black', shape='square')
-            elif self.edge_attr(each_edge).get('tmp', False):
-                G.node(each_edge, label='tmp' if not with_edge_name else 'tmp, ' + each_edge,
-                       fontcolor='black', shape='square')
+            if self.edge_attr(each_edge).get("terminal", False):
+                G.node(
+                    each_edge,
+                    label=(
+                        self.edge_attr(each_edge)["symbol"].symbol
+                        if not with_edge_name
+                        else self.edge_attr(each_edge)["symbol"].symbol + ", " + each_edge
+                    ),
+                    fontcolor="black",
+                    shape="square",
+                )
+            elif self.edge_attr(each_edge).get("tmp", False):
+                G.node(
+                    each_edge, label="tmp" if not with_edge_name else "tmp, " + each_edge, fontcolor="black", shape="square"
+                )
             else:
-                G.node(each_edge,
-                       label='{}*'.format(self.edge_attr(each_edge)['symbol'].symbol if not with_edge_name \
-                       else self.edge_attr(each_edge)['symbol'].symbol + ', ' + each_edge),
-                       fontcolor='black', shape='square', style='filled')
+                G.node(
+                    each_edge,
+                    label="{}*".format(
+                        self.edge_attr(each_edge)["symbol"].symbol
+                        if not with_edge_name
+                        else self.edge_attr(each_edge)["symbol"].symbol + ", " + each_edge
+                    ),
+                    fontcolor="black",
+                    shape="square",
+                    style="filled",
+                )
             if with_node:
                 for each_node in self.nodes_in_edge(each_edge):
                     G.edge(each_edge, each_node)
             else:
                 for each_node in self.nodes_in_edge(each_edge):
-                    if 'ext_id' in self.node_attr(each_node)\
-                       and set([each_node, each_edge]) not in edge_list and with_ext:
+                    if "ext_id" in self.node_attr(each_node) and set([each_node, each_edge]) not in edge_list and with_ext:
                         G.edge(each_edge, each_node)
                         edge_list.append(set([each_node, each_edge]))
                 for each_other_edge in self.adj_nodes(each_edge):
                     if set([each_edge, each_other_edge]) not in edge_list:
                         num_bond = 0
-                        common_node_set = set(self.nodes_in_edge(each_edge))\
-                                          .intersection(set(self.nodes_in_edge(each_other_edge)))
+                        common_node_set = set(self.nodes_in_edge(each_edge)).intersection(
+                            set(self.nodes_in_edge(each_other_edge))
+                        )
                         for each_node in common_node_set:
-                            if self.node_attr(each_node)['symbol'].bond_type in [1, 2, 3]:
-                                num_bond += self.node_attr(each_node)['symbol'].bond_type
-                            elif self.node_attr(each_node)['symbol'].bond_type in [12]:
+                            if self.node_attr(each_node)["symbol"].bond_type in [1, 2, 3]:
+                                num_bond += self.node_attr(each_node)["symbol"].bond_type
+                            elif self.node_attr(each_node)["symbol"].bond_type in [12]:
                                 num_bond += 1
                             else:
-                                raise NotImplementedError('unsupported bond type')
+                                raise NotImplementedError("unsupported bond type")
                         for _ in range(num_bond):
                             G.edge(each_edge, each_other_edge)
                         edge_list.append(set([each_edge, each_other_edge]))
         if file_path is not None:
             G.render(file_path, cleanup=True)
-            #os.remove(file_path)
+            # os.remove(file_path)
         return G
 
     def is_dividable(self, node):
         _hg = deepcopy(self.hg)
         _hg.remove_node(node)
-        return (not nx.is_connected(_hg))
+        return not nx.is_connected(_hg)
 
     def divide(self, node):
         subhg_list = []
@@ -667,13 +674,12 @@ class Hypergraph(object):
         for each_component in connected_components:
             node_list = [node]
             edge_list = []
-            node_list.extend([each_node for each_node in each_component
-                              if each_node.startswith('bond_')])
-            edge_list.extend([each_edge for each_edge in each_component
-                              if each_edge.startswith('e')])
+            node_list.extend([each_node for each_node in each_component if each_node.startswith("bond_")])
+            edge_list.extend([each_edge for each_edge in each_component if each_edge.startswith("e")])
             subhg_list.append(self.get_subhg(node_list, edge_list))
-            #subhg_list[-1].set_node_attr(node, {'divided': True})
+            # subhg_list[-1].set_node_attr(node, {'divided': True})
         return subhg_list
+
 
 def mol_to_bipartite(mol, kekulize):
     """
@@ -694,26 +700,21 @@ def mol_to_bipartite(mol, kekulize):
     except KeyError:
         print(Chem.MolToSmiles(mol))
         raise KeyError
-        
+
     # if kekulize:
-        # Chem.Kekulize(mol)
+    # Chem.Kekulize(mol)
 
     bipartite_g = nx.Graph()
     for each_atom in mol.GetAtoms():
-        bipartite_g.add_node(f"atom_{each_atom.GetIdx()}",
-                             atom_attr=atom_attr(each_atom, kekulize, terminal=(each_atom.GetAtomMapNum()!=1)))
+        bipartite_g.add_node(
+            f"atom_{each_atom.GetIdx()}", atom_attr=atom_attr(each_atom, kekulize, terminal=(each_atom.GetAtomMapNum() != 1))
+        )
 
     for each_bond in mol.GetBonds():
         bond_idx = each_bond.GetIdx()
-        bipartite_g.add_node(
-            f"bond_{bond_idx}",
-            bond_attr=bond_attr(each_bond, kekulize))
-        bipartite_g.add_edge(
-            f"atom_{each_bond.GetBeginAtomIdx()}",
-            f"bond_{bond_idx}")
-        bipartite_g.add_edge(
-            f"atom_{each_bond.GetEndAtomIdx()}",
-            f"bond_{bond_idx}")
+        bipartite_g.add_node(f"bond_{bond_idx}", bond_attr=bond_attr(each_bond, kekulize))
+        bipartite_g.add_edge(f"atom_{each_bond.GetBeginAtomIdx()}", f"bond_{bond_idx}")
+        bipartite_g.add_edge(f"atom_{each_bond.GetEndAtomIdx()}", f"bond_{bond_idx}")
     return bipartite_g
 
 
@@ -739,22 +740,19 @@ def mol_to_hg(mol, kekulize, add_Hs):
         mol = Chem.AddHs(mol)
 
     # if kekulize:
-        # Chem.Kekulize(mol)
-
+    # Chem.Kekulize(mol)
 
     bipartite_g = mol_to_bipartite(mol, kekulize)
     hg = Hypergraph()
-    for each_atom in [each_node for each_node in bipartite_g.nodes()
-                      if each_node.startswith('atom_')]:
+    for each_atom in [each_node for each_node in bipartite_g.nodes() if each_node.startswith("atom_")]:
         node_set = set([])
         for each_bond in bipartite_g.adj[each_atom]:
-            hg.add_node(each_bond,
-                        attr_dict=bipartite_g.nodes[each_bond]['bond_attr'])
+            hg.add_node(each_bond, attr_dict=bipartite_g.nodes[each_bond]["bond_attr"])
             node_set.add(each_bond)
             hg.add_node
-        hg.add_edge(node_set,
-                    attr_dict=bipartite_g.nodes[each_atom]['atom_attr'])
+        hg.add_edge(node_set, attr_dict=bipartite_g.nodes[each_atom]["atom_attr"])
     return hg
+
 
 def mol_to_bipartite_add_dummy(mol, kekulize):
     """
@@ -775,53 +773,50 @@ def mol_to_bipartite_add_dummy(mol, kekulize):
     except KeyError:
         print(Chem.MolToSmiles(mol))
         raise KeyError
-        
+
     # if kekulize:
-        # Chem.Kekulize(mol)
+    # Chem.Kekulize(mol)
 
     bipartite_g = nx.Graph()
     for each_atom in mol.GetAtoms():
-        bipartite_g.add_node(f"atom_{each_atom.GetIdx()}",
-                             atom_attr=atom_attr(each_atom, kekulize, terminal=(each_atom.GetSymbol()!="*")))
+        bipartite_g.add_node(
+            f"atom_{each_atom.GetIdx()}", atom_attr=atom_attr(each_atom, kekulize, terminal=(each_atom.GetSymbol() != "*"))
+        )
 
     for each_bond in mol.GetBonds():
         bond_idx = each_bond.GetIdx()
-        bipartite_g.add_node(
-            f"bond_{bond_idx}",
-            bond_attr=bond_attr(each_bond, kekulize))
-        bipartite_g.add_edge(
-            f"atom_{each_bond.GetBeginAtomIdx()}",
-            f"bond_{bond_idx}")
-        bipartite_g.add_edge(
-            f"atom_{each_bond.GetEndAtomIdx()}",
-            f"bond_{bond_idx}")
+        bipartite_g.add_node(f"bond_{bond_idx}", bond_attr=bond_attr(each_bond, kekulize))
+        bipartite_g.add_edge(f"atom_{each_bond.GetBeginAtomIdx()}", f"bond_{bond_idx}")
+        bipartite_g.add_edge(f"atom_{each_bond.GetEndAtomIdx()}", f"bond_{bond_idx}")
     return bipartite_g
 
+
 def _add_ext_node(hg, ext_nodes):
-        """ mark nodes to be external (ordered ids are assigned)
+    """mark nodes to be external (ordered ids are assigned)
 
-        Parameters
-        ----------
-        hg : UndirectedHypergraph
-        ext_nodes : list of str
-            list of external nodes
+    Parameters
+    ----------
+    hg : UndirectedHypergraph
+    ext_nodes : list of str
+        list of external nodes
 
-        Returns
-        -------
-        hg : Hypergraph
-            nodes in `ext_nodes` are marked to be external
-        """
-        ext_id = 0
-        ext_id_exists = []
+    Returns
+    -------
+    hg : Hypergraph
+        nodes in `ext_nodes` are marked to be external
+    """
+    ext_id = 0
+    ext_id_exists = []
+    for each_node in ext_nodes:
+        ext_id_exists.append("ext_id" in hg.node_attr(each_node))
+    if ext_id_exists and any(ext_id_exists) != all(ext_id_exists):
+        raise ValueError
+    if not all(ext_id_exists):
         for each_node in ext_nodes:
-            ext_id_exists.append('ext_id' in hg.node_attr(each_node))
-        if ext_id_exists and any(ext_id_exists) != all(ext_id_exists):
-            raise ValueError
-        if not all(ext_id_exists):
-            for each_node in ext_nodes:
-                hg.node_attr(each_node)['ext_id'] = ext_id
-                ext_id += 1
-        return hg
+            hg.node_attr(each_node)["ext_id"] = ext_id
+            ext_id += 1
+    return hg
+
 
 def mol_to_hg_add_dummy(mol, kekulize, add_Hs):
     """
@@ -845,22 +840,18 @@ def mol_to_hg_add_dummy(mol, kekulize, add_Hs):
         mol = Chem.AddHs(mol)
 
     # if kekulize:
-        # Chem.Kekulize(mol)
-
+    # Chem.Kekulize(mol)
 
     bipartite_g = mol_to_bipartite_add_dummy(mol, kekulize)
     hg = Hypergraph()
-    for each_atom in [each_node for each_node in bipartite_g.nodes()
-                      if each_node.startswith('atom_')]:
+    for each_atom in [each_node for each_node in bipartite_g.nodes() if each_node.startswith("atom_")]:
         node_set = set([])
         for each_bond in bipartite_g.adj[each_atom]:
-            hg.add_node(each_bond,
-                        attr_dict=bipartite_g.nodes[each_bond]['bond_attr'])
+            hg.add_node(each_bond, attr_dict=bipartite_g.nodes[each_bond]["bond_attr"])
             node_set.add(each_bond)
             hg.add_node
-        hg.add_edge(node_set,
-                    attr_dict=bipartite_g.nodes[each_atom]['atom_attr'])
-    
+        hg.add_edge(node_set, attr_dict=bipartite_g.nodes[each_atom]["atom_attr"])
+
     # add ext_id
     ext_nodes = []
     for each_node in hg.nodes:
@@ -869,21 +860,16 @@ def mol_to_hg_add_dummy(mol, kekulize, add_Hs):
         for each_edge in edges:
             if hg.edge_attr(each_edge)["terminal"] == False:
                 ext_node = True
-        if  ext_node == True:
-            ext_nodes.append(each_node)      
-            
- 
-        
-    hg = _add_ext_node(hg,ext_nodes)
-    
+        if ext_node == True:
+            ext_nodes.append(each_node)
 
-    
+    hg = _add_ext_node(hg, ext_nodes)
+
     return hg
 
 
-
 def hg_to_mol(hg, verbose=False):
-    """ convert a hypergraph into Mol object
+    """convert a hypergraph into Mol object
 
     Parameters
     ----------
@@ -893,20 +879,17 @@ def hg_to_mol(hg, verbose=False):
     -------
     mol : Chem.RWMol
     """
-    
 
     mol = Chem.RWMol()
     atom_dict = {}
     bond_set = set([])
     for each_edge in hg.edges:
         try:
-            atom = Chem.Atom(hg.edge_attr(each_edge)['symbol'].symbol)
-            
-            atom.SetNumExplicitHs(hg.edge_attr(each_edge)['symbol'].num_explicit_Hs)
-            atom.SetFormalCharge(hg.edge_attr(each_edge)['symbol'].formal_charge)
-            atom.SetChiralTag(
-                Chem.rdchem.ChiralType.values[
-                    hg.edge_attr(each_edge)['symbol'].chirality])
+            atom = Chem.Atom(hg.edge_attr(each_edge)["symbol"].symbol)
+
+            atom.SetNumExplicitHs(hg.edge_attr(each_edge)["symbol"].num_explicit_Hs)
+            atom.SetFormalCharge(hg.edge_attr(each_edge)["symbol"].formal_charge)
+            atom.SetChiralTag(Chem.rdchem.ChiralType.values[hg.edge_attr(each_edge)["symbol"].chirality])
             atom_idx = mol.AddAtom(atom)
             atom_dict[each_edge] = atom_idx
         except:
@@ -923,36 +906,34 @@ def hg_to_mol(hg, verbose=False):
             # add a dummy atom
             atom = Chem.Atom("*")
             atom_idx = mol.AddAtom(atom)
-            edge_2 = "*" +  str(atom_idx)
+            edge_2 = "*" + str(atom_idx)
             atom_dict[edge_2] = atom_idx
-            
-        if edge_1+edge_2 not in bond_set:
-            if hg.node_attr(each_node)['symbol'].bond_type <= 3:
-                num_bond = hg.node_attr(each_node)['symbol'].bond_type
-            elif hg.node_attr(each_node)['symbol'].bond_type == 12:
+
+        if edge_1 + edge_2 not in bond_set:
+            if hg.node_attr(each_node)["symbol"].bond_type <= 3:
+                num_bond = hg.node_attr(each_node)["symbol"].bond_type
+            elif hg.node_attr(each_node)["symbol"].bond_type == 12:
                 num_bond = 1
             else:
                 raise ValueError(f'too many bonds; {hg.node_attr(each_node)["bond_symbol"].bond_type}')
-            _ = mol.AddBond(atom_dict[edge_1],
-                            atom_dict[edge_2],
-                            order=Chem.rdchem.BondType.values[num_bond])
+            _ = mol.AddBond(atom_dict[edge_1], atom_dict[edge_2], order=Chem.rdchem.BondType.values[num_bond])
             bond_idx = mol.GetBondBetweenAtoms(atom_dict[edge_1], atom_dict[edge_2]).GetIdx()
 
             # stereo
-            mol.GetBondWithIdx(bond_idx).SetStereo(
-                Chem.rdchem.BondStereo.values[hg.node_attr(each_node)['symbol'].stereo])
-            bond_set.update([edge_1+edge_2])
-            bond_set.update([edge_2+edge_1])
+            mol.GetBondWithIdx(bond_idx).SetStereo(Chem.rdchem.BondStereo.values[hg.node_attr(each_node)["symbol"].stereo])
+            bond_set.update([edge_1 + edge_2])
+            bond_set.update([edge_2 + edge_1])
     mol.UpdatePropertyCache()
     mol = mol.GetMol()
     not_stereo_mol = deepcopy(mol)
     if Chem.MolFromSmiles(Chem.MolToSmiles(not_stereo_mol)) is None:
-        raise RuntimeError('no valid molecule was obtained.')
+        raise RuntimeError("no valid molecule was obtained.")
     try:
         mol = set_stereo(mol)
         is_stereo = True
     except:
         import traceback
+
         traceback.print_exc()
         is_stereo = False
     mol_tmp = deepcopy(mol)
@@ -988,29 +969,36 @@ def atom_attr(atom, kekulize, terminal):
             SMARTS representation of the atom.
     """
     if kekulize:
-        return {'terminal': terminal,
-                'is_in_ring': atom.IsInRing(),
-                'visited': False, 
-                'NT': False, 
-                'symbol': TSymbol(degree=0,
-                                  is_aromatic=False,
-                                  symbol=atom.GetSymbol(),
-                                  num_explicit_Hs=atom.GetNumExplicitHs(),
-                                  formal_charge=atom.GetFormalCharge(),
-                                  chirality=atom.GetChiralTag().real
-                )}
+        return {
+            "terminal": terminal,
+            "is_in_ring": atom.IsInRing(),
+            "visited": False,
+            "NT": False,
+            "symbol": TSymbol(
+                degree=0,
+                is_aromatic=False,
+                symbol=atom.GetSymbol(),
+                num_explicit_Hs=atom.GetNumExplicitHs(),
+                formal_charge=atom.GetFormalCharge(),
+                chirality=atom.GetChiralTag().real,
+            ),
+        }
     else:
-        return {'terminal': terminal,
-                'is_in_ring': atom.IsInRing(),
-                'visited': False, 
-                'NT': False, 
-                'symbol': TSymbol(degree=0,
-                                  is_aromatic=atom.GetIsAromatic(),
-                                  symbol=atom.GetSymbol(),
-                                  num_explicit_Hs=atom.GetNumExplicitHs(),
-                                  formal_charge=atom.GetFormalCharge(),
-                                  chirality=atom.GetChiralTag().real
-                )}
+        return {
+            "terminal": terminal,
+            "is_in_ring": atom.IsInRing(),
+            "visited": False,
+            "NT": False,
+            "symbol": TSymbol(
+                degree=0,
+                is_aromatic=atom.GetIsAromatic(),
+                symbol=atom.GetSymbol(),
+                num_explicit_Hs=atom.GetNumExplicitHs(),
+                formal_charge=atom.GetFormalCharge(),
+                chirality=atom.GetChiralTag().real,
+            ),
+        }
+
 
 def bond_attr(bond, kekulize):
     """
@@ -1058,25 +1046,25 @@ def bond_attr(bond, kekulize):
     else:
         is_aromatic = bond.GetIsAromatic()
         bond_type = bond.GetBondType().real
-    return {'symbol': BondSymbol(is_aromatic=is_aromatic,
-                                 bond_type=bond_type,
-                                 stereo=int(bond.GetStereo())),
-            'is_in_ring': bond.IsInRing(),
-            'visited': False}
+    return {
+        "symbol": BondSymbol(is_aromatic=is_aromatic, bond_type=bond_type, stereo=int(bond.GetStereo())),
+        "is_in_ring": bond.IsInRing(),
+        "visited": False,
+    }
 
 
 def standardize_stereo(mol):
-    '''
- 0: rdkit.Chem.rdchem.BondDir.NONE,
- 1: rdkit.Chem.rdchem.BondDir.BEGINWEDGE,
- 2: rdkit.Chem.rdchem.BondDir.BEGINDASH,
- 3: rdkit.Chem.rdchem.BondDir.ENDDOWNRIGHT,
- 4: rdkit.Chem.rdchem.BondDir.ENDUPRIGHT,
+    """
+    0: rdkit.Chem.rdchem.BondDir.NONE,
+    1: rdkit.Chem.rdchem.BondDir.BEGINWEDGE,
+    2: rdkit.Chem.rdchem.BondDir.BEGINDASH,
+    3: rdkit.Chem.rdchem.BondDir.ENDDOWNRIGHT,
+    4: rdkit.Chem.rdchem.BondDir.ENDUPRIGHT,
 
-    '''
+    """
     # mol = Chem.AddHs(mol) # this removes CIPRank !!!
     for each_bond in mol.GetBonds():
-        if int(each_bond.GetStereo()) in [2, 3]: #2=Z (same side), 3=E
+        if int(each_bond.GetStereo()) in [2, 3]:  # 2=Z (same side), 3=E
             begin_stereo_atom_idx = each_bond.GetBeginAtomIdx()
             end_stereo_atom_idx = each_bond.GetEndAtomIdx()
             atom_idx_1 = each_bond.GetStereoAtoms()[0]
@@ -1102,24 +1090,22 @@ def standardize_stereo(mol):
                 if each_neighbor_idx not in [begin_stereo_atom_idx, end_atom_idx]:
                     end_another_atom_idx = each_neighbor_idx
 
-            ''' 
+            """ 
             relationship between begin_atom_idx and end_atom_idx is encoded in GetStereo
-            '''
-            begin_atom_rank = int(mol.GetAtomWithIdx(begin_atom_idx).GetProp('_CIPRank'))
-            end_atom_rank = int(mol.GetAtomWithIdx(end_atom_idx).GetProp('_CIPRank'))
+            """
+            begin_atom_rank = int(mol.GetAtomWithIdx(begin_atom_idx).GetProp("_CIPRank"))
+            end_atom_rank = int(mol.GetAtomWithIdx(end_atom_idx).GetProp("_CIPRank"))
             try:
-                begin_another_atom_rank = int(mol.GetAtomWithIdx(begin_another_atom_idx).GetProp('_CIPRank'))
+                begin_another_atom_rank = int(mol.GetAtomWithIdx(begin_another_atom_idx).GetProp("_CIPRank"))
             except:
                 begin_another_atom_rank = np.inf
             try:
-                end_another_atom_rank = int(mol.GetAtomWithIdx(end_another_atom_idx).GetProp('_CIPRank'))
+                end_another_atom_rank = int(mol.GetAtomWithIdx(end_another_atom_idx).GetProp("_CIPRank"))
             except:
                 end_another_atom_rank = np.inf
-            if begin_atom_rank < begin_another_atom_rank\
-               and end_atom_rank < end_another_atom_rank:
+            if begin_atom_rank < begin_another_atom_rank and end_atom_rank < end_another_atom_rank:
                 pass
-            elif begin_atom_rank < begin_another_atom_rank\
-                 and end_atom_rank > end_another_atom_rank:
+            elif begin_atom_rank < begin_another_atom_rank and end_atom_rank > end_another_atom_rank:
                 # (begin_atom_idx +) end_another_atom_idx should be in StereoAtoms
                 if each_bond.GetStereo() == 2:
                     # set stereo
@@ -1140,8 +1126,7 @@ def standardize_stereo(mol):
                 else:
                     raise ValueError
                 each_bond.SetStereoAtoms(begin_atom_idx, end_another_atom_idx)
-            elif begin_atom_rank > begin_another_atom_rank\
-                 and end_atom_rank < end_another_atom_rank:
+            elif begin_atom_rank > begin_another_atom_rank and end_atom_rank < end_another_atom_rank:
                 # (end_atom_idx +) begin_another_atom_idx should be in StereoAtoms
                 if each_bond.GetStereo() == 2:
                     # set stereo
@@ -1162,8 +1147,7 @@ def standardize_stereo(mol):
                 else:
                     raise ValueError
                 each_bond.SetStereoAtoms(begin_another_atom_idx, end_atom_idx)
-            elif begin_atom_rank > begin_another_atom_rank\
-                 and end_atom_rank > end_another_atom_rank:
+            elif begin_atom_rank > begin_another_atom_rank and end_atom_rank > end_another_atom_rank:
                 # begin_another_atom_idx + end_another_atom_idx should be in StereoAtoms
                 if each_bond.GetStereo() == 2:
                     # set bond dir
@@ -1186,28 +1170,30 @@ def standardize_stereo(mol):
 
 
 def set_stereo(mol):
-    '''
- 0: rdkit.Chem.rdchem.BondDir.NONE,
- 1: rdkit.Chem.rdchem.BondDir.BEGINWEDGE,
- 2: rdkit.Chem.rdchem.BondDir.BEGINDASH,
- 3: rdkit.Chem.rdchem.BondDir.ENDDOWNRIGHT,
- 4: rdkit.Chem.rdchem.BondDir.ENDUPRIGHT,
-    '''
+    """
+    0: rdkit.Chem.rdchem.BondDir.NONE,
+    1: rdkit.Chem.rdchem.BondDir.BEGINWEDGE,
+    2: rdkit.Chem.rdchem.BondDir.BEGINDASH,
+    3: rdkit.Chem.rdchem.BondDir.ENDDOWNRIGHT,
+    4: rdkit.Chem.rdchem.BondDir.ENDUPRIGHT,
+    """
     _mol = Chem.MolFromSmiles(Chem.MolToSmiles(mol))
     Chem.Kekulize(_mol, True)
     substruct_match = mol.GetSubstructMatch(_mol)
     if not substruct_match:
-        ''' mol and _mol are kekulized.
+        """mol and _mol are kekulized.
         sometimes, the order of '=' and '-' changes, which causes mol and _mol not matched.
-        '''
+        """
         Chem.SetAromaticity(mol)
         Chem.SetAromaticity(_mol)
         substruct_match = mol.GetSubstructMatch(_mol)
     try:
-        atom_match = {substruct_match[_mol_atom_idx]: _mol_atom_idx for _mol_atom_idx in range(_mol.GetNumAtoms())} # mol to _mol
+        atom_match = {
+            substruct_match[_mol_atom_idx]: _mol_atom_idx for _mol_atom_idx in range(_mol.GetNumAtoms())
+        }  # mol to _mol
     except:
-        raise ValueError('two molecules obtained from the same data do not match.')
-        
+        raise ValueError("two molecules obtained from the same data do not match.")
+
     for each_bond in mol.GetBonds():
         begin_atom_idx = each_bond.GetBeginAtomIdx()
         end_atom_idx = each_bond.GetEndAtomIdx()
@@ -1216,17 +1202,23 @@ def set_stereo(mol):
 
     mol = _mol
     for each_bond in mol.GetBonds():
-        if int(each_bond.GetStereo()) in [2, 3]: #2=Z (same side), 3=E
+        if int(each_bond.GetStereo()) in [2, 3]:  # 2=Z (same side), 3=E
             begin_stereo_atom_idx = each_bond.GetBeginAtomIdx()
             end_stereo_atom_idx = each_bond.GetEndAtomIdx()
-            begin_atom_idx_set = set([each_neighbor.GetIdx()
-                                      for each_neighbor
-                                      in mol.GetAtomWithIdx(begin_stereo_atom_idx).GetNeighbors()
-                                      if each_neighbor.GetIdx() != end_stereo_atom_idx])
-            end_atom_idx_set = set([each_neighbor.GetIdx()
-                                    for each_neighbor
-                                    in mol.GetAtomWithIdx(end_stereo_atom_idx).GetNeighbors()
-                                    if each_neighbor.GetIdx() != begin_stereo_atom_idx])
+            begin_atom_idx_set = set(
+                [
+                    each_neighbor.GetIdx()
+                    for each_neighbor in mol.GetAtomWithIdx(begin_stereo_atom_idx).GetNeighbors()
+                    if each_neighbor.GetIdx() != end_stereo_atom_idx
+                ]
+            )
+            end_atom_idx_set = set(
+                [
+                    each_neighbor.GetIdx()
+                    for each_neighbor in mol.GetAtomWithIdx(end_stereo_atom_idx).GetNeighbors()
+                    if each_neighbor.GetIdx() != begin_stereo_atom_idx
+                ]
+            )
             if not begin_atom_idx_set:
                 each_bond.SetStereo(Chem.rdchem.BondStereo(0))
                 continue
@@ -1242,7 +1234,9 @@ def set_stereo(mol):
             if len(begin_atom_idx_set) == 2:
                 atom_idx_1 = begin_atom_idx_set.pop()
                 atom_idx_2 = begin_atom_idx_set.pop()
-                if int(mol.GetAtomWithIdx(atom_idx_1).GetProp('_CIPRank')) < int(mol.GetAtomWithIdx(atom_idx_2).GetProp('_CIPRank')):
+                if int(mol.GetAtomWithIdx(atom_idx_1).GetProp("_CIPRank")) < int(
+                    mol.GetAtomWithIdx(atom_idx_2).GetProp("_CIPRank")
+                ):
                     begin_atom_idx = atom_idx_1
                     begin_another_atom_idx = atom_idx_2
                 else:
@@ -1251,18 +1245,20 @@ def set_stereo(mol):
             if len(end_atom_idx_set) == 2:
                 atom_idx_1 = end_atom_idx_set.pop()
                 atom_idx_2 = end_atom_idx_set.pop()
-                if int(mol.GetAtomWithIdx(atom_idx_1).GetProp('_CIPRank')) < int(mol.GetAtomWithIdx(atom_idx_2).GetProp('_CIPRank')):
+                if int(mol.GetAtomWithIdx(atom_idx_1).GetProp("_CIPRank")) < int(
+                    mol.GetAtomWithIdx(atom_idx_2).GetProp("_CIPRank")
+                ):
                     end_atom_idx = atom_idx_1
                     end_another_atom_idx = atom_idx_2
                 else:
                     end_atom_idx = atom_idx_2
                     end_another_atom_idx = atom_idx_1
 
-            if each_bond.GetStereo() == 2: # same side
+            if each_bond.GetStereo() == 2:  # same side
                 mol = safe_set_bond_dir(mol, begin_atom_idx, begin_stereo_atom_idx, 3)
                 mol = safe_set_bond_dir(mol, end_atom_idx, end_stereo_atom_idx, 4)
                 each_bond.SetStereoAtoms(begin_atom_idx, end_atom_idx)
-            elif each_bond.GetStereo() == 3: # opposite side
+            elif each_bond.GetStereo() == 3:  # opposite side
                 mol = safe_set_bond_dir(mol, begin_atom_idx, begin_stereo_atom_idx, 3)
                 mol = safe_set_bond_dir(mol, end_atom_idx, end_stereo_atom_idx, 3)
                 each_bond.SetStereoAtoms(begin_atom_idx, end_atom_idx)
@@ -1277,9 +1273,10 @@ def safe_set_bond_dir(mol, atom_idx_1, atom_idx_2, bond_dir_val):
     else:
         mol.GetBondBetweenAtoms(atom_idx_1, atom_idx_2).SetBondDir(Chem.rdchem.BondDir.values[bond_dir_val])
         return mol
-        
+
+
 def common_node_list(hg1: Hypergraph, hg2: Hypergraph) -> List[str]:
-    """ return a list of common nodes
+    """return a list of common nodes
 
     Parameters
     ----------
@@ -1295,21 +1292,19 @@ def common_node_list(hg1: Hypergraph, hg2: Hypergraph) -> List[str]:
     else:
         node_set = hg1.nodes.intersection(hg2.nodes)
         node_dict = {}
-        if 'order4hrg' in hg1.node_attr(list(hg1.nodes)[0]):
+        if "order4hrg" in hg1.node_attr(list(hg1.nodes)[0]):
             for each_node in node_set:
-                node_dict[each_node] = hg1.node_attr(each_node)['order4hrg']
+                node_dict[each_node] = hg1.node_attr(each_node)["order4hrg"]
         else:
             for each_node in node_set:
-                node_dict[each_node] = hg1.node_attr(each_node)['symbol'].__hash__()
+                node_dict[each_node] = hg1.node_attr(each_node)["symbol"].__hash__()
         node_list = []
-        for each_key, _ in sorted(node_dict.items(), key=lambda x:x[1]):
+        for each_key, _ in sorted(node_dict.items(), key=lambda x: x[1]):
             node_list.append(each_key)
         edge_name = hg1.has_edge(node_list, ignore_order=True)
         if edge_name:
-            if not hg1.edge_attr(edge_name).get('terminal', True):
+            if not hg1.edge_attr(edge_name).get("terminal", True):
                 node_list = hg1.nodes_in_edge(edge_name)
             return node_list, True
         else:
             return node_list, False
-
-

@@ -214,3 +214,8 @@ outputs/*
 dump.rdb
 .env_kim
 *.csv
+
+*.pkl
+
+# Ignore folders with the pattern 'log-num_generated_samples*'
+log-num_generated_samples*/

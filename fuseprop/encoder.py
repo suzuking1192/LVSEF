@@ -1,10 +1,10 @@
 import torch
 import torch.nn as nn
-import rdkit.Chem as Chem
-import torch.nn.functional as F
-from fuseprop.nnutils import *
+
 from fuseprop.mol_graph import MolGraph
+from fuseprop.nnutils import *
 from fuseprop.rnn import GRU, LSTM
+
 
 class MPNEncoder(nn.Module):
 
@@ -13,17 +13,14 @@ class MPNEncoder(nn.Module):
         self.hidden_size = hidden_size
         self.input_size = input_size
         self.depth = depth
-        self.W_o = nn.Sequential( 
-                nn.Linear(node_fdim + hidden_size, hidden_size), 
-                nn.ReLU()
-        )
+        self.W_o = nn.Sequential(nn.Linear(node_fdim + hidden_size, hidden_size), nn.ReLU())
 
-        if rnn_type == 'GRU':
-            self.rnn = GRU(input_size, hidden_size, depth) 
-        elif rnn_type == 'LSTM':
-            self.rnn = LSTM(input_size, hidden_size, depth) 
+        if rnn_type == "GRU":
+            self.rnn = GRU(input_size, hidden_size, depth)
+        elif rnn_type == "LSTM":
+            self.rnn = LSTM(input_size, hidden_size, depth)
         else:
-            raise ValueError('unsupported rnn cell type ' + rnn_type)
+            raise ValueError("unsupported rnn cell type " + rnn_type)
 
     def forward(self, fnode, fmess, agraph, bgraph, mask):
         h = self.rnn(fmess, bgraph)
@@ -35,9 +32,9 @@ class MPNEncoder(nn.Module):
 
         if mask is None:
             mask = torch.ones(node_hiddens.size(0), 1, device=fnode.device)
-            mask[0, 0] = 0 #first node is padding
+            mask[0, 0] = 0  # first node is padding
 
-        return node_hiddens * mask, h 
+        return node_hiddens * mask, h
 
 
 class GraphEncoder(nn.Module):
@@ -46,11 +43,11 @@ class GraphEncoder(nn.Module):
         self.avocab = avocab
         self.hidden_size = hidden_size
         self.atom_size = atom_size = avocab.size() + MolGraph.MAX_POS
-        self.bond_size = bond_size = len(MolGraph.BOND_LIST) 
+        self.bond_size = bond_size = len(MolGraph.BOND_LIST)
 
-        self.E_a = torch.eye( avocab.size() ).cuda()
-        self.E_b = torch.eye( len(MolGraph.BOND_LIST) ).cuda()
-        self.E_pos = torch.eye( MolGraph.MAX_POS ).cuda()
+        self.E_a = torch.eye(avocab.size()).cuda()
+        self.E_b = torch.eye(len(MolGraph.BOND_LIST)).cuda()
+        self.E_pos = torch.eye(MolGraph.MAX_POS).cuda()
 
         self.encoder = MPNEncoder(rnn_type, atom_size + bond_size, atom_size, hidden_size, depth)
 
@@ -67,6 +64,5 @@ class GraphEncoder(nn.Module):
 
     def forward(self, graph_tensors):
         tensors = self.embed_graph(graph_tensors)
-        hatom,_ = self.encoder(*tensors, mask=None)
+        hatom, _ = self.encoder(*tensors, mask=None)
         return hatom
-

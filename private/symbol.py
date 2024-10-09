@@ -1,9 +1,9 @@
-from typing import List
+
 import numpy as np
 
-class TSymbol(object):
 
-    ''' terminal symbol
+class TSymbol(object):
+    """terminal symbol
 
     Attributes
     ----------
@@ -19,10 +19,9 @@ class TSymbol(object):
         charge
     chirality : int
         chirality
-    '''
+    """
 
-    def __init__(self, degree, is_aromatic,
-                 symbol, num_explicit_Hs, formal_charge, chirality):
+    def __init__(self, degree, is_aromatic, symbol, num_explicit_Hs, formal_charge, chirality):
         self.degree = degree
         self.is_aromatic = is_aromatic
         self.symbol = symbol
@@ -55,15 +54,16 @@ class TSymbol(object):
         return self.__str__().__hash__()
 
     def __str__(self):
-        return f'degree={self.degree}, is_aromatic={self.is_aromatic}, '\
-            f'symbol={self.symbol}, '\
-            f'num_explicit_Hs={self.num_explicit_Hs}, '\
-            f'formal_charge={self.formal_charge}, chirality={self.chirality}'
+        return (
+            f"degree={self.degree}, is_aromatic={self.is_aromatic}, "
+            f"symbol={self.symbol}, "
+            f"num_explicit_Hs={self.num_explicit_Hs}, "
+            f"formal_charge={self.formal_charge}, chirality={self.chirality}"
+        )
 
 
 class NTSymbol(object):
-
-    ''' non-terminal symbol
+    """non-terminal symbol
 
     Attributes
     ----------
@@ -75,11 +75,9 @@ class NTSymbol(object):
         indicate whether each of the nodes is aromatic or not.
     bond_type_list : list of int
         bond type of each node"
-    '''
+    """
 
-    def __init__(self, degree: int, is_aromatic: bool,
-                 bond_symbol_list: list,
-                 for_ring=False):
+    def __init__(self, degree: int, is_aromatic: bool, bond_symbol_list: list, for_ring=False):
         self.degree = degree
         self.is_aromatic = is_aromatic
         self.for_ring = for_ring
@@ -97,7 +95,7 @@ class NTSymbol(object):
 
     @property
     def symbol(self):
-        return f'R'
+        return f"R"
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, NTSymbol):
@@ -120,15 +118,15 @@ class NTSymbol(object):
         return self.__str__().__hash__()
 
     def __str__(self) -> str:
-        return f'degree={self.degree}, is_aromatic={self.is_aromatic}, '\
-            f'bond_symbol_list={[str(each_symbol) for each_symbol in self.bond_symbol_list]}'\
-            f'for_ring={self.for_ring}'
+        return (
+            f"degree={self.degree}, is_aromatic={self.is_aromatic}, "
+            f"bond_symbol_list={[str(each_symbol) for each_symbol in self.bond_symbol_list]}"
+            f"for_ring={self.for_ring}"
+        )
 
 
 class BondSymbol(object):
-    
-
-    ''' Bond symbol
+    """Bond symbol
 
     Attributes
     ----------
@@ -136,11 +134,9 @@ class BondSymbol(object):
         if True, at least one of the associated bonds must be aromatic.
     bond_type : int
         bond type of each node"
-    '''
+    """
 
-    def __init__(self, is_aromatic: bool,
-                 bond_type: int,
-                 stereo: int):
+    def __init__(self, is_aromatic: bool, bond_type: int, stereo: int):
         self.is_aromatic = is_aromatic
         self.bond_type = bond_type
         self.stereo = stereo
@@ -161,6 +157,4 @@ class BondSymbol(object):
         return self.__str__().__hash__()
 
     def __str__(self) -> str:
-        return f'is_aromatic={self.is_aromatic}, '\
-            f'bond_type={self.bond_type}, '\
-            f'stereo={self.stereo}, '
+        return f"is_aromatic={self.is_aromatic}, " f"bond_type={self.bond_type}, " f"stereo={self.stereo}, "

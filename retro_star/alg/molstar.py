@@ -1,16 +1,13 @@
-import os
-import numpy as np
 import logging
+import os
+
+import numpy as np
+
 from retro_star.alg.mol_tree import MolTree
 
 
-def molstar(target_mol, target_mol_id, starting_mols, expand_fn, value_fn,
-            iterations, viz=False, viz_dir=None):
-    mol_tree = MolTree(
-        target_mol=target_mol,
-        known_mols=starting_mols,
-        value_fn=value_fn
-    )
+def molstar(target_mol, target_mol_id, starting_mols, expand_fn, value_fn, iterations, viz=False, viz_dir=None):
+    mol_tree = MolTree(target_mol=target_mol, known_mols=starting_mols, value_fn=value_fn)
 
     i = -1
 
@@ -25,7 +22,7 @@ def molstar(target_mol, target_mol_id, starting_mols, expand_fn, value_fn,
             scores = np.array(scores)
 
             if np.min(scores) == np.inf:
-                logging.info('No open nodes!')
+                logging.info("No open nodes!")
                 break
 
             metric = scores
@@ -36,19 +33,19 @@ def molstar(target_mol, target_mol_id, starting_mols, expand_fn, value_fn,
 
             result = expand_fn(m_next.mol)
 
-            if result is not None and (len(result['scores']) > 0):
-                reactants = result['reactants']
-                scores = result['scores']
+            if result is not None and (len(result["scores"]) > 0):
+                reactants = result["reactants"]
+                scores = result["scores"]
                 costs = 0.0 - np.log(np.clip(np.array(scores), 1e-3, 1.0))
                 # costs = 1.0 - np.array(scores)
-                if 'templates' in result.keys():
-                    templates = result['templates']
+                if "templates" in result.keys():
+                    templates = result["templates"]
                 else:
-                    templates = result['template']
+                    templates = result["template"]
 
                 reactant_lists = []
                 for j in range(len(scores)):
-                    reactant_list = list(set(reactants[j].split('.')))
+                    reactant_list = list(set(reactants[j].split(".")))
                     reactant_lists.append(reactant_list)
 
                 assert m_next.open
@@ -63,10 +60,12 @@ def molstar(target_mol, target_mol_id, starting_mols, expand_fn, value_fn,
 
             else:
                 mol_tree.expand(m_next, None, None, None)
-                logging.info('Expansion fails on %s!' % m_next.mol)
+                logging.info("Expansion fails on %s!" % m_next.mol)
 
-        logging.info('Final search status | success value | iter: %s | %s | %d'
-                     % (str(mol_tree.search_status), str(mol_tree.root.succ_value), i+1))
+        logging.info(
+            "Final search status | success value | iter: %s | %s | %d"
+            % (str(mol_tree.search_status), str(mol_tree.root.succ_value), i + 1)
+        )
 
     best_route = None
     if mol_tree.succ:
@@ -79,12 +78,12 @@ def molstar(target_mol, target_mol_id, starting_mols, expand_fn, value_fn,
 
         if mol_tree.succ:
             if best_route.optimal:
-                f = '%s/mol_%d_route_optimal' % (viz_dir, target_mol_id)
+                f = "%s/mol_%d_route_optimal" % (viz_dir, target_mol_id)
             else:
-                f = '%s/mol_%d_route' % (viz_dir, target_mol_id)
+                f = "%s/mol_%d_route" % (viz_dir, target_mol_id)
             best_route.viz_route(f)
 
-        f = '%s/mol_%d_search_tree' % (viz_dir, target_mol_id)
+        f = "%s/mol_%d_search_tree" % (viz_dir, target_mol_id)
         mol_tree.viz_search_tree(f)
 
-    return mol_tree.succ, (best_route, i+1)
+    return mol_tree.succ, (best_route, i + 1)

@@ -1,11 +1,10 @@
-from rdkit import DataStructs, Chem
+from rdkit import Chem, DataStructs
 from rdkit.Chem import AllChem
-import numpy as np
-import torch.multiprocessing as mp
+
 # from retro_star.api import RSPlanner
 
 
-class InternalDiversity():
+class InternalDiversity:
     def distance(self, mol1, mol2, dtype="Tanimoto"):
         assert dtype in ["Tanimoto"]
         if dtype == "Tanimoto":
@@ -16,7 +15,7 @@ class InternalDiversity():
 
     def get_diversity(self, mol_list, dtype="Tanimoto"):
         similarity = 0
-        mol_list = [AllChem.GetMorganFingerprintAsBitVect(x, 3, 2048) for x in mol_list] 
+        mol_list = [AllChem.GetMorganFingerprintAsBitVect(x, 3, 2048) for x in mol_list]
         for i in range(len(mol_list)):
             sims = DataStructs.BulkTanimotoSimilarity(mol_list[i], mol_list[:i])
             similarity += sum(sims)
@@ -28,4 +27,3 @@ class InternalDiversity():
 
 if __name__ == "__main__":
     pass
-

@@ -1,6 +1,8 @@
-import numpy as np
 from queue import Queue
+
+import numpy as np
 from graphviz import Digraph
+
 
 class SynRoute:
     def __init__(self, target_mol, succ_value, search_status):
@@ -27,7 +29,7 @@ class SynRoute:
         self.parents.append(parent_id)
         self.children.append(None)
 
-        self.children[parent_id].append(len(self.mols)-1)
+        self.children[parent_id].append(len(self.mols) - 1)
 
     def set_value(self, mol, value):
         assert mol in self.mols
@@ -51,9 +53,9 @@ class SynRoute:
             self._add_mol(reactant, parent_id)
 
     def viz_route(self, viz_file):
-        G = Digraph('G', filename=viz_file)
-        G.attr('node', shape='box')
-        G.format = 'pdf'
+        G = Digraph("G", filename=viz_file)
+        G.attr("node", shape="box")
+        G.format = "pdf"
 
         names = []
         for i in range(len(self.mols)):
@@ -63,12 +65,12 @@ class SynRoute:
             names.append(name)
 
         node_queue = Queue()
-        node_queue.put((0,-1))   # target mol idx, and parent idx
+        node_queue.put((0, -1))  # target mol idx, and parent idx
         while not node_queue.empty():
             idx, parent_idx = node_queue.get()
 
             if parent_idx >= 0:
-                G.edge(names[parent_idx], names[idx], label='cost')
+                G.edge(names[parent_idx], names[idx], label="cost")
 
             if self.children[idx] is not None:
                 for c in self.children[idx]:
@@ -80,10 +82,10 @@ class SynRoute:
         s = self.mols[idx]
         if self.children[idx] is None:
             return s
-        s += '>%.4f>' % np.exp(-self.costs[idx])
+        s += ">%.4f>" % np.exp(-self.costs[idx])
         s += self.mols[self.children[idx][0]]
         for i in range(1, len(self.children[idx])):
-            s += '.'
+            s += "."
             s += self.mols[self.children[idx][i]]
 
         return s
@@ -92,7 +94,7 @@ class SynRoute:
         s = self.serialize_reaction(0)
         for i in range(1, len(self.mols)):
             if self.children[i] is not None:
-                s += '|'
+                s += "|"
                 s += self.serialize_reaction(i)
 
         return s

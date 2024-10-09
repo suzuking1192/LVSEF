@@ -2,6 +2,7 @@ import numpy as np
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
+
 def smiles_to_fp(s, fp_dim=2048, pack=False):
     mol = Chem.MolFromSmiles(s)
     fp = AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=fp_dim)
@@ -13,6 +14,7 @@ def smiles_to_fp(s, fp_dim=2048, pack=False):
         arr = np.packbits(arr)
 
     return arr
+
 
 def batch_smiles_to_fp(s_list, fp_dim):
     fps = []
