@@ -1,22 +1,22 @@
-
 import numpy as np
+import logging
 
 
 class ReactionNode:
     def __init__(self, parent, cost, template):
         self.parent = parent
-
+        
         self.depth = self.parent.depth + 1
         self.id = -1
 
         self.cost = cost
         self.template = template
         self.children = []
-        self.value = None  # [V(m | subtree_m) for m in children].sum() + cost
-        self.succ_value = np.inf  # total cost for existing solution
-        self.target_value = None  # V_target(self | whole tree)
-        self.succ = None  # successfully found a valid synthesis route
-        self.open = True  # before expansion: True, after expansion: False
+        self.value = None   # [V(m | subtree_m) for m in children].sum() + cost
+        self.succ_value = np.inf    # total cost for existing solution
+        self.target_value = None    # V_target(self | whole tree)
+        self.succ = None    # successfully found a valid synthesis route
+        self.open = True    # before expansion: True, after expansion: False
         parent.children.append(self)
 
     def v_self(self):
@@ -45,7 +45,8 @@ class ReactionNode:
             for mol in self.children:
                 self.succ_value += mol.succ_value
 
-        self.target_value = self.parent.v_target() - self.parent.v_self() + self.value
+        self.target_value = self.parent.v_target() - self.parent.v_self() + \
+                            self.value
         self.open = False
 
     def backup(self, v_delta, from_mol=None):
@@ -77,6 +78,6 @@ class ReactionNode:
                     grandchild.propagate(v_delta)
 
     def serialize(self):
-        return "%d" % (self.id)
+        return '%d' % (self.id)
         # return '%d | value %.2f | target %.2f' % \
         #        (self.id, self.v_self(), self.v_target())

@@ -1,4 +1,4 @@
-name: DEG
+name: LVSEF
 channels:
   - rdkit
   - pytorch

@@ -1,13 +1,14 @@
-
 import numpy as np
+import logging
 
 
 class MolNode:
-    def __init__(self, mol, init_value, parent=None, is_known=False, zero_known_value=True):
+    def __init__(self, mol, init_value, parent=None, is_known=False,
+                 zero_known_value=True):
         self.mol = mol
         self.pred_value = init_value
         self.value = init_value
-        self.succ_value = np.inf  # total cost for existing solution
+        self.succ_value = np.inf    # total cost for existing solution
         self.parent = parent
 
         self.id = -1
@@ -19,7 +20,7 @@ class MolNode:
         self.is_known = is_known
         self.children = []
         self.succ = is_known
-        self.open = True  # before expansion: True, after expansion: False
+        self.open = True    # before expansion: True, after expansion: False
         if is_known:
             self.open = False
             if zero_known_value:
@@ -58,7 +59,8 @@ class MolNode:
 
         if self.succ:
             for reaction in self.children:
-                self.succ_value = np.min((self.succ_value, reaction.succ_value))
+                self.succ_value = np.min((self.succ_value,
+                                          reaction.succ_value))
 
         self.open = False
 
@@ -88,7 +90,7 @@ class MolNode:
             return self.parent.backup(v_delta, from_mol=self.mol)
 
     def serialize(self):
-        text = "%d | %s" % (self.id, self.mol)
+        text = '%d | %s' % (self.id, self.mol)
         # text = '%d | %s | pred %.2f | value %.2f | target %.2f' % \
         #        (self.id, self.mol, self.pred_value, self.v_self(),
         #         self.v_target())
